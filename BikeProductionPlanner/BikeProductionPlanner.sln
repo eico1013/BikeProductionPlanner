@@ -10,6 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{077E3FB7-E834-4A60-848F-760A009A6504}"
 	ProjectSection(SolutionItems) = preProject
 		..\Git-Styleguide.md = ..\Git-Styleguide.md
+		..\Markdown-Cheatsheet.md = ..\Markdown-Cheatsheet.md
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZODABA-Bikes.WPF", "..\..\..\OneDrive\Ibsys 2\Tools vorherige Semester\ZODABA-Bikes\ZODABA-Bikes.WPF\ZODABA-Bikes.WPF.csproj", "{425A5827-3EDF-42D0-B3D1-C669374DC119}"
