@@ -5,7 +5,12 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeProductionPlanner.WPF", "BikeProductionPlanner.WPF.csproj", "{698C2322-28F2-4B2B-8E33-BC902DDE570C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeProductionPlanner.Logic", "..\BikeProductionPlanner.Logic\BikeProductionPlanner.Logic.csproj", "{EB3B6BA1-54E8-4300-94F7-2D7E8004C40D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeProductionPlanner.Logic", "..\BikeProductionPlanner.Logic\BikeProductionPlanner.Logic.csproj", "{EB3B6BA1-54E8-4300-94F7-2D7E8004C40D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{077E3FB7-E834-4A60-848F-760A009A6504}"
+	ProjectSection(SolutionItems) = preProject
+		..\Git-Styleguide.md = ..\Git-Styleguide.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
