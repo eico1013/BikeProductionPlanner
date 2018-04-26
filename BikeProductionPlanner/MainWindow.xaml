@@ -38,6 +38,7 @@
     <Grid Background="#FF292728">
         <Image x:Name="Image1" HorizontalAlignment="Left" Height="43" Margin="133,10,0,0" VerticalAlignment="Top" Width="85"/>
         <ScrollViewer Grid.Column="0" PanningMode="VerticalOnly" VerticalScrollBarVisibility="Auto" Margin="10,10,1195,226"/>
+        <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="3" Margin="166,-10,0,0" Stroke="Black" VerticalAlignment="Top" Width="86"/>
 
 
     </Grid>
