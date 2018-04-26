@@ -67,8 +67,10 @@
     </Compile>
     <Compile Include="WindowExample.xaml.cs">
       <DependentUpon>WindowExample.xaml</DependentUpon>
+    <Compile Include="MainWindowNew.xaml.cs">
+      <DependentUpon>MainWindowNew.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="MainWindowold.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -82,15 +84,15 @@
     <Compile Include="BikeStore.Designer.cs">
       <DependentUpon>BikeStore.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="MainWindowold.xaml.cs">
+      <DependentUpon>MainWindowold.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowExample.xaml">
+    <Page Include="MainWindowNew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
