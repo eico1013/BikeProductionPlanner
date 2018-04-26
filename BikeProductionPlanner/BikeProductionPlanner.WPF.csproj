@@ -65,8 +65,6 @@
     <Compile Include="menu.xaml.cs">
       <DependentUpon>menu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowExample.xaml.cs">
-      <DependentUpon>WindowExample.xaml</DependentUpon>
     <Compile Include="MainWindowNew.xaml.cs">
       <DependentUpon>MainWindowNew.xaml</DependentUpon>
     </Compile>
