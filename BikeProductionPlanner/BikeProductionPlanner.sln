@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\Git-Styleguide.md = ..\Git-Styleguide.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZODABA-Bikes.WPF", "..\..\..\OneDrive\Ibsys 2\Tools vorherige Semester\ZODABA-Bikes\ZODABA-Bikes.WPF\ZODABA-Bikes.WPF.csproj", "{425A5827-3EDF-42D0-B3D1-C669374DC119}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{EB3B6BA1-54E8-4300-94F7-2D7E8004C40D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB3B6BA1-54E8-4300-94F7-2D7E8004C40D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB3B6BA1-54E8-4300-94F7-2D7E8004C40D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{425A5827-3EDF-42D0-B3D1-C669374DC119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{425A5827-3EDF-42D0-B3D1-C669374DC119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{425A5827-3EDF-42D0-B3D1-C669374DC119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{425A5827-3EDF-42D0-B3D1-C669374DC119}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

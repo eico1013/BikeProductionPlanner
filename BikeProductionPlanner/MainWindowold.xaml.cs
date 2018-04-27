@@ -10,6 +10,8 @@ namespace BikeProductionPlanner
         public MainWindow()
         {
             InitializeComponent();
+
+//sfdjlsdfnölasdfns
         }
     }
 }
