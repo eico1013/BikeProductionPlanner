@@ -62,35 +62,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="menu.xaml.cs">
-      <DependentUpon>menu.xaml</DependentUpon>
+    <Compile Include="MainWindowFinal.xaml.cs">
+      <DependentUpon>MainWindowFinal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindowNew.xaml.cs">
-      <DependentUpon>MainWindowNew.xaml</DependentUpon>
+    <Compile Include="ViewModels\BlueViewModel.cs" />
+    <Compile Include="Views\Blue.xaml.cs">
+      <DependentUpon>Blue.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindowold.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Compile Include="Views\Red.xaml.cs">
+      <DependentUpon>Red.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindowFinal.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BikeStore.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BikeStore.Designer.cs">
-      <DependentUpon>BikeStore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainWindowold.xaml.cs">
-      <DependentUpon>MainWindowold.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="menu.xaml">
+    <Page Include="Views\Blue.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindowNew.xaml">
+    <Page Include="Views\Red.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -109,9 +103,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="BikeStore.resx">
-      <DependentUpon>BikeStore.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -13,15 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BikeProductionPlanner
+namespace BikeProductionPlanner.Views
 {
     /// <summary>
-    /// Interaction logic for menu.xaml
+    /// Interaction logic for Blue.xaml
     /// </summary>
-    public partial class menu : Page
+    public partial class Blue : UserControl
     {
-        public menu()
+        public Blue()
         {
+            InitializeComponent();
         }
     }
 }
