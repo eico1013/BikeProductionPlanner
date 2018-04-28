@@ -1,4 +1,6 @@
-﻿namespace BikeProductionPlanner.Logic.Database.Model
+﻿using BikeProductionPlanner.Logic.Logic;
+
+namespace BikeProductionPlanner.Logic.Database.Model
 {
     public class WorkplaceTask
     {

@@ -132,5 +132,11 @@
   <ItemGroup>
     <Resource Include="images\mountains.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BikeProductionPlanner.Logic\BikeProductionPlanner.Logic.csproj">
+      <Project>{eb3b6ba1-54e8-4300-94f7-2d7e8004c40d}</Project>
+      <Name>BikeProductionPlanner.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
