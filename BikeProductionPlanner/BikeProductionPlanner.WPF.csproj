@@ -69,6 +69,9 @@
     <Compile Include="Views\Blue.xaml.cs">
       <DependentUpon>Blue.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CapacityPlanningPage.xaml.cs">
+      <DependentUpon>CapacityPlanningPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Red.xaml.cs">
       <DependentUpon>Red.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Blue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CapacityPlanningPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

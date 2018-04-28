@@ -41,6 +41,9 @@ namespace BikeProductionPlanner
                 case 2:
                     ContentControl.Content = new SafetyStock();
                     break;
+                case 4:
+                    ContentControl.Content = new CapacityPlanningPage();
+                    break;
                 default:
                     break;
             }
