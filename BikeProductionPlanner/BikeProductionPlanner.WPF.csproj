@@ -72,6 +72,9 @@
     <Compile Include="Views\Red.xaml.cs">
       <DependentUpon>Red.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SafetyStock.xaml.cs">
+      <DependentUpon>SafetyStock.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindowFinal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Red.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SafetyStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
