@@ -77,7 +77,7 @@ namespace BikeProductionPlanner
                 { MenuItems.MenuItemsEnum.SafetyStock, new SafetyStock() },
                 //{ MenuItems.MenuItemsEnum.ProductionPlan, new ProductionPlanPage() },
                 { MenuItems.MenuItemsEnum.Capacity, new CapacityPlanningPage() },
-                //{ MenuItems.Purchase, new PurchasePage() },
+                { MenuItems.Purchase, new PurchasePage() },
                 { MenuItems.MenuItemsEnum.DataExport, new XMLExportPage() },
                 { MenuItems.MenuItemsEnum.StartingPage, new StartingPage() },
                 //{ MenuItems.Customisation, new CustomizePage() }
@@ -180,11 +180,11 @@ namespace BikeProductionPlanner
                 case 5:
                     NavigateTo(MenuItems.MenuItemsEnum.Capacity);
                     break;
+                case 6:
+                    ContentControl.Content = new Purchase();
+                    break;
                 case 8:
                     NavigateTo(MenuItems.MenuItemsEnum.DataExport);
-                    break;
-                case 9:
-                    NavigateTo(MenuItems.MenuItemsEnum.Impressum);
                     break;
 
                 default:
