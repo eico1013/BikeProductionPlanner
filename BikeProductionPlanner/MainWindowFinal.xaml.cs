@@ -181,6 +181,9 @@ namespace BikeProductionPlanner
                 case 8:
                     NavigateTo(MenuItems.MenuItemsEnum.DataExport);
                     break;
+                case 5:
+                    ContentControl.Content = new Purchase();
+                    break;
                 default:
                     break;
             }
