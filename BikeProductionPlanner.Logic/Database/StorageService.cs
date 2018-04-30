@@ -13,6 +13,7 @@ namespace BikeProductionPlanner.Logic.Database
         private List<WaitingListWorkstation> waitingListWorkstationList;
         private List<OrderInWork> ordersInWorkList;
         private List<WaitingListStock> waitingListStocks;
+        private List<FutureInwardStockMovment> futureInwardStockMovments;
 
         // Temp
         private Dictionary<int, ForecastPeriod> forecastList;
@@ -32,6 +33,7 @@ namespace BikeProductionPlanner.Logic.Database
             waitingListWorkstationList = XmlInputParser.Instance.WaitingListWorkstations;
             ordersInWorkList = XmlInputParser.Instance.OrdersInWork;
             waitingListStocks = XmlInputParser.Instance.WaitingListStocks;
+            futureInwardStockMovments = XmlInputParser.Instance.FutureInwardStockMovments;
 
             forecastList = new Dictionary<int, ForecastPeriod>();
 
@@ -54,6 +56,15 @@ namespace BikeProductionPlanner.Logic.Database
                 return instance;
             }
         }
+
+        #region FutureInwardStockMovment
+
+        public FutureInwardStockMovment GetFutureInwardStockMovment(int id)
+        {
+            return futureInwardStockMovments.Find(x => x.Article == id);
+        }
+
+        #endregion
 
         #region WarehouseStock
 
@@ -79,6 +90,11 @@ namespace BikeProductionPlanner.Logic.Database
         public WarehouseStock GetWarehouseArticleById(int Id)
         {
             return articleList.Find(x => x.Id == Id);
+        }
+
+        public List<WarehouseStock> GetWarehouseArticles()
+        {
+            return articleList;
         }
 
         public int GetAmountFromWareHouseStockId(int Id)
