@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using BikeProductionPlanner.Logic;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace BikeProductionPlanner.Views
 {
