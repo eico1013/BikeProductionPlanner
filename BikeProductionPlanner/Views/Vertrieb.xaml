@@ -7,7 +7,9 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
-    <StackPanel>
+    
+    <StackPanel Margin="0,29,0,-0.4">
+        
 
         <TextBlock Text="Vertrieb" Margin="20, 10" FontSize="26" FontWeight="Bold"/>
 

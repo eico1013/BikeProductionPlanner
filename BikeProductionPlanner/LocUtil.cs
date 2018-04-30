@@ -40,7 +40,7 @@ namespace DynamicLocalization
         /// <returns></returns>  
         public static string GetCurrentCultureName(FrameworkElement element)
         {
-            RegistryKey curLocInfo = Registry.CurrentUser.OpenSubKey("GsmLib" + @ "\" + getAppName(element), false);  
+            RegistryKey curLocInfo = Registry.CurrentUser.OpenSubKey("GsmLib" + @"\" + getAppName(element), false);  
                 var cultureName = CultureInfo.CurrentUICulture.Name;
             if (curLocInfo != null)
             {
@@ -65,7 +65,7 @@ namespace DynamicLocalization
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(inFiveCharLang);
             SetLanguageResourceDictionary(element, GetLocXAMLFilePath(getElementName(element), inFiveCharLang));
             // Save new culture info to registry  
-            RegistryKey UserPrefs = Registry.CurrentUser.OpenSubKey("GsmLib" + @ "\" + getAppName(element), true);  
+            RegistryKey UserPrefs = Registry.CurrentUser.OpenSubKey("GsmLib" + @"\" + getAppName(element), true);  
                     if (UserPrefs == null)
             {
                 // Value does not already exist so create it  

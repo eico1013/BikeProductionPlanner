@@ -13,6 +13,8 @@
     <sys:String x:Key="ExportLabel">Export</sys:String>
     <sys:String x:Key="SafetyLabel">Sicherheitsbestand</sys:String>
     <sys:String x:Key="PurchaseLabel">Einkauf</sys:String>
+    <sys:String x:Key="LanguageLabel">Sprache</sys:String>
+
 
 
 </ResourceDictionary>

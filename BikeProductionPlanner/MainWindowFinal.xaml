@@ -16,7 +16,11 @@
         mc:Ignorable="d" Height="600" Width="1080" 
         WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
     <Window.Resources>
-        <DataTemplate x:Name="BlueViewTemplate" DataType="{x:Type viewmodels:BlueViewModel}">
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="i18N/MainWindowFinal.de-DE.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Name="BlueViewTemplate" DataType="{x:Type viewmodels:BlueViewModel}">
             <views:Blue DataContext="{Binding}"></views:Blue>
         </DataTemplate>
         <Storyboard x:Key="CloseMenu">
@@ -39,6 +43,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        </ResourceDictionary>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonClose">
@@ -59,6 +64,7 @@
     </WindowChrome.WindowChrome>
     <!--Menu Grid-->
     <Grid>
+     
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -92,49 +98,60 @@
                     <ListViewItem Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Download" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Text="Importieren" Margin="10"/>
+                            <TextBlock Text="{DynamicResource ResourceKey=ImportLabel}" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="AccountEdit" Width="20" Height="20" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Text="Vertrieb" Margin="10"/>
+                            <TextBlock Text="{DynamicResource ResourceKey=SalesLabel}" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="ShieldHalfFull" Width="20" Height="20" Foreground="Green" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Text="Sicherheitsbestand" Margin="10"/>
+                            <TextBlock Text="{DynamicResource ResourceKey=SafetyLabel}" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Factory" Width="20" Height="20" Foreground="#FFD41515" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Text="Produktionsplan" Margin="10"/>
+                            <TextBlock Text="{DynamicResource ResourceKey=ProductionPlanLabel}" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Worker" Width="20" Height="20" Foreground="#FFE6A701" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Text="Arbeitsplätze" Margin="10"/>
+                            <TextBlock Text="{DynamicResource ResourceKey=WorkingPlacesLabel}" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Cart" Width="20" Height="20" Foreground="Purple" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Text="Einkauf" Margin="10"/>
+                            <TextBlock Text="{DynamicResource ResourceKey=PurchaseLabel}" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Settings" Width="20" Height="20" Foreground="#FF0069C1" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Text="Anpassungen" Margin="10"/>
+                            <TextBlock Text="{DynamicResource ResourceKey=SettingsLabel}" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Upload" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Text="Exportieren" Margin="10"/>
+                            <TextBlock Text="{DynamicResource ResourceKey=ExportLabel}" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="45" Padding="0">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="Translate" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                            <Menu Background="Transparent" Padding="0" DockPanel.Dock="Right" Width="201">
+                                <MenuItem Padding="10" Background="transparent" x:Name="menuItemLanguages" Header="{DynamicResource ResourceKey=LanguageLabel}" Width="239" FontSize="18">
+                                    <MenuItem Background="LightGray" Header="English" Tag="en-US" Click="MenuItem_Click" Height="20" Margin="0,0,-1.2,0" FontSize="14"/>
+                                    <MenuItem Background="LightGray" Header="German" Tag="de-DE" Click="MenuItem_Click" Height="18" Margin="0,0,1.8,0" FontSize="14"/>
+                                </MenuItem>
+                            </Menu>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
