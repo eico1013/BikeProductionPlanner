@@ -7,10 +7,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="1000" d:DesignWidth="1600">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <Grid>
-            <TextBlock x:Name="titlePurchase" HorizontalAlignment="Left" Margin="53,20,0,0" TextWrapping="Wrap" Text="Einkauf" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
-            <StackPanel HorizontalAlignment="Left" Height="753" Margin="53,72,0,0" VerticalAlignment="Top" Width="56">
-                <TextBlock x:Name="captionPurchasePart" TextWrapping="Wrap" Text="Kaufteil" VerticalAlignment="Top"/>
+        <Grid x:Name="gridMaster">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="800"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="56"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="titlePurchase" MouseLeftButtonDown="titlePurchase_MouseLeftButtonDown" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Einkauf" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"/>
+            <Button x:Name="btnShowDetails" Grid.Row="1" Grid.Column="1" Content="Details einblenden" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Click="btnShowDetails_Click"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="1" x:Name="captionPurchasePart" Text="Kaufteil" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <StackPanel Grid.Row="3" Grid.Column="1" x:Name="spPurchasePart" Height="770" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150">
+
                 <TextBox x:Name="purchasePartK21" TextWrapping="Wrap" Text="21" Padding="0" Margin="0" BorderThickness="1,1,1,1" IsReadOnly="True"/>
                 <TextBox x:Name="purchasePartK22" TextWrapping="Wrap" Text="22" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
                 <TextBox x:Name="purchasePartK23" TextWrapping="Wrap" Text="23" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
@@ -41,209 +57,251 @@
                 <TextBox x:Name="purchasePartK58" TextWrapping="Wrap" Text="58" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
                 <TextBox x:Name="purchasePartK59" TextWrapping="Wrap" Text="59" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="109,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStock" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="Anfangs-b"/><Run Text="estand"/></TextBlock>
-                <TextBox x:Name="currentStockK21" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,3,1" IsReadOnly="True" Margin="1,0,0,0"/>
-                <TextBox x:Name="currentStockK22" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK23" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK24" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK25" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK27" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK28" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK32" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK33" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK35" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK36" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK37" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK38" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK39" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK40" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK41" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK42" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK43" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK44" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK45" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK46" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK47" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK48" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK52" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK53" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK57" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK58" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK59" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-            </StackPanel>
-            <Button x:Name="btnPurchase" Content="Weiter" HorizontalAlignment="Left" Margin="109,830,0,0" VerticalAlignment="Top" Width="1343" BorderBrush="#FF602BBD" Height="40">
-                <Button.Background>
-                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
-                </Button.Background>
-                <Button.Foreground>
-                    <SolidColorBrush Color="#FFF0F0F0"/>
-                </Button.Foreground>
-            </Button>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="162,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP0D1" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag 1"/></TextBlock>
-                <TextBox x:Name="currentStockP0D1K21" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
-                <TextBox x:Name="currentStockP0D1K22" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K23" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K24" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K25" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K27" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K28" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K32" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K33" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K35" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K36" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K37" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K38" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K39" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K40" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K41" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K42" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K43" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K44" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K45" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K46" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K47" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K48" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K52" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K53" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K57" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K58" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D1K59" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="215,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP0D2" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="2"/></TextBlock>
-                <TextBox x:Name="currentStockP0D2K21" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
-                <TextBox x:Name="currentStockP0D2K22" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K23" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K24" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K25" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K27" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K28" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K32" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K33" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K35" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K36" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K37" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K38" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K39" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K40" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K41" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K42" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K43" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K44" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K45" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K46" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K47" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K48" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K52" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K53" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K57" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K58" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockP0D2K59" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="268,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP0D3" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="3"/></TextBlock>
-                <TextBox x:Name="currentStockK88" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
-                <TextBox x:Name="currentStockK89" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK90" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK91" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK92" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK93" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK94" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK95" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK96" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK97" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK98" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK99" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK100" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK101" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK102" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK103" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK104" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK105" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK106" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK107" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK108" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK109" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK110" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK111" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK112" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK113" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK114" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK115" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK116" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="321,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP0D4" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="4"/></TextBlock>
-                <TextBox x:Name="currentStockK117" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
-                <TextBox x:Name="currentStockK118" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK119" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK120" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK121" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK122" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK123" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK124" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK125" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK126" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK127" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK128" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK129" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK130" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK131" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK132" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK133" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK134" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK135" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK136" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK137" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK138" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK139" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK140" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK141" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK142" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK143" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK144" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK145" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="374,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP0D5" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="5"/></TextBlock>
-                <TextBox x:Name="currentStockK146" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,3,1" IsReadOnly="True" Margin="1,0,0,0"/>
-                <TextBox x:Name="currentStockK147" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK148" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK149" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK150" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK151" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK152" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK153" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK154" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK155" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK156" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK157" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK158" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK159" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK160" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK161" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK162" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK163" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK164" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK165" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK166" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK167" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK168" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK169" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK170" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK171" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK172" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK173" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="currentStockK174" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
-            </StackPanel>
-            <TextBlock x:Name="captionPeriod0" HorizontalAlignment="Left" Margin="162,29,0,0" TextWrapping="Wrap" Text="Periode 0" VerticalAlignment="Top" FontSize="16" Width="265" FontWeight="Bold" TextAlignment="Center"/>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="427,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP1D1" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag 1"/></TextBlock>
+
+            <Grid x:Name="gridDetail" Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Visibility="Hidden">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="56"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                    <ColumnDefinition Width="63"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="1" Grid.Column="0" x:Name="captionCurrentStock" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="Anfangs-b"/><Run Text="estand"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="0" x:Name="spCurrentStock" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="56">
+
+                    <TextBox x:Name="currentStockK21" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,3,1" IsReadOnly="True" Margin="1,0,0,0"/>
+                    <TextBox x:Name="currentStockK22" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK23" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK24" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK25" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK27" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK28" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK32" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK33" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK35" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK36" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK37" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK38" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK39" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK40" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK41" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK42" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK43" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK44" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK45" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK46" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK47" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK48" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK52" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK53" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK57" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK58" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK59" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                </StackPanel>
+
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="captionPeriod0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Periode 0" VerticalAlignment="Center" FontSize="16" Width="315" FontWeight="Bold" TextAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" x:Name="captionCurrentStockP0D1" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" HorizontalAlignment="Left"><Run Text="End"/><Run Text="b"/><Run Text="es"/><Run Text="ta"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag 1"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="1" x:Name="spCurrentStockP0D1" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+
+                    <TextBox x:Name="currentStockP0D1K21" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
+                    <TextBox x:Name="currentStockP0D1K22" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K23" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K24" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K25" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K27" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K28" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K32" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K33" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K35" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K36" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K37" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K38" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K39" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K40" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K41" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K42" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K43" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K44" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K45" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K46" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K47" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K48" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K52" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K53" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K57" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K58" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D1K59" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+
+                </StackPanel>
+
+
+                <TextBlock Grid.Row="1" Grid.Column="2" x:Name="captionCurrentStockP0D2" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="2"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="2" x:Name="spCurrentStockP0D2" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+
+                    <TextBox x:Name="currentStockP0D2K21" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
+                    <TextBox x:Name="currentStockP0D2K22" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K23" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K24" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K25" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K27" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K28" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K32" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K33" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K35" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K36" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K37" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K38" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K39" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K40" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K41" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K42" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K43" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K44" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K45" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K46" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K47" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K48" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K52" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K53" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K57" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K58" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockP0D2K59" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                </StackPanel>
+
+
+                <TextBlock Grid.Row="1" Grid.Column="3" x:Name="captionCurrentStockP0D3" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="3"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+
+                    <TextBox x:Name="currentStockK88" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
+                    <TextBox x:Name="currentStockK89" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK90" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK91" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK92" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK93" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK94" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK95" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK96" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK97" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK98" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK99" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK100" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK101" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK102" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK103" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK104" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK105" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK106" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK107" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK108" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK109" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK110" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK111" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK112" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK113" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK114" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK115" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK116" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="1" Grid.Column="4" x:Name="captionCurrentStockP0D4" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="4"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="4" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+
+                    <TextBox x:Name="currentStockK117" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
+                    <TextBox x:Name="currentStockK118" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK119" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK120" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK121" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK122" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK123" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK124" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK125" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK126" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK127" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK128" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK129" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK130" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK131" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK132" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK133" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK134" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK135" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK136" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK137" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK138" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK139" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK140" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK141" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK142" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK143" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK144" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK145" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="1" Grid.Column="5" x:Name="captionCurrentStockP0D5" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="5"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="5"  HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                    <TextBox x:Name="currentStockK146" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,3,1" IsReadOnly="True" Margin="1,0,0,0"/>
+                    <TextBox x:Name="currentStockK147" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK148" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK149" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK150" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK151" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK152" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK153" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK154" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK155" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK156" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK157" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK158" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK159" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK160" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK161" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK162" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK163" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK164" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK165" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK166" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK167" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK168" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK169" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK170" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK171" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK172" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK173" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="currentStockK174" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
+                </StackPanel>
+
+
+
+
+                <TextBlock Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="5" x:Name="captionPeriod1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Periode 1" VerticalAlignment="Center" FontSize="16" Width="315" FontWeight="Bold" TextAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="6" x:Name="captionCurrentStockP1D1" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag 1"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="6" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                    
                 <TextBox x:Name="currentStockK175" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK176" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK177" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -274,8 +332,10 @@
                 <TextBox x:Name="currentStockK202" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK203" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="480,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP1D2" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="2"/></TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="7" x:Name="captionCurrentStockP1D2" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="2"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="7" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                    
                 <TextBox x:Name="currentStockK204" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK205" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK206" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -306,8 +366,10 @@
                 <TextBox x:Name="currentStockK231" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK232" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="533,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP1D3" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="3"/></TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="8" x:Name="captionCurrentStockP1D3" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="3"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="8" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                
                 <TextBox x:Name="currentStockK233" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK234" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK235" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -338,8 +400,10 @@
                 <TextBox x:Name="currentStockK260" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK261" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="586,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP1D4" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="4"/></TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="9" x:Name="captionCurrentStockP1D4" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="4"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="9" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                    
                 <TextBox x:Name="currentStockK262" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK263" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK264" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -370,8 +434,10 @@
                 <TextBox x:Name="currentStockK289" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK290" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="639,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP1D5" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="5"/></TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="10" x:Name="captionCurrentStockP1D5" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="5"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="10" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                
                 <TextBox x:Name="currentStockK291" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,3,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK292" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK293" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -402,9 +468,11 @@
                 <TextBox x:Name="currentStockK318" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK319" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <TextBlock x:Name="captionPeriod1" HorizontalAlignment="Left" Margin="427,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Width="265" FontWeight="Bold" TextAlignment="Center"><Run Text="Periode "/><Run Text="1"/></TextBlock>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="692,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP2D1" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag 1"/></TextBlock>
+
+                <TextBlock Grid.Row="0" Grid.Column="11" Grid.ColumnSpan="5" x:Name="captionPeriod2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Periode 2" VerticalAlignment="Center" FontSize="16" Width="315" FontWeight="Bold" TextAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="11" x:Name="captionCurrentStockP2D1" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag 1"/></TextBlock>
+            <StackPanel Grid.Row="2" Grid.Column="11" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                
                 <TextBox x:Name="currentStockK320" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK321" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK322" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -435,8 +503,10 @@
                 <TextBox x:Name="currentStockK347" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK348" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="745,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP2D2" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="2"/></TextBlock>
+
+            <TextBlock Grid.Row="1" Grid.Column="12" x:Name="captionCurrentStockP2D2" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="2"/></TextBlock>
+            <StackPanel Grid.Row="2" Grid.Column="12" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                
                 <TextBox x:Name="currentStockK349" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK350" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK351" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -467,8 +537,10 @@
                 <TextBox x:Name="currentStockK376" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK377" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="798,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP2D3" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="3"/></TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="13" x:Name="captionCurrentStockP2D3" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="3"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="13" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                
                 <TextBox x:Name="currentStockK378" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK379" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK380" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -499,8 +571,9 @@
                 <TextBox x:Name="currentStockK405" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK406" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="851,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP2D4" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="4"/></TextBlock>
+
+            <TextBlock Grid.Row="1" Grid.Column="14" x:Name="captionCurrentStockP2D4" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="4"/></TextBlock>
+            <StackPanel Grid.Row="2" Grid.Column="14" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
                 <TextBox x:Name="currentStockK407" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK408" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK409" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -531,8 +604,10 @@
                 <TextBox x:Name="currentStockK434" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK435" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="904,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP2D5" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="5"/></TextBlock>
+
+            <TextBlock Grid.Row="1" Grid.Column="15" x:Name="captionCurrentStockP2D5" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="5"/></TextBlock>
+            <StackPanel Grid.Row="2" Grid.Column="15" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                
                 <TextBox x:Name="currentStockK436" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,3,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK437" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK438" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -563,9 +638,11 @@
                 <TextBox x:Name="currentStockK463" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK464" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <TextBlock x:Name="captionPeriod2" HorizontalAlignment="Left" Margin="692,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Width="265" FontWeight="Bold" TextAlignment="Center"><Run Text="Periode "/><Run Text="2"/></TextBlock>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="957,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP3D1" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag 1"/></TextBlock>
+
+                <TextBlock Grid.Row="0" Grid.Column="16" Grid.ColumnSpan="5" x:Name="captionPeriod3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Periode 3" VerticalAlignment="Center" FontSize="16" Width="315" FontWeight="Bold" TextAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="16" x:Name="captionCurrentStockP3D1" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag 1"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="16" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                
                 <TextBox x:Name="currentStockK1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK2" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK3" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -596,8 +673,10 @@
                 <TextBox x:Name="currentStockK54" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK55" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="1010,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP3D2" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="2"/></TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="17" x:Name="captionCurrentStockP3D2" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="2"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="17" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                
                 <TextBox x:Name="currentStockK465" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK466" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK467" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -628,8 +707,10 @@
                 <TextBox x:Name="currentStockK492" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK493" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="1063,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP3D3" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="3"/></TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="18" x:Name="captionCurrentStockP3D3" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="3"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="18" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+                
                 <TextBox x:Name="currentStockK494" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK495" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK496" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -660,8 +741,10 @@
                 <TextBox x:Name="currentStockK521" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK522" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="1116,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP3D4" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="4"/></TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="19" x:Name="captionCurrentStockP3D4" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="4"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="19" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+               
                 <TextBox x:Name="currentStockK523" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK524" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK525" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -692,8 +775,10 @@
                 <TextBox x:Name="currentStockK550" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK551" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,1,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="770" Margin="1169,55,0,0" VerticalAlignment="Top" Width="53">
-                <TextBlock x:Name="captionCurrentStockP3D5" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="5"/></TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="20" x:Name="captionCurrentStockP3D5" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="End"/><Run Text="b"/><Run Text="e"/><Run Text="st"/><Run Text="a"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag "/><Run Text="5"/></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="20" HorizontalAlignment="Left" Height="770" VerticalAlignment="Top" Width="63">
+               
                 <TextBox x:Name="currentStockK552" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,3,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <TextBox x:Name="currentStockK553" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK554" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
@@ -724,7 +809,13 @@
                 <TextBox x:Name="currentStockK579" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="currentStockK580" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,0,3,1" Margin="1,0,0,0" IsReadOnly="True"/>
             </StackPanel>
-            <TextBlock x:Name="captionPeriod3" HorizontalAlignment="Left" Margin="957,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Width="265" FontWeight="Bold" TextAlignment="Center"><Run Text="Periode "/><Run Text="3"/></TextBlock>
+            </Grid>
+            
+           
+          
+            <Button Grid.Row="4" Grid.Column="2" x:Name="btnPurchase" Content="Weiter"/>
+
+
         </Grid>
     </ScrollViewer>
 </UserControl>
