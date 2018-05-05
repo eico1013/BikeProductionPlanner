@@ -43,7 +43,40 @@ namespace BikeProductionPlanner.Views
                 tb.Text = amount;    
             }
         }
-       
+
+        // Zeige Spalte an oder schließe Spalte
+        private void titlePurchase_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+           
+            if (!spPurchasePart.Visibility.Equals(Visibility.Visible))
+            {
+                spPurchasePart.Visibility = Visibility.Visible;
+            }
+
+            else
+            {
+                spPurchasePart.Visibility = Visibility.Collapsed;
+            }        
+
+        }
+
+        // Zeige Detail-Ansicht
+        private void btnShowDetails_Click(object sender, RoutedEventArgs e)
+        {
+            if (btnShowDetails.Content.Equals("Details einblenden"))
+            {
+                btnShowDetails.Content = "Details ausblenden";
+                gridDetail.Visibility = Visibility.Visible;
+
+            }
+
+            else
+            {
+                btnShowDetails.Content = "Details einblenden";
+                gridDetail.Visibility = Visibility.Hidden;
+            }
+        }
+
         /*
        
         private void currentStockP0D1K21_TextChanged(object sender, TextChangedEventArgs e)
