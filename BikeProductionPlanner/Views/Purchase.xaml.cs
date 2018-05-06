@@ -25,10 +25,10 @@ namespace BikeProductionPlanner.Views
         {
             InitializeComponent();
             
-            //Hole Kaufteilliste aus StorageService
+            // Hole Kaufteilliste aus StorageService
             List<WarehouseStock> purchasePartsList = StorageService.Instance.GetPurchaseParts();
 
-            //Iteriere Kaufteilliste durch
+            // Iteriere Kaufteilliste durch
             foreach (WarehouseStock purchasePart in purchasePartsList)
             {
                 // Kaufteil ID als String
@@ -44,23 +44,7 @@ namespace BikeProductionPlanner.Views
             }
         }
 
-        // Zeige Spalte an oder schließe Spalte
-        private void titlePurchase_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-           
-            if (!spPurchasePart.Visibility.Equals(Visibility.Visible))
-            {
-                spPurchasePart.Visibility = Visibility.Visible;
-            }
-
-            else
-            {
-                spPurchasePart.Visibility = Visibility.Collapsed;
-            }        
-
-        }
-
-        // Zeige Detail-Ansicht
+        // Zeige/Schließe Detail-Ansicht
         private void btnShowDetails_Click(object sender, RoutedEventArgs e)
         {
             if (btnShowDetails.Content.Equals("Details einblenden"))
