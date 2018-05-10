@@ -24,10 +24,16 @@ namespace BikeProductionPlanner.Views
         public Purchase()
         {
             InitializeComponent();
-            
+            BikeProductionPlanner.Logic.Logic.Purchase.calculateCoverage();
+            String demandinP3 = Convert.ToString(BikeProductionPlanner.Logic.Logic.Purchase.GetDemandByID(23).demandInP3);
+            String demandinP2 = Convert.ToString(BikeProductionPlanner.Logic.Logic.Purchase.GetDemandByID(23).demandInP2);
+            String demandinP1 = Convert.ToString(BikeProductionPlanner.Logic.Logic.Purchase.GetDemandByID(23).demandInP3);
+            String demandinP0 = Convert.ToString(BikeProductionPlanner.Logic.Logic.Purchase.GetDemandByID(23).demandInP3);
+            MessageBox.Show("P0: " + demandinP0 + "   P1: " + demandinP1 + "    P2: " + demandinP2 + "     P3: " + demandinP3);
+
             // Hole Kaufteilliste aus StorageService
             List<WarehouseStock> purchasePartsList = StorageService.Instance.GetPurchaseParts();
-
+            
             // Iteriere Kaufteilliste durch
             foreach (WarehouseStock purchasePart in purchasePartsList)
             {
@@ -35,12 +41,39 @@ namespace BikeProductionPlanner.Views
                 String id = Convert.ToString(purchasePart.Id);
                 // Kaufteil Menge als String
                 String amount = Convert.ToString(purchasePart.Amount);
-                String mergeOfCurrentStock = "currentStockK" + id;
+                String tbCurrentStockName = "currentStockK" + id;
 
-                TextBox tb = (TextBox)this.FindName(mergeOfCurrentStock);
+                // Finde entsprechende Textbox anhand ihres eindeutigen Namens
+                TextBox tbCurrentStock = (TextBox)this.FindName(tbCurrentStockName);
 
                 // Anfangsbestände befüllen
-                tb.Text = amount;    
+                tbCurrentStock.Text = amount;    
+            }
+
+            // Hole Bestellliste aus StorageService
+            List<OrderList> orderList = StorageService.Instance.GetAllOrders();
+            // String inhaltOrderList = Convert.ToString(orderList.Count());
+            // MessageBox.Show(inhaltOrderList);
+
+            // Iteriere Bestelliste durch
+            foreach (OrderList orderListItem in orderList)
+            {
+                // Kaufteil ID als String
+                String id = Convert.ToString(orderListItem.Article);
+                // Kaufteil Menge als String
+                String orderAmount = Convert.ToString(orderListItem.Quantity);
+                String orderType = Convert.ToString(orderListItem.Type);
+                String tbOrderAmountName = "purchasePartOrderAmountK" + id;
+                String tbOrderTypeName = "purchasePartOrderTypeK" + id;
+
+                // Finde entsprechende Textboxen anhand ihres eindeutigen Namens
+                TextBox tbOrderAmount = (TextBox)this.FindName(tbOrderAmountName);
+                TextBox tbOrderType = (TextBox)this.FindName(tbOrderTypeName);
+
+                // Bestellmenge befüllen
+                tbOrderAmount.Text = orderAmount;
+                // Bestellart befüllen
+                tbOrderType.Text = orderType;
             }
         }
 
