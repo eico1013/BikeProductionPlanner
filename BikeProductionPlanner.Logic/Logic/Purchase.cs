@@ -7,6 +7,7 @@ namespace BikeProductionPlanner.Logic.Logic
 {
     public class Purchase
     {
+
         // Kauteil definieren mit Konstruktor
         public class purchasePart
         {
@@ -94,194 +95,235 @@ namespace BikeProductionPlanner.Logic.Logic
                 this.demandInP2 = demandInP2;
                 this.demandInP3 = demandInP3;
             }
+        }
             
-            // Hole Kaufteilliste aus StorageService
-            List<WarehouseStock> purchasePartsFromXML = StorageService.Instance.GetPurchaseParts();
-            List<purchasePart> purchasePartsFromPurchase = GetPurchasePartsFromPurchase();
+        // Hole Kaufteilliste aus StorageService
+        static List<WarehouseStock> purchasePartsFromXML = StorageService.Instance.GetPurchaseParts();
+        static List<purchasePart> purchasePartsFromPurchase = GetPurchasePartsFromPurchase();
+            
 
-            // Hole Vertriebswunsch und Prognosen aus StorageService
-            // Periode 0
-            public int salesOfBike1InP0 = StorageService.Instance.vertriebswunschP1;
-            public int salesOfBike2InP0 = StorageService.Instance.vertriebswunschP2;
-            public int salesOfBike3InP0 = StorageService.Instance.vertriebswunschP3;
-            //Periode 1
-            public int salesOfBike1InP1 = StorageService.Instance.prognose1P1;
-            public int salesOfBike2InP1 = StorageService.Instance.prognose1P2;
-            public int salesOfBike3InP1 = StorageService.Instance.prognose1P3;
-            //Periode 2
-            public int salesOfBike1InP2 = StorageService.Instance.prognose2P1;
-            public int salesOfBike2InP2 = StorageService.Instance.prognose2P2;
-            public int salesOfBike3InP2 = StorageService.Instance.prognose2P3;
-            //Periode 3
-            public int salesOfBike1InP3 = StorageService.Instance.prognose3P1;
-            public int salesOfBike2InP3 = StorageService.Instance.prognose3P2;
-            public int salesOfBike3InP3 = StorageService.Instance.prognose3P3;
+        // Hole Vertriebswunsch und Prognosen aus StorageService
+        // Periode 0
+        public static int salesOfBike1InP0 = StorageService.Instance.vertriebswunschP1;
+        public static int salesOfBike2InP0 = StorageService.Instance.vertriebswunschP2;
+        public static int salesOfBike3InP0 = StorageService.Instance.vertriebswunschP3;
+        //Periode 1
+        public static int salesOfBike1InP1 = StorageService.Instance.prognose1P1;
+        public static int salesOfBike2InP1 = StorageService.Instance.prognose1P2;
+        public static int salesOfBike3InP1 = StorageService.Instance.prognose1P3;
+        //Periode 2
+        public static int salesOfBike1InP2 = StorageService.Instance.prognose2P1;
+        public static int salesOfBike2InP2 = StorageService.Instance.prognose2P2;
+        public static int salesOfBike3InP2 = StorageService.Instance.prognose2P3;
+        //Periode 3
+        public static int salesOfBike1InP3 = StorageService.Instance.prognose3P1;
+        public static int salesOfBike2InP3 = StorageService.Instance.prognose3P2;
+        public static int salesOfBike3InP3 = StorageService.Instance.prognose3P3;
 
-            // Bedarf für jedes Kaufteil berechnen und in Liste ablegen        
-            public List<Demand> GetDemandOfParts()
+        // Bedarf für jedes Kaufteil berechnen und in Liste ablegen        
+        public static List<Demand> GetDemandOfParts()
+        {
+            List<Demand> demandOfParts = new List<Demand>();
+
+            foreach (purchasePart pb in purchasePartsFromPurchase)
             {
-                List<Demand> demandOfParts = new List<Demand>();
+                int calculatedDemandP0 = pb.useInBike1 * salesOfBike1InP0 +
+                                            pb.useInBike2 * salesOfBike2InP0 +
+                                            pb.useInBike3 * salesOfBike3InP0;
 
-                foreach (purchasePart pb in purchasePartsFromPurchase)
-                {
-                    int calculatedDemandP0 = pb.useInBike1 * salesOfBike1InP0 +
-                                             pb.useInBike2 * salesOfBike2InP0 +
-                                             pb.useInBike3 * salesOfBike3InP0;
+                int calculatedDemandP1 = pb.useInBike1 * salesOfBike1InP1 +
+                                            pb.useInBike2 * salesOfBike2InP1 +
+                                            pb.useInBike3 * salesOfBike3InP1;
 
-                    int calculatedDemandP1 = pb.useInBike1 * salesOfBike1InP1 +
-                                             pb.useInBike2 * salesOfBike2InP1 +
-                                             pb.useInBike3 * salesOfBike3InP1;
+                int calculatedDemandP2 = pb.useInBike1 * salesOfBike1InP2 +
+                                            pb.useInBike2 * salesOfBike2InP2 +
+                                            pb.useInBike3 * salesOfBike3InP2;
 
-                    int calculatedDemandP2 = pb.useInBike1 * salesOfBike1InP2 +
-                                             pb.useInBike2 * salesOfBike2InP2 +
-                                             pb.useInBike3 * salesOfBike3InP2;
+                int calculatedDemandP3 = pb.useInBike1 * salesOfBike1InP3 +
+                                            pb.useInBike2 * salesOfBike2InP3 +
+                                            pb.useInBike3 * salesOfBike3InP3;
 
-                    int calculatedDemandP3 = pb.useInBike1 * salesOfBike1InP3 +
-                                             pb.useInBike2 * salesOfBike2InP3 +
-                                             pb.useInBike3 * salesOfBike3InP3;
-
-                    demandOfParts.Add(new Demand(pb.id, calculatedDemandP0, calculatedDemandP1,
-                                                        calculatedDemandP2, calculatedDemandP3));
-                }
-                
-                return demandOfParts;
-
+                demandOfParts.Add(new Demand(pb.id, calculatedDemandP0, calculatedDemandP1,
+                                                    calculatedDemandP2, calculatedDemandP3));
             }
-
-            // Hole Bedarf eines Kaufteils
-            public Demand GetDemandByID(int id)
-            {
-                return GetDemandOfParts().Find(x => x.idDemand == id);
-            }
-
-            // Reichweite berechnen
-            public void calculateCoverage()
-            {
-                int startAmountInP0 = 0;
-                int startAmountInP1 = 0;
-                int startAmountInP2 = 0;
-                int startAmountInP3 = 0;
-                int coverageInP0 = 0;
-                int coverageInP1 = 0;
-                int coverageInP2 = 0;
-                int coverageInP3 = 0;
-                int coverageSum = 0;
-                int deliveryTimeInclDepartureTime = 0;
-                int deliveryTimePriority = 0;
-
-                foreach (WarehouseStock wh in purchasePartsFromXML)
-                {
-
-                    deliveryTimeInclDepartureTime = GetPurchasePartFromPurchaseByID(wh.Id).deliveryTime + GetPurchasePartFromPurchaseByID(wh.Id).departureTime;
-                    deliveryTimePriority = GetPurchasePartFromPurchaseByID(wh.Id).deliveryTime / 2;
-
-                    // Periode 0
-                    startAmountInP0 = wh.Amount;
-                    coverageInP0 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP0 / (GetDemandByID(wh.Id).demandInP0 / 5)))));
-
-                    coverageSum = coverageInP0;
-                                        
-                    // Periode 1
-                    if (coverageInP0 > 5)
-                    {
-                        startAmountInP1 = startAmountInP0 - GetDemandByID(wh.Id).demandInP0;
-                        coverageInP1 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP1 / (GetDemandByID(wh.Id).demandInP1 / 5)))));
-
-                        coverageSum = 5 + coverageInP1;
-                        // Periode 2
-                        if (coverageInP1 > 5)
-                        {
-                            startAmountInP2 = startAmountInP1 - GetDemandByID(wh.Id).demandInP1;
-                            coverageInP2 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP2 / (GetDemandByID(wh.Id).demandInP2 / 5)))));
-
-                            coverageSum = 10 + coverageInP2;
-                            // Periode 3
-                            if (coverageInP2 > 5)
-                            {
-                                startAmountInP3 = startAmountInP2 - GetDemandByID(wh.Id).demandInP2;
-                                coverageInP3 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP3 / (GetDemandByID(wh.Id).demandInP3 / 5)))));
-
-                                coverageSum = 15 + coverageInP3;
-                            }
-                        }
-                    }
-
-                    if ((coverageSum <= 20) && (coverageSum.CompareTo(deliveryTimeInclDepartureTime) >= 0))
-                    {
-                        if (coverageSum.CompareTo(deliveryTimeInclDepartureTime) >= 5)
-                        {
-                            // Keine Bestellung
-                            // Kein Todo: weder Frontend noch Backend
-                        }
-
-                        else
-                        {
-                            // Normalbestellung
-                            // Frontend aktualisieren: Menge und Normal
-                            // Normalbestellung der Bestellliste hinzufügen
-
-                            /*
-                            if (coverageSum > 15 && <= 20)
-                            tage = (coverageSum - 15)
-                            P3 * tage
-                            if (coverageSum > 10 && <= 15)
-                            tage = (coverageSum - 10)
-                            P2 * tage + P3
-                            if (coverageSum > 5 && <= 10)
-                            tage = (coverageSum - 5)
-                            P1 * tage + P2 + P3
-                            if (coverageSum >= 0 && <= 5)
-                            tage = coverageSum
-                            P0 * tage + P1 + P2 + P3 
-                            */
-                        }
-
-                    }
-
-                    if ((coverageSum <= 20) && (coverageSum.CompareTo(deliveryTimeInclDepartureTime) < 0))
-                    {
-                        if (coverageSum.CompareTo(deliveryTimePriority) >= 5)
-                        {
-                            // Keine Bestellung
-                            // Kein Todo: weder Frontend noch Backend
-                        }
-
-                        else
-                        {
-                            // Eilbestellung
-                            // Frontend aktualisieren: Menge und Eil
-                            // Eilbestellung der Bestellliste hinzufügen
-
-                            if (coverageSum.CompareTo(deliveryTimePriority) < 0)
-                            {
-                                // Eilbestellung
-                                // Frontend aktualisieren: Menge und Eil und 
-                                // Hinweis: Auch Eilbestellung kommt nicht rechtzeitig!
-                                // Eilbestellung der Bestellliste hinzufügen
-                            }
-                        }
-                    }
-
-                }
                 
-                
-            }
-
-            // Anfangsbestand (+ Lieferzugänge) / VerbrauchProTagP0
-
-            // ReichweiteP0: AnfangsbestandP0 / VerbauchProTagP0
-            // if (ReichweiteP0 > 5)
-            // AnfangsbestandP1 = AnfangsbestandP0 - VerbrauchP0
-            // ReichweiteP1: AnfangsbestandP1 / VerbrauchProTagP1
-            // if (ReichweiteP1 > 5)
-            // AnfangsbestandP2 = AnfangsbestandP1 - VerbrauchP1
-            // ReichweiteP2: AnfangsbestandP2 / VerbrauchProTagP2
-            // if (ReichweiteP2 > 5)
-            // AnfangsbestandP3 = AnfangsbestandP2 - VerbrauchP2
-            // ReichweiteP3: AnfangsbestandP3 / VerbrauchProTagP3
-            // if (ReichweiteP3 > 5)
-            // Keine Bestellung; außer Part24, da 4 Wochen Lieferzeit
+            return demandOfParts;
 
         }
+
+        // Hole Bedarf eines Kaufteils
+        public static Demand GetDemandByID(int id)
+        {
+            return GetDemandOfParts().Find(x => x.idDemand == id);
+        }
+
+        // Reichweite berechnen
+        public static void calculateCoverage()
+        { 
+            int startAmountInP0 = 0;
+            int startAmountInP1 = 0;
+            int startAmountInP2 = 0;
+            int startAmountInP3 = 0;
+            int coverageInP0 = 0;
+            int coverageInP1 = 0;
+            int coverageInP2 = 0;
+            int coverageInP3 = 0;
+            int coverageSum = 0;
+            int deliveryTimeInclDepartureTime = 0;
+            int deliveryTimePriority = 0;
+
+            foreach (WarehouseStock wh in purchasePartsFromXML)
+            {
+
+                deliveryTimeInclDepartureTime = GetPurchasePartFromPurchaseByID(wh.Id).deliveryTime + GetPurchasePartFromPurchaseByID(wh.Id).departureTime;
+                deliveryTimePriority = GetPurchasePartFromPurchaseByID(wh.Id).deliveryTime / 2;
+
+                // Periode 0
+                startAmountInP0 = wh.Amount;
+                coverageInP0 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP0 / (GetDemandByID(wh.Id).demandInP0 / 5)))));
+
+                coverageSum = coverageInP0;
+
+                // Periode 1
+                if (coverageInP0 > 5)
+                {
+                    startAmountInP1 = startAmountInP0 - GetDemandByID(wh.Id).demandInP0;
+                    coverageInP1 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP1 / (GetDemandByID(wh.Id).demandInP1 / 5)))));
+
+                    coverageSum = 5 + coverageInP1;
+                    // Periode 2
+                    if (coverageInP1 > 5)
+                    {
+                        startAmountInP2 = startAmountInP1 - GetDemandByID(wh.Id).demandInP1;
+                        coverageInP2 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP2 / (GetDemandByID(wh.Id).demandInP2 / 5)))));
+
+                        coverageSum = 10 + coverageInP2;
+                        // Periode 3
+                        if (coverageInP2 > 5)
+                        {
+                            startAmountInP3 = startAmountInP2 - GetDemandByID(wh.Id).demandInP2;
+                            coverageInP3 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP3 / (GetDemandByID(wh.Id).demandInP3 / 5)))));
+
+                            coverageSum = 15 + coverageInP3;
+                        }
+                    }
+                }
+
+                // Anhand Reichweite Bestellungen bestimmen
+                if ((coverageSum <= 20) && (coverageSum.CompareTo(deliveryTimeInclDepartureTime) >= 0))
+                {
+                    if (coverageSum.CompareTo(deliveryTimeInclDepartureTime) >= 5)
+                    {
+                        // Keine Bestellung
+                        // Kein Todo: weder Frontend noch Backend
+                    }
+
+                    else
+                    {
+                        // Normalbestellung
+                        // Frontend aktualisieren: Menge und Normal
+                        // Normalbestellung der Bestellliste hinzufügen
+
+                        // Typ 5 bedeutet Normalbestellung
+                        int orderType = 5;
+                        int daysOfPeriodGone = coverageSum;
+                        int daysOfPeriodLeft = 20 - coverageSum;
+                        int orderAmount = 0;
+                        int amountDifference = 0;
+
+                        // Periode 3
+                        if (daysOfPeriodLeft >= 0 && daysOfPeriodLeft <= 5)
+                        {
+                            orderAmount = (GetDemandByID(wh.Id).demandInP3 / 5) * daysOfPeriodLeft;
+
+                            daysOfPeriodGone = daysOfPeriodGone - 15;
+                            amountDifference = startAmountInP3 - ((GetDemandByID(wh.Id).demandInP3 / 5) * daysOfPeriodGone);
+                            orderAmount = orderAmount - amountDifference;
+                        }
+
+                        // Periode 2
+                        if (daysOfPeriodLeft > 5 && daysOfPeriodLeft <= 10)
+                        {
+                            daysOfPeriodLeft = daysOfPeriodLeft - 5;
+                            orderAmount = (GetDemandByID(wh.Id).demandInP2 / 5) * daysOfPeriodLeft + GetDemandByID(wh.Id).demandInP3;
+
+                            daysOfPeriodGone = daysOfPeriodGone - 10;
+                            amountDifference = startAmountInP2 - ((GetDemandByID(wh.Id).demandInP2 / 5) * daysOfPeriodGone);
+                            orderAmount = orderAmount - amountDifference;
+                        }
+
+                        // Periode 1
+                        if (daysOfPeriodLeft > 10 && daysOfPeriodLeft <= 15)
+                        {
+                            daysOfPeriodLeft = daysOfPeriodLeft - 10;
+                            orderAmount = (GetDemandByID(wh.Id).demandInP1 / 5) * daysOfPeriodLeft + GetDemandByID(wh.Id).demandInP2 +
+                                        GetDemandByID(wh.Id).demandInP3;
+
+                            daysOfPeriodGone = daysOfPeriodGone - 5;
+                            amountDifference = startAmountInP1 - ((GetDemandByID(wh.Id).demandInP1 / 5) * daysOfPeriodGone);
+                            orderAmount = orderAmount - amountDifference;
+                        }
+
+                        // Periode 0
+                        if (daysOfPeriodLeft > 15 && daysOfPeriodLeft <= 20)
+                        {
+                            daysOfPeriodLeft = daysOfPeriodLeft - 15;
+                            orderAmount = (GetDemandByID(wh.Id).demandInP0 / 5) * daysOfPeriodLeft + GetDemandByID(wh.Id).demandInP1 +
+                                        GetDemandByID(wh.Id).demandInP2 + GetDemandByID(wh.Id).demandInP3;
+
+                            amountDifference = startAmountInP0 - ((GetDemandByID(wh.Id).demandInP0 / 5) * daysOfPeriodGone);
+                            orderAmount = orderAmount - amountDifference;
+                        }
+
+                        // Füge Artikel der Bestellliste hinzu
+                        OrderList orderListItem = new OrderList(orderAmount, wh.Id, orderType);
+                        StorageService.Instance.AddOrderItem(orderListItem);
+                    }
+
+                }
+
+                if ((coverageSum <= 20) && (coverageSum.CompareTo(deliveryTimeInclDepartureTime) < 0))
+                {
+                    if (coverageSum.CompareTo(deliveryTimePriority) >= 5)
+                    {
+                        // Keine Bestellung
+                        // Kein Todo: weder Frontend noch Backend
+                    }
+
+                    else
+                    {
+                        // Eilbestellung
+                        // Frontend aktualisieren: Menge und Eil
+                        // Eilbestellung der Bestellliste hinzufügen
+
+                        if (coverageSum.CompareTo(deliveryTimePriority) < 0)
+                        {
+                            // Eilbestellung
+                            // Frontend aktualisieren: Menge und Eil und 
+                            // Hinweis: Auch Eilbestellung kommt nicht rechtzeitig!
+                            // Eilbestellung der Bestellliste hinzufügen
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+        // Anfangsbestand (+ Lieferzugänge) / VerbrauchProTagP0
+
+        // ReichweiteP0: AnfangsbestandP0 / VerbauchProTagP0
+        // if (ReichweiteP0 > 5)
+        // AnfangsbestandP1 = AnfangsbestandP0 - VerbrauchP0
+        // ReichweiteP1: AnfangsbestandP1 / VerbrauchProTagP1
+        // if (ReichweiteP1 > 5)
+        // AnfangsbestandP2 = AnfangsbestandP1 - VerbrauchP1
+        // ReichweiteP2: AnfangsbestandP2 / VerbrauchProTagP2
+        // if (ReichweiteP2 > 5)
+        // AnfangsbestandP3 = AnfangsbestandP2 - VerbrauchP2
+        // ReichweiteP3: AnfangsbestandP3 / VerbrauchProTagP3
+        // if (ReichweiteP3 > 5)
+        // Keine Bestellung; außer Part24, da 4 Wochen Lieferzeit
+
     }
 }

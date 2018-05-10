@@ -43,6 +43,7 @@ namespace BikeProductionPlanner.Logic.Database
             workingItemList = new List<WorkingItemList>();
             sellWishList = new List<SellWish>();
             selldirectList = new List<SellDirect>();
+
         }
 
         public static StorageService Instance
@@ -408,36 +409,36 @@ namespace BikeProductionPlanner.Logic.Database
         #endregion
 
         //Periode 0
-        public int vertriebswunschP1;
-        public int vertriebswunschP2;
-        public int vertriebswunschP3;
+        public int vertriebswunschP1 = 150;
+        public int vertriebswunschP2 = 100;
+        public int vertriebswunschP3 = 100;
 
         public int sicherheitsbestandP1;
         public int sicherheitsbestandP2;
         public int sicherheitsbestandP3;
 
         //Periode 1
-        public int prognose1P1;
-        public int prognose1P2;
-        public int prognose1P3;
+        public int prognose1P1 = 200;
+        public int prognose1P2 = 150;
+        public int prognose1P3 = 100;
 
         public int sb_Prognose1P1;
         public int sb_Prognose1P2;
         public int sb_Prognose1P3;
 
         //Periode 2
-        public int prognose2P1;
-        public int prognose2P2;
-        public int prognose2P3;
+        public int prognose2P1 = 100;
+        public int prognose2P2 = 200;
+        public int prognose2P3 = 150;
 
         public int sb_Prognose2P1;
         public int sb_Prognose2P2;
         public int sb_Prognose2P3;
 
         //Periode 3
-        public int prognose3P1;
-        public int prognose3P2;
-        public int prognose3P3;
+        public int prognose3P1 = 250;
+        public int prognose3P2 = 200;
+        public int prognose3P3 = 100;
 
         public int sb_Prognose3P1;
         public int sb_Prognose3P2;
