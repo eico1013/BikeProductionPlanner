@@ -80,13 +80,44 @@ namespace BikeProductionPlanner.Views
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
             //Direktvertrieb
+            ContentControl.Content = null;
+            ContentControl.Content = new DirectSales();
+
 
         }
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
             //Planung durchführen
+            Int32 maxValue = 1050;
+
+            try
+            {
+                if (Convert.ToInt32(period0sum.Text) > maxValue || Convert.ToInt32(period1sum.Text) > maxValue
+                    || Convert.ToInt32(period2sum.Text) > maxValue || Convert.ToInt32(period3sum.Text) > maxValue)
+                {
+                    MessageBox.Show("Fehler: Die Summe muss kleiner 1050 sein.");
+                    return;
+                }
+
+                if (Convert.ToInt32(period0product1.Text) % 10 != 0 || Convert.ToInt32(period0product2.Text) % 10 != 0
+                    || Convert.ToInt32(period0product3.Text) % 10 != 0 || Convert.ToInt32(period1product1.Text) % 10 != 0
+                    || Convert.ToInt32(period1product2.Text) % 10 != 0 || Convert.ToInt32(period1product3.Text) % 10 != 0
+                    || Convert.ToInt32(period2product1.Text) % 10 != 0 || Convert.ToInt32(period2product2.Text) % 10 != 0
+                    || Convert.ToInt32(period2product3.Text) % 10 != 0 || Convert.ToInt32(period3product1.Text) % 10 != 0
+                    || Convert.ToInt32(period3product2.Text) % 10 != 0 || Convert.ToInt32(period3product3.Text) % 10 != 0)
+                {
+                    MessageBox.Show("Fehler: Nur ganzzahlige Werte in 10er Schritten erlaubt.");
+                    return;
+                }
+            }
+            catch
+            {
+
+            }
+
+        }
 
         }
     }
-}
+

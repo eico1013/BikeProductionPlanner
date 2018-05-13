@@ -87,6 +87,6 @@
             Content="Planung durchführen" Click="Button2_Click" Grid.ColumnSpan="2"  />
         </Grid>
 
-
+        <ContentControl Name="ContentControl" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"></ContentControl>
     </StackPanel>
 </UserControl>
