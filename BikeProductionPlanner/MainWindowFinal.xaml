@@ -14,7 +14,7 @@
         xmlns:viewmodels="clr-namespace:BikeProductionPlanner.ViewModels"
         xmlns:views="clr-namespace:BikeProductionPlanner.Views"
         mc:Ignorable="d" Height="600" Width="1080" 
-        WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
+        WindowStartupLocation="CenterScreen" Title="BikeProductionPlanner">
     <Window.Resources>
         <DataTemplate x:Name="BlueViewTemplate" DataType="{x:Type viewmodels:BlueViewModel}">
             <views:Blue DataContext="{Binding}"></views:Blue>
