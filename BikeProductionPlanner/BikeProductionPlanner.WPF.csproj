@@ -81,6 +81,9 @@
     <Compile Include="Views\SafetyStock.xaml.cs">
       <DependentUpon>SafetyStock.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DirectSales.xaml.cs">
+      <DependentUpon>DirectSales.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindowFinal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,6 +109,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SafetyStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DirectSales.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
