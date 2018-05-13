@@ -36,7 +36,7 @@ namespace BikeProductionPlanner
                     ContentControl.Content = new Blue();
                     break;
                 case 1:
-                    ContentControl.Content = new Vertrieb();
+                    ContentControl.Content = new Sales();
                     break;
                 case 2:
                     ContentControl.Content = new SafetyStock();
