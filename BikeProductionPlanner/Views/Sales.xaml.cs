@@ -14,8 +14,6 @@ namespace BikeProductionPlanner.Views
     /// </summary>
     /// 
 
- 
-   
 
     public partial class Sales : UserControl
     {
@@ -113,7 +111,7 @@ namespace BikeProductionPlanner.Views
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
             //Direktvertrieb
-            ContentControl.Content = null;
+            
             ContentControl.Content = new DirectSales();
 
 
