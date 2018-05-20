@@ -76,22 +76,12 @@
     <Compile Include="Views\Red.xaml.cs">
       <DependentUpon>Red.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Vertrieb.xaml.cs">
-      <DependentUpon>Vertrieb.xaml</DependentUpon>
+    <Compile Include="Views\Sales.xaml.cs">
+      <DependentUpon>Sales.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SafetyStock.xaml.cs">
       <DependentUpon>SafetyStock.xaml</DependentUpon>
     </Compile>
-    <Content Include="i18N\MainWindowFinal.de-DE.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="i18N\MainWindowFinal.en-US.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Page Include="MainWindowFinal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,11 +102,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Vertrieb.xaml">
+    <Page Include="Views\Sales.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SafetyStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DirectSales.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

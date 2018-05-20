@@ -13,8 +13,8 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         xmlns:viewmodels="clr-namespace:BikeProductionPlanner.ViewModels"
         xmlns:views="clr-namespace:BikeProductionPlanner.Views"
-        mc:Ignorable="d" Height="600" Width="1080" 
-        WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
+        mc:Ignorable="d" Height="700" Width="1080" 
+        WindowStartupLocation="CenterScreen" Title="BikeProductionPlanner">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
