@@ -48,6 +48,17 @@ namespace BikeProductionPlanner.Views
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        private bool AllFilled()
+        {
+            if (period0product1.Text == "" || period0product2.Text == "" || period0product3.Text == ""
+                || period1product1.Text == "" || period1product2.Text == "" || period1product3.Text == ""
+                || period2product1.Text == "" || period2product2.Text == "" || period2product3.Text == "")
+            {
+                return false;
+            }
+            return true;
+        }
+
         private void UpdateSummeFromForcast(object sender, TextChangedEventArgs e)
         {
             try
@@ -98,29 +109,7 @@ namespace BikeProductionPlanner.Views
             }
             catch { }
         }
-        /*
-        private void Forecast1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                Int32 directsum1 = 0;
-
-                if (directProduct1 != null)
-                    directsum1 += Convert.ToInt32(directProduct1.Text);
-                if (directProduct2 != null)
-                    directsum1 += Convert.ToInt32(directProduct2.Text);
-                if (directProduct3 != null)
-                    directsum1 += Convert.ToInt32(directProduct3.Text);
-
-                if (directSum != null)
-                    directSum.Text = directsum1.ToString();
-            }
-            catch
-            {
-
-            }
-        }
-        */
+     
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
             //Direktvertrieb
@@ -166,6 +155,8 @@ namespace BikeProductionPlanner.Views
             {
                 try
                 {
+                    StorageService.Instance.vertriebswunschP1 = Convert.ToInt32(period0product1.Text);
+
                     periode0produkt1 = Convert.ToInt32(period0product1.Text);
                     periode0produkt2 = Convert.ToInt32(period0product2.Text);
                     periode0produkt3 = Convert.ToInt32(period0product3.Text);
