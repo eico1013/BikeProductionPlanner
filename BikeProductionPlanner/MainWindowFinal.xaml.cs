@@ -72,5 +72,10 @@ namespace BikeProductionPlanner
                     break;
             }
         }
+
+        private void Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -159,5 +159,8 @@
         </Grid>
         <!--Entry Point Main Content-->
         <ContentControl Name="ContentControl" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"></ContentControl>
+        <Button x:Name="ButtonClose2" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5"  HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Foreground="#FF313131" Click="Click">
+            <materialDesign:PackIcon Kind="Close"/>
+        </Button>
     </Grid>
 </Window>
