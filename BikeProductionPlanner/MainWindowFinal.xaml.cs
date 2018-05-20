@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BikeProductionPlanner.Views;
-using DynamicLocalization;
 
 namespace BikeProductionPlanner
 {
@@ -24,32 +23,6 @@ namespace BikeProductionPlanner
         public MainWindowFinal()
         {
             InitializeComponent();
-
-            LocUtil.SetDefaultLanguage(this);
-
-            // Adjust checked language menu item
-            foreach ( MenuItem item in menuItemLanguages.Items )
-            {
-                if (item.Tag.ToString().Equals(LocUtil.GetCurrentCultureName(this)))
-                    item.IsChecked = true;
-            }
-
-
-
-        }
-        
-        private void MenuItem_Click( object sender, RoutedEventArgs e)
-        {
-            // Adjust checked language menu item
-            foreach (MenuItem item in menuItemLanguages.Items)
-            {
-                if (item.Tag.ToString().Equals(LocUtil.GetCurrentCultureName(this)))
-                    item.IsChecked = true;
-            }
-
-            MenuItem mi = sender as MenuItem;
-            mi.IsChecked = true;
-            LocUtil.SwitchLanguage(this, mi.Tag.ToString());
         }
 
         private void ListViewMenu_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
