@@ -28,8 +28,21 @@ namespace BikeProductionPlanner.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           //Speichern & Zurück
+            //Speichern & Zurück
+            /*
+            try
+            {
+                if (Convert.ToInt32(directSum.Text) > maxValue || (Convert.ToInt32(period0sum.Text) + Convert.ToInt32(directSum.Text)) > maxValue)
+                {
+                    MessageBox.Show("Fehler: Die Summe muss kleiner 1050 sein.");
+                    return;
+                }
+            }
+            catch
+            {
 
+            }
+            */
         }
 
         private void Forecast1_TextChanged(object sender, TextChangedEventArgs e)

@@ -5,13 +5,35 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using BikeProductionPlanner.Logic.Database;
 
+using BikeProductionPlanner.Logic;
+
 namespace BikeProductionPlanner.Views
 {
     /// <summary>
     /// Interaction logic for SafetyStock.xaml
     /// </summary>
+    /// 
+
+ 
+   
+
     public partial class Sales : UserControl
     {
+        public static int periode0produkt1;
+        public static int periode0produkt2;
+        public static int periode0produkt3;
+
+        public static int periode1produkt1;
+        public static int periode1produkt2;
+        public static int periode1produkt3;
+
+        public static int periode2produkt1;
+        public static int periode2produkt2;
+        public static int periode2produkt3;
+
+        public static int periode3produkt1;
+        public static int periode3produkt2;
+        public static int periode3produkt3;
 
         public Sales()
         {
@@ -76,7 +98,29 @@ namespace BikeProductionPlanner.Views
             }
             catch { }
         }
+        /*
+        private void Forecast1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                Int32 directsum1 = 0;
 
+                if (directProduct1 != null)
+                    directsum1 += Convert.ToInt32(directProduct1.Text);
+                if (directProduct2 != null)
+                    directsum1 += Convert.ToInt32(directProduct2.Text);
+                if (directProduct3 != null)
+                    directsum1 += Convert.ToInt32(directProduct3.Text);
+
+                if (directSum != null)
+                    directSum.Text = directsum1.ToString();
+            }
+            catch
+            {
+
+            }
+        }
+        */
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
             //Direktvertrieb
@@ -88,7 +132,7 @@ namespace BikeProductionPlanner.Views
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
-            //Planung durchführen
+            //Speichern
             Int32 maxValue = 1050;
 
             try
@@ -116,8 +160,44 @@ namespace BikeProductionPlanner.Views
 
             }
 
+            
+
+            if (AllFilled())
+            {
+                try
+                {
+                    periode0produkt1 = Convert.ToInt32(period0product1.Text);
+                    periode0produkt2 = Convert.ToInt32(period0product2.Text);
+                    periode0produkt3 = Convert.ToInt32(period0product3.Text);
+
+                    periode1produkt1 = Convert.ToInt32(period1product1.Text);
+                    periode1produkt2 = Convert.ToInt32(period1product2.Text);
+                    periode1produkt3 = Convert.ToInt32(period1product3.Text);
+
+                    periode2produkt1 = Convert.ToInt32(period2product1.Text);
+                    periode2produkt2 = Convert.ToInt32(period2product2.Text);
+                    periode2produkt3 = Convert.ToInt32(period2product3.Text);
+
+                    periode3produkt1 = Convert.ToInt32(period3product1.Text);
+                    periode3produkt2 = Convert.ToInt32(period3product2.Text);
+                    periode3produkt3 = Convert.ToInt32(period3product3.Text);
+        
+                    
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Fehler: Nur ganzzahlige Werte erlaubt.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Fehler: Alle Felder müssen ausgefüllt werden.");
+                return;
+            }
         }
 
-        }
     }
+
+ }
+    
 
