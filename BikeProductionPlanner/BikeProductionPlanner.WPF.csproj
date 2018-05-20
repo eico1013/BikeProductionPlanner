@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LocUtil.cs" />
     <Compile Include="MainWindowFinal.xaml.cs">
       <DependentUpon>MainWindowFinal.xaml</DependentUpon>
     </Compile>
@@ -80,9 +81,6 @@
     </Compile>
     <Compile Include="Views\SafetyStock.xaml.cs">
       <DependentUpon>SafetyStock.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DirectSales.xaml.cs">
-      <DependentUpon>DirectSales.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindowFinal.xaml">
       <SubType>Designer</SubType>
