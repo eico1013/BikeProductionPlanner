@@ -43,6 +43,7 @@ namespace BikeProductionPlanner.Views
                 StorageService.Instance.AddSellDirect(new SellDirect(Convert.ToInt32(directProduct2.Text), 2, Convert.ToInt32(contractPenaltyProduct2.Text), Convert.ToInt32(retailPriceProduct2.Text)));
                 StorageService.Instance.AddSellDirect(new SellDirect(Convert.ToInt32(directProduct3.Text), 3, Convert.ToInt32(contractPenaltyProduct3.Text), Convert.ToInt32(retailPriceProduct3.Text)));
 
+                MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.SafetyStock);
             }
             catch
             {

@@ -139,24 +139,8 @@ namespace BikeProductionPlanner.Views
                 StorageService.Instance.prognose3P1 = Convert.ToInt32(period3product1.Text);
                 StorageService.Instance.prognose3P2 = Convert.ToInt32(period3product2.Text);
                 StorageService.Instance.prognose3P3 = Convert.ToInt32(period3product3.Text);
-                /*
-                periode0produkt1 = Convert.ToInt32(period0product1.Text);
-                periode0produkt2 = Convert.ToInt32(period0product2.Text);
-                periode0produkt3 = Convert.ToInt32(period0product3.Text);
 
-                periode1produkt1 = Convert.ToInt32(period1product1.Text);
-                periode1produkt2 = Convert.ToInt32(period1product2.Text);
-                periode1produkt3 = Convert.ToInt32(period1product3.Text);
-
-                periode2produkt1 = Convert.ToInt32(period2product1.Text);
-                periode2produkt2 = Convert.ToInt32(period2product2.Text);
-                periode2produkt3 = Convert.ToInt32(period2product3.Text);
-
-                periode3produkt1 = Convert.ToInt32(period3product1.Text);
-                periode3produkt2 = Convert.ToInt32(period3product2.Text);
-                periode3produkt3 = Convert.ToInt32(period3product3.Text);
-
-                */
+                MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.SafetyStock);
             }
             catch
             {
