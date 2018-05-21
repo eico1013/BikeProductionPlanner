@@ -78,11 +78,11 @@
             <TextBox x:Name="period3product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="4" />
             <TextBox x:Name="period3sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="5" Grid.Row="6" />
 
-            <Button Grid.Column="4" Margin="109,80,0,-95" Width="170" Height="50" Grid.Row="6" 
+            <Button Grid.Column="4" Margin="110,60,0,-95" Width="170" Height="50" Grid.Row="6" 
             Background="#FF4A9AFF" HorizontalAlignment="Left"
            Content="Direktvertrieb" Click="Button1_Click" Grid.ColumnSpan="2"  />
 
-            <Button Grid.Column="0" Margin="0,80,0,-94" Width="170" Height="50" Grid.Row="6"
+            <Button Grid.Column="0" Margin="0,60,0,-95" Width="170" Height="50" Grid.Row="6"
             Background="#FF4A9AFF" HorizontalAlignment="Left"
             Content="Speichern" Click="Button2_Click" Grid.ColumnSpan="2"  />
         </Grid>
