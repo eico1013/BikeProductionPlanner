@@ -1,0 +1,19 @@
+﻿<Window x:Class="BikeProductionPlanner.WPF.Views.WebServiceImportWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BikeProductionPlanner.WPF.Views"
+             mc:Ignorable="d"
+        Height="350" Width="300"
+        >
+    <StackPanel>
+        <Label>Benutzername</Label>
+        <TextBox Name="UsernameTextBox" Margin="20,0,20,10" TextChanged="UsernameTextBox_TextChanged">kass18d4</TextBox>
+        <Label >Passwort</Label>
+        <PasswordBox Name="PasswordTextBox" Margin="20,0,20,10" Password="quatro"/>
+        <Label>Periode</Label>
+        <TextBox Name="PeriodTextBox" Margin="20,0,20,10"/>
+        <Button Margin="10" Width="250" Height="50" Click="ButtonBase_OnClick" Content="Starte Periode"></Button>
+    </StackPanel>
+</Window>
