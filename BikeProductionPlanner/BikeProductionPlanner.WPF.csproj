@@ -97,6 +97,9 @@
     <Compile Include="Views\DirectSales.xaml.cs">
       <DependentUpon>DirectSales.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Impressum.xaml.cs">
+      <DependentUpon>Impressum.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WebServiceImportWindow.xaml.cs">
       <DependentUpon>WebServiceImportWindow.xaml</DependentUpon>
     </Compile>
@@ -153,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DirectSales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Impressum.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
