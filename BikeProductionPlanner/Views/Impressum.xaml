@@ -8,9 +8,13 @@
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <StackPanel>
         <TextBlock Text="Impressum" Margin="20, 10" FontSize="20" FontWeight="Bold"/>
-        <Grid MaxWidth="1000" HorizontalAlignment="Stretch" Margin="20, 20">
-
-            
+        <Grid MaxWidth="1000" HorizontalAlignment="Stretch" Margin="20, 250,20,20" Height="120">
+            <Image Source="/images/schueler.png" Height="100" Margin="141,10,515,10" Visibility="Visible"/>
+            <Image Source="/images/mages.png" Height="100" Margin="273,10,383,10" Visibility="Visible"/>
+            <Image Source="/images/eilebrecht.png" Height="100" Margin="10,10,641,10" Visibility="Visible"/>
+            <Image Source="/images/Pflieger.png" Height="100" Margin="397,10,254,10" Visibility="Visible"/>
+            <Image Source="/images/Giersdorf.png" Height="100" Margin="511,10,140,10" Visibility="Visible"/>
         </Grid>
+
     </StackPanel>
 </UserControl>
