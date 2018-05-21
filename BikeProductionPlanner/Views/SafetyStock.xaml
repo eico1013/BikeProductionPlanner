@@ -33,7 +33,7 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" Text="Kinderrad P1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Name="SafetyStock_Text_P1" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" Text="Kinderrad P1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Slider x:Name="Slider_SafetyStockProduct1" Grid.Column="0" Grid.Row="1"
                     ValueChanged="Slider_SafetyStockProduct1_OnValueChanged"
                 TickFrequency="10"
