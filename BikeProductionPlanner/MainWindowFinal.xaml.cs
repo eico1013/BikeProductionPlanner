@@ -71,6 +71,7 @@ namespace BikeProductionPlanner
 
             pageMap = new Dictionary<MenuItems.MenuItemsEnum, UserControl>()
             {
+                { MenuItems.MenuItemsEnum.Dashboard, new Dashboard() },
                 { MenuItems.MenuItemsEnum.DataImport, new XMLImportPage() },
                 { MenuItems.MenuItemsEnum.Sales, new Sales() },
                 { MenuItems.MenuItemsEnum.SafetyStock, new SafetyStock() },
@@ -163,18 +164,21 @@ namespace BikeProductionPlanner
             switch (index)
             {
                 case 0:
-                    NavigateTo(MenuItems.MenuItemsEnum.DataImport);
+                    NavigateTo(MenuItems.MenuItemsEnum.Dashboard);
                     break;
                 case 1:
-                    NavigateTo(MenuItems.MenuItemsEnum.Sales);
+                    NavigateTo(MenuItems.MenuItemsEnum.DataImport);
                     break;
                 case 2:
+                    NavigateTo(MenuItems.MenuItemsEnum.Sales);
+                    break;
+                case 3:
                     NavigateTo(MenuItems.MenuItemsEnum.SafetyStock);
                     break;
-                case 4:
+                case 5:
                     NavigateTo(MenuItems.MenuItemsEnum.Capacity);
                     break;
-                case 7:
+                case 8:
                     NavigateTo(MenuItems.MenuItemsEnum.DataExport);
                     break;
                 default:
