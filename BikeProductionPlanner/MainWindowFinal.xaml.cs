@@ -53,6 +53,8 @@ namespace BikeProductionPlanner
             MenuItem mi = sender as MenuItem;
             mi.IsChecked = true;
             LocUtil.SwitchLanguage(this, mi.Tag.ToString());
+
+            
         }
 
         private void ListViewMenu_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,18 +66,23 @@ namespace BikeProductionPlanner
             {
                 case 0:
                     ContentControl.Content = new XMLImportPage();
+                    bike.Visibility = Visibility.Hidden;
                     break;
                 case 1:
                     ContentControl.Content = new Sales();
+                    bike.Visibility = Visibility.Hidden;
                     break;
                 case 2:
                     ContentControl.Content = new SafetyStock();
+                    bike.Visibility = Visibility.Hidden;
                     break;
                 case 4:
                     ContentControl.Content = new CapacityPlanningPage();
+                    bike.Visibility = Visibility.Hidden;
                     break;
                 case 7:
                     ContentControl.Content = new XMLExportPage();
+                    bike.Visibility = Visibility.Hidden;
                     break;
                 default:
                     break;
@@ -85,6 +92,11 @@ namespace BikeProductionPlanner
         private void Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void ClickBike(object sender, RoutedEventArgs e)
+        {
+            bike.Visibility = Visibility.Hidden;
         }
     }
 }

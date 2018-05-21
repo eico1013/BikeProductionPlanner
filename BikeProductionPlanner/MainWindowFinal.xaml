@@ -163,5 +163,8 @@
         <Button x:Name="ButtonClose2" Grid.Row="0" Grid.Column="5"  HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Foreground="#FF313131" Click="Click">
             <materialDesign:PackIcon Kind="Close"/>
         </Button>
+        <Button x:Name="bike" Grid.Row="2" Grid.Column="2"  HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="500" Height="500" Padding="0" Foreground="#FF313131" Click="ClickBike" Margin="0,0,79,0" Grid.ColumnSpan="3" Grid.RowSpan="4">
+            <materialDesign:PackIcon Kind="bike" Height="200" Width="200"/>
+        </Button>
     </Grid>
 </Window>
