@@ -28,12 +28,12 @@ namespace BikeProductionPlanner.Logic.Logic
                 }
             }
 
-            this.pLSorted = this.pLSorted.OrderBy(list => list.StationGroup)
+            pLSorted = pLSorted.OrderBy(list => list.StationGroup)
                                 .ThenBy(list => list.Prefers)
                                 .ThenBy(list => list.Index).ToList();
 
             StorageService.Instance.GetAllProductionItems().Clear();
-            foreach (var item in this.pLSorted)
+            foreach (var item in pLSorted)
             {
                 StorageService.Instance.AddProductionItem(item);
             }
@@ -43,8 +43,8 @@ namespace BikeProductionPlanner.Logic.Logic
 
         private void addItem(ProductionList item, int prefers)
         {
-            this.pLSorted.Add(new ProductionListCalculateOrder(item.Quantity, item.Article, this.Index, getStationGroupByArticle(item.Article), prefers));
-            this.Index++;
+            pLSorted.Add(new ProductionListCalculateOrder(item.Quantity, item.Article, Index, getStationGroupByArticle(item.Article), prefers));
+            Index++;
         }
 
         private Boolean checkPLSortedListForArticle(int article)
@@ -64,7 +64,7 @@ namespace BikeProductionPlanner.Logic.Logic
                 return true;
             }
 
-            foreach (var item in this.pLSorted)
+            foreach (var item in pLSorted)
             {
                 if (item.Article == article)
                 {

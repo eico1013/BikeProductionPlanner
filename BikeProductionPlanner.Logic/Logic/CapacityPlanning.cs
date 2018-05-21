@@ -8,12 +8,12 @@ namespace BikeProductionPlanner.Logic.Logic
         // Reihenfolge: Station, Time Worksation, Time Waitinglist Workstaiton,
         //             Time Waitlinglist List Stock, Shift, WorkingOvertime
         private int[,] CapacityWorkplaces { get; set; }
-        const int iS = 0;  // index Station
-        const int iW = 1;  // index time worksation
-        const int iWW = 2; // index time waitlinglist workstation
-        const int iWS = 3; // index time waitlinglist stock
-        const int iST = 4; // index shift
-        const int iWO = 5; // index working overtime
+        const int iStation = 0;  // index Station
+        const int iWorkstation = 1;  // index time worksation
+        const int iWaitingListWorkStation = 2; // index time waitlinglist workstation
+        const int iTimeWaitingListStock = 3; // index time waitlinglist stock
+        const int iShift = 4; // index shift
+        const int iWorkingOverTime = 5; // index working overtime
 		const int maxShiftTime = 2400;
         const int maxShifts = 3;
 
@@ -28,7 +28,7 @@ namespace BikeProductionPlanner.Logic.Logic
                 throw new Exception("ProductionList is not sorted");
             }
 
-            this.CapacityWorkplaces = new int[15, 6];
+            CapacityWorkplaces = new int[15, 6];
             initCapacityWorkplaces();
 
             calculateCapacityNeedsFormWorkplaces();
@@ -39,7 +39,7 @@ namespace BikeProductionPlanner.Logic.Logic
             //Werte in Output Parser setzen
             for (int i = 0; i < CapacityWorkplaces.GetLength(0); i++)
             {
-                StorageService.Instance.AddWorkingTimeItem(new WorkingItemList(CapacityWorkplaces[i, iST], CapacityWorkplaces[i, iS], CapacityWorkplaces[i, iWO]));
+                StorageService.Instance.AddWorkingTimeItem(new WorkingItemList(CapacityWorkplaces[i, iShift], CapacityWorkplaces[i, iStation], CapacityWorkplaces[i, iWorkingOverTime]));
             }
 
         }
@@ -47,12 +47,12 @@ namespace BikeProductionPlanner.Logic.Logic
         // Abreitsplatz Id setzen
         private void initCapacityWorkplaces()
         {
-            for (int i = 0; i < this.CapacityWorkplaces.GetLength(0); i++)
+            for (int i = 0; i < CapacityWorkplaces.GetLength(0); i++)
             {
-                this.CapacityWorkplaces[i, iS] = i + 1;
-                for (int j = 1; j < this.CapacityWorkplaces.GetLength(1); j++)
+                CapacityWorkplaces[i, iStation] = i + 1;
+                for (int j = 1; j < CapacityWorkplaces.GetLength(1); j++)
                 {
-                    this.CapacityWorkplaces[i, j] = 0;
+                    CapacityWorkplaces[i, j] = 0;
                 }
             }
         }
@@ -60,29 +60,29 @@ namespace BikeProductionPlanner.Logic.Logic
         private void calculateShiftAndWordkingOvertime()
         {
             int sumCapacity = 0;
-            for (int i = 0; i < this.CapacityWorkplaces.GetLength(0); i++)
+            for (int i = 0; i < CapacityWorkplaces.GetLength(0); i++)
             {
-                sumCapacity = this.CapacityWorkplaces[i, iW] + this.CapacityWorkplaces[i, iWW]
-                            + this.CapacityWorkplaces[i, iWS];
-                this.CapacityWorkplaces[i, iWO] = (sumCapacity % maxShiftTime) / 5;
-                this.CapacityWorkplaces[i, iST] = sumCapacity / maxShiftTime;
+                sumCapacity = CapacityWorkplaces[i, iWorkstation] + CapacityWorkplaces[i, iWaitingListWorkStation]
+                            + CapacityWorkplaces[i, iTimeWaitingListStock];
+                CapacityWorkplaces[i, iWorkingOverTime] = (sumCapacity % maxShiftTime) / 5;
+                CapacityWorkplaces[i, iShift] = sumCapacity / maxShiftTime;
 
-                if (this.CapacityWorkplaces[i, iWO] > 0 && this.CapacityWorkplaces[i, iST] == 0)
+                if (CapacityWorkplaces[i, iWorkingOverTime] > 0 && CapacityWorkplaces[i, iShift] == 0)
                 {
-                    this.CapacityWorkplaces[i, iST] = 1;
-                    this.CapacityWorkplaces[i, iWO] = 0;
+                    CapacityWorkplaces[i, iShift] = 1;
+                    CapacityWorkplaces[i, iWorkingOverTime] = 0;
                 }
 
-                if (this.CapacityWorkplaces[i, iWO] > (maxShiftTime / 5))
+                if (CapacityWorkplaces[i, iWorkingOverTime] > (maxShiftTime / 5))
                 {
-                    this.CapacityWorkplaces[i, iWO] = 0;
-                    this.CapacityWorkplaces[i, iST] += 1;
+                    CapacityWorkplaces[i, iWorkingOverTime] = 0;
+                    CapacityWorkplaces[i, iShift] += 1;
                 }
 
-                if (this.CapacityWorkplaces[i, iST] >= (maxShifts))
+                if (CapacityWorkplaces[i, iShift] >= (maxShifts))
                 {
-                    this.CapacityWorkplaces[i, iST] = 3;
-                    this.CapacityWorkplaces[i, iWO] = 0;
+                    CapacityWorkplaces[i, iShift] = 3;
+                    CapacityWorkplaces[i, iWorkingOverTime] = 0;
                 }
             }
         }
@@ -97,111 +97,111 @@ namespace BikeProductionPlanner.Logic.Logic
                     switch (wW.Id)
                     {
                         case 1:
-                            this.CapacityWorkplaces[1 - 1, iWW] += 6 * item.Amount;
-                            this.CapacityWorkplaces[1 - 1, iWW] += 20;
+                            CapacityWorkplaces[1 - 1, iWaitingListWorkStation] += 6 * item.Amount;
+                            CapacityWorkplaces[1 - 1, iWaitingListWorkStation] += 20;
                             break;
                         case 2:
-                            this.CapacityWorkplaces[2 - 1, iWW] += 5 * item.Amount;
-                            this.CapacityWorkplaces[2 - 1, iWW] += 30;
+                            CapacityWorkplaces[2 - 1, iWaitingListWorkStation] += 5 * item.Amount;
+                            CapacityWorkplaces[2 - 1, iWaitingListWorkStation] += 30;
                             break;
                         case 3:
-                            this.CapacityWorkplaces[3 - 1, iWW] += 6 * item.Amount;
-                            this.CapacityWorkplaces[3 - 1, iWW] += 30;
+                            CapacityWorkplaces[3 - 1, iWaitingListWorkStation] += 6 * item.Amount;
+                            CapacityWorkplaces[3 - 1, iWaitingListWorkStation] += 30;
                             break;
                         case 4:
-                            this.CapacityWorkplaces[4 - 1, iWW] += 7 * item.Amount;
-                            this.CapacityWorkplaces[4 - 1, iWW] += 30;
+                            CapacityWorkplaces[4 - 1, iWaitingListWorkStation] += 7 * item.Amount;
+                            CapacityWorkplaces[4 - 1, iWaitingListWorkStation] += 30;
                              break;
                         case 5:
                             break;
                         case 6:
-                            this.CapacityWorkplaces[6 - 1, iWW] += 3 * item.Amount;
-                            this.CapacityWorkplaces[6 - 1, iWW] += 15;
+                            CapacityWorkplaces[6 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                            CapacityWorkplaces[6 - 1, iWaitingListWorkStation] += 15;
 
                             if (item.Item == 28)
                             {
-                                this.CapacityWorkplaces[8 - 1, iWW] += 3 * item.Amount;
-                                this.CapacityWorkplaces[8 - 1, iWW] += 25;
+                                CapacityWorkplaces[8 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                                CapacityWorkplaces[8 - 1, iWaitingListWorkStation] += 25;
 
-                                this.CapacityWorkplaces[7 - 1, iWW] += 2 * item.Amount;
-                                this.CapacityWorkplaces[7 - 1, iWW] += 20;
+                                CapacityWorkplaces[7 - 1, iWaitingListWorkStation] += 2 * item.Amount;
+                                CapacityWorkplaces[7 - 1, iWaitingListWorkStation] += 20;
 
-                                this.CapacityWorkplaces[9 - 1, iWW] += 2 * item.Amount;
-                                this.CapacityWorkplaces[9 - 1, iWW] += 20;
-                                this.CapacityWorkplaces[14 - 1, iWW] += 3 * item.Amount;
+                                CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 2 * item.Amount;
+                                CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 20;
+                                CapacityWorkplaces[14 - 1, iWaitingListWorkStation] += 3 * item.Amount;
                             }
                             break;
                         case 7:
-                            this.CapacityWorkplaces[7 - 1, iWW] += 2 * item.Amount;
-                            this.CapacityWorkplaces[7 - 1, iWW] += 30;
+                            CapacityWorkplaces[7 - 1, iWaitingListWorkStation] += 2 * item.Amount;
+                            CapacityWorkplaces[7 - 1, iWaitingListWorkStation] += 30;
                             if (item.Item != 44 && item.Item != 48)
                             {
-                                this.CapacityWorkplaces[9 - 1, iWW] += 3 * item.Amount;
-                                this.CapacityWorkplaces[9 - 1, iWW] += 15;
+                                CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                                CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 15;
                             }
                             else
                             {
-                                this.CapacityWorkplaces[15 - 1, iWW] += 3 * item.Amount;
-                                this.CapacityWorkplaces[15 - 1, iWW] += 15;
+                                CapacityWorkplaces[15 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                                CapacityWorkplaces[15 - 1, iWaitingListWorkStation] += 15;
                             }
                             break;
                         case 8:
-                            this.CapacityWorkplaces[8 - 1, iWW] += 3 * item.Amount;
-                            this.CapacityWorkplaces[8 - 1, iWW] += 25;
+                            CapacityWorkplaces[8 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                            CapacityWorkplaces[8 - 1, iWaitingListWorkStation] += 25;
 
-                            this.CapacityWorkplaces[7 - 1, iWW] += 2 * item.Amount;
-                            this.CapacityWorkplaces[7 - 1, iWW] += 30;
+                            CapacityWorkplaces[7 - 1, iWaitingListWorkStation] += 2 * item.Amount;
+                            CapacityWorkplaces[7 - 1, iWaitingListWorkStation] += 30;
 
-                            this.CapacityWorkplaces[9 - 1, iWW] += 3 * item.Amount;
-                            this.CapacityWorkplaces[9 - 1, iWW] += 15;
+                            CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                            CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 15;
                             break;
                         case 9:
-                            this.CapacityWorkplaces[9 - 1, iWW] += 3 * item.Amount;
-                            this.CapacityWorkplaces[9 - 1, iWW] += 15;
+                            CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                            CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 15;
                             break;
                         case 10:
-                            this.CapacityWorkplaces[10 - 1, iWW] += 4 * item.Amount;
-                            this.CapacityWorkplaces[10 - 1, iWW] += 20;
+                            CapacityWorkplaces[10 - 1, iWaitingListWorkStation] += 4 * item.Amount;
+                            CapacityWorkplaces[10 - 1, iWaitingListWorkStation] += 20;
 
-                            this.CapacityWorkplaces[11 - 1, iWW] += 3 * item.Amount;
-                            this.CapacityWorkplaces[11 - 1, iWW] += 20;
+                            CapacityWorkplaces[11 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                            CapacityWorkplaces[11 - 1, iWaitingListWorkStation] += 20;
                         break;
                         case 11:
-                            this.CapacityWorkplaces[11 - 1, iWW] += 3 * item.Amount;
-                            this.CapacityWorkplaces[11 - 1, iWW] += 20;
+                            CapacityWorkplaces[11 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                            CapacityWorkplaces[11 - 1, iWaitingListWorkStation] += 20;
                             break;
                         case 12:
-                            this.CapacityWorkplaces[12 - 1, iWW] += 3 * item.Amount;
+                            CapacityWorkplaces[12 - 1, iWaitingListWorkStation] += 3 * item.Amount;
 
-                            this.CapacityWorkplaces[8 - 1, iWW] += 2 * item.Amount;
-                            this.CapacityWorkplaces[8 - 1, iWW] += 15;
+                            CapacityWorkplaces[8 - 1, iWaitingListWorkStation] += 2 * item.Amount;
+                            CapacityWorkplaces[8 - 1, iWaitingListWorkStation] += 15;
 
-                            this.CapacityWorkplaces[7 - 1, iWW] += 2 * item.Amount;
-                            this.CapacityWorkplaces[7 - 1, iWW] += 20;
+                            CapacityWorkplaces[7 - 1, iWaitingListWorkStation] += 2 * item.Amount;
+                            CapacityWorkplaces[7 - 1, iWaitingListWorkStation] += 20;
 
-                            this.CapacityWorkplaces[9 - 1, iWW] += 3 * item.Amount;
-                            this.CapacityWorkplaces[9 - 1, iWW] += 15;
+                            CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                            CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 15;
                             break;
                         case 13:
-                            this.CapacityWorkplaces[13 - 1, iWW] += 2 * item.Amount;
+                            CapacityWorkplaces[13 - 1, iWaitingListWorkStation] += 2 * item.Amount;
 
-                            this.CapacityWorkplaces[12 - 1, iWW] += 3 * item.Amount;
+                            CapacityWorkplaces[12 - 1, iWaitingListWorkStation] += 3 * item.Amount;
 
-                            this.CapacityWorkplaces[8 - 1, iWW] += 2 * item.Amount;
-                            this.CapacityWorkplaces[8 - 1, iWW] += 15;
+                            CapacityWorkplaces[8 - 1, iWaitingListWorkStation] += 2 * item.Amount;
+                            CapacityWorkplaces[8 - 1, iWaitingListWorkStation] += 15;
 
-                            this.CapacityWorkplaces[7 - 1, iWW] += 2 * item.Amount;
-                            this.CapacityWorkplaces[7 - 1, iWW] += 20;
+                            CapacityWorkplaces[7 - 1, iWaitingListWorkStation] += 2 * item.Amount;
+                            CapacityWorkplaces[7 - 1, iWaitingListWorkStation] += 20;
 
-                            this.CapacityWorkplaces[9 - 1, iWW] += 3 * item.Amount;
-                            this.CapacityWorkplaces[9 - 1, iWW] += 15;
+                            CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                            CapacityWorkplaces[9 - 1, iWaitingListWorkStation] += 15;
                             break;
                         case 14:
-                            this.CapacityWorkplaces[14 - 1, iWW] += 3 * item.Amount;
+                            CapacityWorkplaces[14 - 1, iWaitingListWorkStation] += 3 * item.Amount;
                             break;
                         case 15:
-                            this.CapacityWorkplaces[15 - 1, iWW] += 3 * item.Amount;
-                            this.CapacityWorkplaces[15 - 1, iWW] += 15;
+                            CapacityWorkplaces[15 - 1, iWaitingListWorkStation] += 3 * item.Amount;
+                            CapacityWorkplaces[15 - 1, iWaitingListWorkStation] += 15;
                             break;
                     }
                 }
@@ -220,26 +220,26 @@ namespace BikeProductionPlanner.Logic.Logic
                         case 49:
                         case 54:
                         case 29:
-                            this.CapacityWorkplaces[1 - 1, iWS] += 6 * item.Amount;
-                            this.CapacityWorkplaces[1 - 1, iWS] += 20;
+                            CapacityWorkplaces[1 - 1, iTimeWaitingListStock] += 6 * item.Amount;
+                            CapacityWorkplaces[1 - 1, iTimeWaitingListStock] += 20;
                             break;
                         case 30:
                         case 55:
                         case 50:
-                            this.CapacityWorkplaces[2 - 1, iWS] += 5 * item.Amount;
-                            this.CapacityWorkplaces[2 - 1, iWS] += 30;
+                            CapacityWorkplaces[2 - 1, iTimeWaitingListStock] += 5 * item.Amount;
+                            CapacityWorkplaces[2 - 1, iTimeWaitingListStock] += 30;
                             break;
                         case 51:
                         case 56:
                         case 31:
-                            this.CapacityWorkplaces[3 - 1, iWS] += 6 * item.Amount;
-                            this.CapacityWorkplaces[3 - 1, iWS] += 30;
+                            CapacityWorkplaces[3 - 1, iTimeWaitingListStock] += 6 * item.Amount;
+                            CapacityWorkplaces[3 - 1, iTimeWaitingListStock] += 30;
                             break;
                         case 1:
                         case 2:
                         case 3:
-                            this.CapacityWorkplaces[4 - 1, iWS] += 7 * item.Amount;
-                            this.CapacityWorkplaces[4 - 1, iWS] += 30;
+                            CapacityWorkplaces[4 - 1, iTimeWaitingListStock] += 7 * item.Amount;
+                            CapacityWorkplaces[4 - 1, iTimeWaitingListStock] += 30;
                             break;
                         case 18:
                         case 19:
@@ -248,34 +248,34 @@ namespace BikeProductionPlanner.Logic.Logic
                             {
                                 if (wS.Id != 59)
                                 {
-                                    this.CapacityWorkplaces[6 - 1, iWS] += 3 * item.Amount;
-                                    this.CapacityWorkplaces[6 - 1, iWS] += 15;
+                                    CapacityWorkplaces[6 - 1, iTimeWaitingListStock] += 3 * item.Amount;
+                                    CapacityWorkplaces[6 - 1, iTimeWaitingListStock] += 15;
 
-                                    this.CapacityWorkplaces[8 - 1, iWS] += 3 * item.Amount;
-                                    this.CapacityWorkplaces[8 - 1, iWS] += 20;
+                                    CapacityWorkplaces[8 - 1, iTimeWaitingListStock] += 3 * item.Amount;
+                                    CapacityWorkplaces[8 - 1, iTimeWaitingListStock] += 20;
                                 }
 
-                                this.CapacityWorkplaces[7 - 1, iWS] += 2 * item.Amount;
-                                this.CapacityWorkplaces[7 - 1, iWS] += 20;
+                                CapacityWorkplaces[7 - 1, iTimeWaitingListStock] += 2 * item.Amount;
+                                CapacityWorkplaces[7 - 1, iTimeWaitingListStock] += 20;
                             }
-                            this.CapacityWorkplaces[9 - 1, iWS] += 2 * item.Amount;
-                            this.CapacityWorkplaces[9 - 1, iWS] += 20;
+                            CapacityWorkplaces[9 - 1, iTimeWaitingListStock] += 2 * item.Amount;
+                            CapacityWorkplaces[9 - 1, iTimeWaitingListStock] += 20;
                             break;
                         case 16:
                             if(wS.Id == 28)
                             {
-                                this.CapacityWorkplaces[6 - 1, iWS] += 2 * item.Amount;
-                                this.CapacityWorkplaces[6 - 1, iWS] += 15;
+                                CapacityWorkplaces[6 - 1, iTimeWaitingListStock] += 2 * item.Amount;
+                                CapacityWorkplaces[6 - 1, iTimeWaitingListStock] += 15;
                             }
 
-                            this.CapacityWorkplaces[14 - 1, iWS] += 3 * item.Amount;
+                            CapacityWorkplaces[14 - 1, iTimeWaitingListStock] += 3 * item.Amount;
                             break;
                         case 26:
-                            this.CapacityWorkplaces[7 - 1, iWS] += 2 * item.Amount;
-                            this.CapacityWorkplaces[7 - 1, iWS] += 30;
+                            CapacityWorkplaces[7 - 1, iTimeWaitingListStock] += 2 * item.Amount;
+                            CapacityWorkplaces[7 - 1, iTimeWaitingListStock] += 30;
 
-                            this.CapacityWorkplaces[15 - 1, iWS] += 3 * item.Amount;
-                            this.CapacityWorkplaces[15 - 1, iWS] += 15;
+                            CapacityWorkplaces[15 - 1, iTimeWaitingListStock] += 3 * item.Amount;
+                            CapacityWorkplaces[15 - 1, iTimeWaitingListStock] += 15;
                             break;
                         case 4:
                         case 5:
@@ -287,12 +287,12 @@ namespace BikeProductionPlanner.Logic.Logic
                                wS.Id == 57 || wS.Id == 58 ||
                                wS.Id == 52 || wS.Id == 53)
                             {
-                                this.CapacityWorkplaces[10 - 1, iWS] += 4 * item.Amount;
-                                this.CapacityWorkplaces[10 - 1, iWS] += 20;
+                                CapacityWorkplaces[10 - 1, iTimeWaitingListStock] += 4 * item.Amount;
+                                CapacityWorkplaces[10 - 1, iTimeWaitingListStock] += 20;
                             }
 
-                            this.CapacityWorkplaces[11 - 1, iWS] += 3 * item.Amount;
-                            this.CapacityWorkplaces[11 - 1, iWS] += 20;
+                            CapacityWorkplaces[11 - 1, iTimeWaitingListStock] += 3 * item.Amount;
+                            CapacityWorkplaces[11 - 1, iTimeWaitingListStock] += 20;
                             break;
                         case 10:
                         case 11:
@@ -302,22 +302,22 @@ namespace BikeProductionPlanner.Logic.Logic
                         case 15:
                             if (wS.Id != 32)
                             {
-                                this.CapacityWorkplaces[13 - 1, iWS] += 2 * item.Amount;
+                                CapacityWorkplaces[13 - 1, iTimeWaitingListStock] += 2 * item.Amount;
 
-                                this.CapacityWorkplaces[12 - 1, iWS] += 3 * item.Amount;
+                                CapacityWorkplaces[12 - 1, iTimeWaitingListStock] += 3 * item.Amount;
 
-                                this.CapacityWorkplaces[8 - 1, iWS] += 2 * item.Amount;
-                                this.CapacityWorkplaces[8 - 1, iWS] += 15;
+                                CapacityWorkplaces[8 - 1, iTimeWaitingListStock] += 2 * item.Amount;
+                                CapacityWorkplaces[8 - 1, iTimeWaitingListStock] += 15;
 
-                                this.CapacityWorkplaces[7 - 1, iWS] += 2 * item.Amount;
-                                this.CapacityWorkplaces[7 - 1, iWS] += 20;
+                                CapacityWorkplaces[7 - 1, iTimeWaitingListStock] += 2 * item.Amount;
+                                CapacityWorkplaces[7 - 1, iTimeWaitingListStock] += 20;
                             }
-                            this.CapacityWorkplaces[9 - 1, iWS] += 3 * item.Amount;
-                            this.CapacityWorkplaces[9 - 1, iWS] += 15;
+                            CapacityWorkplaces[9 - 1, iTimeWaitingListStock] += 3 * item.Amount;
+                            CapacityWorkplaces[9 - 1, iTimeWaitingListStock] += 15;
                             break;
                         case 17:
-                            this.CapacityWorkplaces[15 - 1, iWS] += 3 * item.Amount;
-                            this.CapacityWorkplaces[15 - 1, iWS] += 15;
+                            CapacityWorkplaces[15 - 1, iTimeWaitingListStock] += 3 * item.Amount;
+                            CapacityWorkplaces[15 - 1, iTimeWaitingListStock] += 15;
                             break;
                     }
 
@@ -340,118 +340,118 @@ namespace BikeProductionPlanner.Logic.Logic
                     case 7:
                     case 8:
                     case 9:
-                        this.CapacityWorkplaces[10 - 1, iW] += 4 * item.Quantity;
-                        this.CapacityWorkplaces[11 - 1, iW] += 3 * item.Quantity;
+                        CapacityWorkplaces[10 - 1, iWorkstation] += 4 * item.Quantity;
+                        CapacityWorkplaces[11 - 1, iWorkstation] += 3 * item.Quantity;
                         //Rüstzeit
-                        this.CapacityWorkplaces[10 - 1, iW] += 20;
-                        this.CapacityWorkplaces[11 - 1, iW] += 20;
+                        CapacityWorkplaces[10 - 1, iWorkstation] += 20;
+                        CapacityWorkplaces[11 - 1, iWorkstation] += 20;
                         break;
                     case 10:
                     case 13:
-                        this.CapacityWorkplaces[7 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[8 - 1, iW] += 1 * item.Quantity;
-                        this.CapacityWorkplaces[9 - 1, iW] += 3 * item.Quantity;
-                        this.CapacityWorkplaces[12 - 1, iW] += 3 * item.Quantity;
-                        this.CapacityWorkplaces[13 - 1, iW] += 2 * item.Quantity;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[8 - 1, iWorkstation] += 1 * item.Quantity;
+                        CapacityWorkplaces[9 - 1, iWorkstation] += 3 * item.Quantity;
+                        CapacityWorkplaces[12 - 1, iWorkstation] += 3 * item.Quantity;
+                        CapacityWorkplaces[13 - 1, iWorkstation] += 2 * item.Quantity;
                         //Rüstzeit 12,13 haben keine!
-                        this.CapacityWorkplaces[7 - 1, iW] += 20;
-                        this.CapacityWorkplaces[8 - 1, iW] += 15;
-                        this.CapacityWorkplaces[9 - 1, iW] += 15;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 20;
+                        CapacityWorkplaces[8 - 1, iWorkstation] += 15;
+                        CapacityWorkplaces[9 - 1, iWorkstation] += 15;
                         break;
                     case 11:
 					case 12:
                     case 14:
                     case 15:
-                        this.CapacityWorkplaces[7 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[8 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[9 - 1, iW] += 3 * item.Quantity;
-                        this.CapacityWorkplaces[12 - 1, iW] += 3 * item.Quantity;
-                        this.CapacityWorkplaces[13 - 1, iW] += 2 * item.Quantity;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[8 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[9 - 1, iWorkstation] += 3 * item.Quantity;
+                        CapacityWorkplaces[12 - 1, iWorkstation] += 3 * item.Quantity;
+                        CapacityWorkplaces[13 - 1, iWorkstation] += 2 * item.Quantity;
                         //Rüstzeit 12,13 haben keine!
-                        this.CapacityWorkplaces[7 - 1, iW] += 20;
-                        this.CapacityWorkplaces[8 - 1, iW] += 15;
-                        this.CapacityWorkplaces[9 - 1, iW] += 15;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 20;
+                        CapacityWorkplaces[8 - 1, iWorkstation] += 15;
+                        CapacityWorkplaces[9 - 1, iWorkstation] += 15;
                         break;
                     case 16:
-                        this.CapacityWorkplaces[6 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[7 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[8 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[9 - 1, iW] += 3 * item.Quantity;
-                        this.CapacityWorkplaces[12 - 1, iW] += 3 * item.Quantity;
-                        this.CapacityWorkplaces[13 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[14 - 1, iW] += 3 * item.Quantity;
+                        CapacityWorkplaces[6 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[8 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[9 - 1, iWorkstation] += 3 * item.Quantity;
+                        CapacityWorkplaces[12 - 1, iWorkstation] += 3 * item.Quantity;
+                        CapacityWorkplaces[13 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[14 - 1, iWorkstation] += 3 * item.Quantity;
                         //Rüstzeit 12,13,14 haben keine!
-                        this.CapacityWorkplaces[6 - 1, iW] += 15;
-                        this.CapacityWorkplaces[7 - 1, iW] += 20;
-                        this.CapacityWorkplaces[8 - 1, iW] += 15;
-                        this.CapacityWorkplaces[9 - 1, iW] += 15;
+                        CapacityWorkplaces[6 - 1, iWorkstation] += 15;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 20;
+                        CapacityWorkplaces[8 - 1, iWorkstation] += 15;
+                        CapacityWorkplaces[9 - 1, iWorkstation] += 15;
                         break;
                     case 17:
-                        this.CapacityWorkplaces[7 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[8 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[9 - 1, iW] += 3 * item.Quantity;
-                        this.CapacityWorkplaces[12 - 1, iW] += 3 * item.Quantity;
-                        this.CapacityWorkplaces[13 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[15 - 1, iW] += 3 * item.Quantity;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[8 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[9 - 1, iWorkstation] += 3 * item.Quantity;
+                        CapacityWorkplaces[12 - 1, iWorkstation] += 3 * item.Quantity;
+                        CapacityWorkplaces[13 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[15 - 1, iWorkstation] += 3 * item.Quantity;
                         //Rüstzeit 12,13,15 haben keine!
-                        this.CapacityWorkplaces[7 - 1, iW] += 20;
-                        this.CapacityWorkplaces[8 - 1, iW] += 15;
-                        this.CapacityWorkplaces[9 - 1, iW] += 15;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 20;
+                        CapacityWorkplaces[8 - 1, iWorkstation] += 15;
+                        CapacityWorkplaces[9 - 1, iWorkstation] += 15;
                         break;
                     case 18:
                     case 19:
                     case 20:
-                        this.CapacityWorkplaces[6 - 1, iW] += 3 * item.Quantity;
-                        this.CapacityWorkplaces[7 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[8 - 1, iW] += 3 * item.Quantity;
-                        this.CapacityWorkplaces[9 - 1, iW] += 2 * item.Quantity;
+                        CapacityWorkplaces[6 - 1, iWorkstation] += 3 * item.Quantity;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[8 - 1, iWorkstation] += 3 * item.Quantity;
+                        CapacityWorkplaces[9 - 1, iWorkstation] += 2 * item.Quantity;
                         //Rüstzeit 
-                        this.CapacityWorkplaces[6 - 1, iW] += 15;
-                        this.CapacityWorkplaces[7 - 1, iW] += 20;
-                        this.CapacityWorkplaces[8 - 1, iW] += 15;
-                        this.CapacityWorkplaces[9 - 1, iW] += 15;
+                        CapacityWorkplaces[6 - 1, iWorkstation] += 15;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 20;
+                        CapacityWorkplaces[8 - 1, iWorkstation] += 15;
+                        CapacityWorkplaces[9 - 1, iWorkstation] += 15;
                         break;
                     case 26:
-                        this.CapacityWorkplaces[7 - 1, iW] += 2 * item.Quantity;
-                        this.CapacityWorkplaces[15 - 1, iW] += 3 * item.Quantity;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 2 * item.Quantity;
+                        CapacityWorkplaces[15 - 1, iWorkstation] += 3 * item.Quantity;
                         //Rüstzeit 15 hat keine!
-                        this.CapacityWorkplaces[7 - 1, iW] += 20;
+                        CapacityWorkplaces[7 - 1, iWorkstation] += 20;
                         break;
                     case 49:
                     case 54:
                     case 29:
-                        this.CapacityWorkplaces[1 - 1, iW] += 6 * item.Quantity;
+                        CapacityWorkplaces[1 - 1, iWorkstation] += 6 * item.Quantity;
                         //Rüstzeit
-                        this.CapacityWorkplaces[1 - 1, iW] += 20;
+                        CapacityWorkplaces[1 - 1, iWorkstation] += 20;
                         break;
                     case 50:
                     case 55:
                     case 30:
-                        this.CapacityWorkplaces[2 - 1, iW] += 5 * item.Quantity;
+                        CapacityWorkplaces[2 - 1, iWorkstation] += 5 * item.Quantity;
                         //Rüstzeit
-                        this.CapacityWorkplaces[2 - 1, iW] += 20;
+                        CapacityWorkplaces[2 - 1, iWorkstation] += 20;
                         break;
                     case 51:
-                        this.CapacityWorkplaces[3 - 1, iW] += 5 * item.Quantity;
+                        CapacityWorkplaces[3 - 1, iWorkstation] += 5 * item.Quantity;
                         //Rüstzeit
-                        this.CapacityWorkplaces[3 - 1, iW] += 20;
+                        CapacityWorkplaces[3 - 1, iWorkstation] += 20;
                         break;
                     case 56:
                     case 31:
-                        this.CapacityWorkplaces[3 - 1, iW] += 6 * item.Quantity;
+                        CapacityWorkplaces[3 - 1, iWorkstation] += 6 * item.Quantity;
                         //Rüstzeit
-                        this.CapacityWorkplaces[3 - 1, iW] += 20;
+                        CapacityWorkplaces[3 - 1, iWorkstation] += 20;
                         break;
                     case 1:
-                        this.CapacityWorkplaces[4 - 1, iW] += 6 * item.Quantity;
+                        CapacityWorkplaces[4 - 1, iWorkstation] += 6 * item.Quantity;
                         //Rüstzeit
-                        this.CapacityWorkplaces[4 - 1, iW] += 30;
+                        CapacityWorkplaces[4 - 1, iWorkstation] += 30;
                         break;
                     case 2:
                     case 3:
-                        this.CapacityWorkplaces[4 - 1, iW] += 7 * item.Quantity;
+                        CapacityWorkplaces[4 - 1, iWorkstation] += 7 * item.Quantity;
                         //Rüstzeit
-                        this.CapacityWorkplaces[4 - 1, iW] += 30;
+                        CapacityWorkplaces[4 - 1, iWorkstation] += 30;
                         break;
                     default:
                         break;
