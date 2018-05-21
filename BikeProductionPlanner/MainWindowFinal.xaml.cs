@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BikeProductionPlanner.Views;
+using BikeProductionPlanner.WPF.Views;
 using DynamicLocalization;
 
 namespace BikeProductionPlanner
@@ -21,11 +22,16 @@ namespace BikeProductionPlanner
     /// </summary>
     public partial class MainWindowFinal : Window
     {
+        public static MainWindowFinal Instance;
+
         public MainWindowFinal()
         {
             InitializeComponent();
 
+
+
             LocUtil.SetDefaultLanguage(this);
+            
 
             // Adjust checked language menu item
             foreach (MenuItem item in menuItemLanguages.Items)
@@ -57,7 +63,7 @@ namespace BikeProductionPlanner
             switch (index)
             {
                 case 0:
-                    ContentControl.Content = new Blue();
+                    ContentControl.Content = new XMLImportPage();
                     break;
                 case 1:
                     ContentControl.Content = new Sales();
@@ -67,6 +73,9 @@ namespace BikeProductionPlanner
                     break;
                 case 4:
                     ContentControl.Content = new CapacityPlanningPage();
+                    break;
+                case 7:
+                    ContentControl.Content = new XMLExportPage();
                     break;
                 default:
                     break;
