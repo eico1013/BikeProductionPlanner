@@ -4,6 +4,7 @@
     {
         public enum MenuItemsEnum
         {
+            Dashboard,
             DataImport,
             Sales,
             SafetyStock,
