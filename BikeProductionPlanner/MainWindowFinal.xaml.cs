@@ -80,6 +80,7 @@ namespace BikeProductionPlanner
                 //{ MenuItems.Purchase, new PurchasePage() },
                 { MenuItems.MenuItemsEnum.DataExport, new XMLExportPage() },
                 //{ MenuItems.Customisation, new CustomizePage() }
+                { MenuItems.MenuItemsEnum.Impressum, new Impressum() }
             };
 
             UpdateUI(State.DataImport);
@@ -181,6 +182,10 @@ namespace BikeProductionPlanner
                 case 8:
                     NavigateTo(MenuItems.MenuItemsEnum.DataExport);
                     break;
+                case 9:
+                    NavigateTo(MenuItems.MenuItemsEnum.Impressum);
+                    break;
+
                 default:
                     break;
             }
