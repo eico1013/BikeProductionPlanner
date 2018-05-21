@@ -15,7 +15,7 @@
         xmlns:views="clr-namespace:BikeProductionPlanner.Views"
         xmlns:properties="clr-namespace:BikeProductionPlanner.Properties"
         mc:Ignorable="d" Height="700" Width="1080" 
-        WindowStartupLocation="CenterScreen" Title="BikeProductionPlanner">
+        WindowStartupLocation="CenterScreen" Title="BikeProductionPlanner" WindowStyle="None">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -63,11 +63,12 @@
     <!--Menu Grid-->
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="26*"/>
+            <ColumnDefinition Width="188*"/>
+            <ColumnDefinition Width="214*"/>
+            <ColumnDefinition Width="215*"/>
+            <ColumnDefinition Width="214*"/>
+            <ColumnDefinition Width="215*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -76,8 +77,8 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid x:Name="GridBackground" Background="#55313131" Opacity="0"/>
-        <Button x:Name="ButtonOpen" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0">
+        <Grid x:Name="GridBackground" Background="#55313131" Opacity="0" Grid.ColumnSpan="2"/>
+        <Button x:Name="ButtonOpen" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Grid.ColumnSpan="2">
             <materialDesign:PackIcon Kind="Menu" Foreground="#FF313131"/>
         </Button>
         <Grid x:Name="GridMenu" Width="250"  HorizontalAlignment="Left" Margin="-250 0 0 0" Background="White" RenderTransformOrigin="0.5,0.5" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
@@ -158,8 +159,8 @@
             </Button>
         </Grid>
         <!--Entry Point Main Content-->
-        <ContentControl Name="ContentControl" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"></ContentControl>
-        <Button x:Name="ButtonClose2" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5"  HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Foreground="#FF313131" Click="Click">
+        <ContentControl Name="ContentControl" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"></ContentControl>
+        <Button x:Name="ButtonClose2" Grid.Row="0" Grid.Column="5"  HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Foreground="#FF313131" Click="Click">
             <materialDesign:PackIcon Kind="Close"/>
         </Button>
     </Grid>

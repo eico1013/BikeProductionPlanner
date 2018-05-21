@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BikeProductionPlanner.Logic.Database;
+
+using BikeProductionPlanner.Logic;
 
 namespace BikeProductionPlanner.Views
 {
@@ -29,20 +32,23 @@ namespace BikeProductionPlanner.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Speichern & Zurück
-            /*
+            
             try
             {
-                if (Convert.ToInt32(directSum.Text) > maxValue || (Convert.ToInt32(period0sum.Text) + Convert.ToInt32(directSum.Text)) > maxValue)
-                {
-                    MessageBox.Show("Fehler: Die Summe muss kleiner 1050 sein.");
-                    return;
-                }
+                StorageService.Instance.AddSellWish(new SellWish(StorageService.Instance.GetForecastForPeriod(0).Product1, 1));
+                StorageService.Instance.AddSellWish(new SellWish(StorageService.Instance.GetForecastForPeriod(0).Product2, 2));
+                StorageService.Instance.AddSellWish(new SellWish(StorageService.Instance.GetForecastForPeriod(0).Product3, 3));
+
+                StorageService.Instance.AddSellDirect(new SellDirect(Convert.ToInt32(directProduct1.Text), 1, Convert.ToInt32(contractPenaltyProduct1.Text), Convert.ToInt32(retailPriceProduct1.Text)));
+                StorageService.Instance.AddSellDirect(new SellDirect(Convert.ToInt32(directProduct2.Text), 2, Convert.ToInt32(contractPenaltyProduct2.Text), Convert.ToInt32(retailPriceProduct2.Text)));
+                StorageService.Instance.AddSellDirect(new SellDirect(Convert.ToInt32(directProduct3.Text), 3, Convert.ToInt32(contractPenaltyProduct3.Text), Convert.ToInt32(retailPriceProduct3.Text)));
+
             }
             catch
             {
 
             }
-            */
+            
         }
 
         private void Forecast1_TextChanged(object sender, TextChangedEventArgs e)
