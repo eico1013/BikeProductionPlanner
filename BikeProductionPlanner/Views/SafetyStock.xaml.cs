@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using BikeProductionPlanner.Logic.Database;
+using BikeProductionPlanner.Logic.UI;
 
 namespace BikeProductionPlanner.Views
 {
@@ -154,6 +155,9 @@ namespace BikeProductionPlanner.Views
             {
                 MessageBox.Show("Fehler: Nur ganzzahlige Werte erlaubt.");
             }
+
+            MainWindowFinal.Instance.UpdateUI(State.Result);
+            MainWindowFinal.Instance.NavigateTo(MenuItems.MenuItemsEnum.ProductionPlan);
         }
     }
 }
