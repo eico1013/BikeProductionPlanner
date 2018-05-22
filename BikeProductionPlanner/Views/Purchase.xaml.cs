@@ -27,8 +27,8 @@ namespace BikeProductionPlanner.Views
             BikeProductionPlanner.Logic.Logic.Purchase.calculateCoverage();
             String demandinP3 = Convert.ToString(BikeProductionPlanner.Logic.Logic.Purchase.GetDemandByID(23).demandInP3);
             String demandinP2 = Convert.ToString(BikeProductionPlanner.Logic.Logic.Purchase.GetDemandByID(23).demandInP2);
-            String demandinP1 = Convert.ToString(BikeProductionPlanner.Logic.Logic.Purchase.GetDemandByID(23).demandInP3);
-            String demandinP0 = Convert.ToString(BikeProductionPlanner.Logic.Logic.Purchase.GetDemandByID(23).demandInP3);
+            String demandinP1 = Convert.ToString(BikeProductionPlanner.Logic.Logic.Purchase.GetDemandByID(23).demandInP1);
+            String demandinP0 = Convert.ToString(BikeProductionPlanner.Logic.Logic.Purchase.GetDemandByID(23).demandInP0);
             MessageBox.Show("P0: " + demandinP0 + "   P1: " + demandinP1 + "    P2: " + demandinP2 + "     P3: " + demandinP3);
 
             // Hole Kaufteilliste aus StorageService

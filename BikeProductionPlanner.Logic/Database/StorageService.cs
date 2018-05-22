@@ -15,6 +15,7 @@ namespace BikeProductionPlanner.Logic.Database
         private List<OrderInWork> ordersInWorkList;
         private List<WaitingListStock> waitingListStocks;
         private List<FutureInwardStockMovment> futureInwardStockMovments;
+        private int periodFromXml;
 
         // Temp
         private Dictionary<int, ForecastPeriod> forecastList;
@@ -35,6 +36,7 @@ namespace BikeProductionPlanner.Logic.Database
             ordersInWorkList = XmlInputParser.Instance.OrdersInWork;
             waitingListStocks = XmlInputParser.Instance.WaitingListStocks;
             futureInwardStockMovments = XmlInputParser.Instance.FutureInwardStockMovments;
+            periodFromXml = XmlInputParser.Instance.PeriodFromXML;
 
             forecastList = new Dictionary<int, ForecastPeriod>();
 
@@ -59,7 +61,17 @@ namespace BikeProductionPlanner.Logic.Database
             }
         }
 
+        public int GetPeriodFromXml()
+        {
+            return periodFromXml;
+        }
+
         #region FutureInwardStockMovment
+
+        public List<FutureInwardStockMovment> GetFutureInwardStockMovment()
+        {
+            return futureInwardStockMovments;
+        }
 
         public FutureInwardStockMovment GetFutureInwardStockMovment(int id)
         {
@@ -409,8 +421,8 @@ namespace BikeProductionPlanner.Logic.Database
         #endregion
 
         //Periode 0
-        public int vertriebswunschP1 = 150;
-        public int vertriebswunschP2 = 100;
+        public int vertriebswunschP1 = 100;
+        public int vertriebswunschP2 = 200;
         public int vertriebswunschP3 = 100;
 
         public int sicherheitsbestandP1;
@@ -418,17 +430,17 @@ namespace BikeProductionPlanner.Logic.Database
         public int sicherheitsbestandP3;
 
         //Periode 1
-        public int prognose1P1 = 200;
+        public int prognose1P1 = 150;
         public int prognose1P2 = 150;
-        public int prognose1P3 = 100;
+        public int prognose1P3 = 150;
 
         public int sb_Prognose1P1;
         public int sb_Prognose1P2;
         public int sb_Prognose1P3;
 
         //Periode 2
-        public int prognose2P1 = 100;
-        public int prognose2P2 = 200;
+        public int prognose2P1 = 150;
+        public int prognose2P2 = 150;
         public int prognose2P3 = 150;
 
         public int sb_Prognose2P1;
@@ -436,9 +448,9 @@ namespace BikeProductionPlanner.Logic.Database
         public int sb_Prognose2P3;
 
         //Periode 3
-        public int prognose3P1 = 250;
-        public int prognose3P2 = 200;
-        public int prognose3P3 = 100;
+        public int prognose3P1 = 150;
+        public int prognose3P2 = 150;
+        public int prognose3P3 = 200;
 
         public int sb_Prognose3P1;
         public int sb_Prognose3P2;
