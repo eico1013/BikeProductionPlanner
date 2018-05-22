@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using BikeProductionPlanner.Logic.Database;
 
@@ -157,6 +158,9 @@ namespace BikeProductionPlanner.Logic.Logic
             return GetDemandOfParts().Find(x => x.idDemand == id);
         }
 
+        // Hole eingehende Bestellungen aus StorageService
+        static List<FutureInwardStockMovment> futureInwardStockMovments = StorageService.Instance.GetFutureInwardStockMovment();
+
         // Reichweite berechnen
         public static void calculateCoverage()
         { 
@@ -171,15 +175,79 @@ namespace BikeProductionPlanner.Logic.Logic
             int coverageSum = 0;
             int deliveryTimeInclDepartureTime = 0;
             int deliveryTimePriority = 0;
+            int currentPeriod = StorageService.Instance.GetPeriodFromXml() + 1;
 
             foreach (WarehouseStock wh in purchasePartsFromXML)
             {
+                // Alle Werte auf 0 setzen, nach jedem Schleifendurchlauf
+                startAmountInP0 = 0;
+                startAmountInP1 = 0;
+                startAmountInP2 = 0;
+                startAmountInP3 = 0;
+                coverageInP0 = 0;
+                coverageInP1 = 0;
+                coverageInP2 = 0;
+                coverageInP3 = 0;
+                coverageSum = 0;
+                deliveryTimeInclDepartureTime = 0;
+                deliveryTimePriority = 0;
+                List<FutureInwardStockMovment> incomingOrders;
 
+                // Setze Lieferzeit mit Abweichung und Eillieferzeit für den Artikel
                 deliveryTimeInclDepartureTime = GetPurchasePartFromPurchaseByID(wh.Id).deliveryTime + GetPurchasePartFromPurchaseByID(wh.Id).departureTime;
                 deliveryTimePriority = GetPurchasePartFromPurchaseByID(wh.Id).deliveryTime / 2;
 
+                // Extrahiere alle Bestellungen des Artikels
+                incomingOrders = futureInwardStockMovments.FindAll(item => item.Article.Equals(wh.Id));
+
+                // Befülle Startmengen mit Lieferzugängen aus der Liste
+                foreach (FutureInwardStockMovment incomingPart in incomingOrders)
+                {
+                    int incomingOrderDate = 0;
+                    int incomingOrderDay = 0;
+                    int incomingOrderAmount = 0;
+
+                    // Berechne wann der Artikel eintrifft
+                    if (incomingPart.Mode.Equals(5))
+                    {
+                        incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimeInclDepartureTime;
+                    }
+
+                    else
+                    {
+                        incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimePriority;
+                    }
+
+                    incomingOrderDay = incomingOrderDate - currentPeriod * 5;
+                    incomingOrderAmount = incomingPart.Amount;
+
+                    if (incomingOrderDay >= 0 && incomingOrderDay < 5)
+                    {
+                        startAmountInP0 = startAmountInP0 + incomingOrderAmount;
+                    }
+
+                    if (incomingOrderDay >= 5 && incomingOrderDay < 10)
+                    {
+                        startAmountInP1 = startAmountInP1 + incomingOrderAmount;
+                    }
+
+                    if (incomingOrderDay >= 10 && incomingOrderDay < 15)
+                    {
+                        startAmountInP2 = startAmountInP2 + incomingOrderAmount;
+                    }
+
+                    if (incomingOrderDay >= 15 && incomingOrderDay < 20)
+                    {
+                        startAmountInP3 = startAmountInP3 + incomingOrderAmount;
+                    }
+                }
+
+                // Reichweitenberechnung für den Artikel
                 // Periode 0
-                startAmountInP0 = wh.Amount;
+                startAmountInP0 = startAmountInP0 + wh.Amount;
+                // nicht aufgerundet
+                double test1 = Convert.ToDouble(Convert.ToDouble(startAmountInP0) / Convert.ToDouble((GetDemandByID(wh.Id).demandInP0) / 5.0));
+                // aufgerundet
                 coverageInP0 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP0 / (GetDemandByID(wh.Id).demandInP0 / 5)))));
 
                 coverageSum = coverageInP0;
@@ -187,21 +255,30 @@ namespace BikeProductionPlanner.Logic.Logic
                 // Periode 1
                 if (coverageInP0 > 5)
                 {
-                    startAmountInP1 = startAmountInP0 - GetDemandByID(wh.Id).demandInP0;
+                    startAmountInP1 = startAmountInP1 + startAmountInP0 - GetDemandByID(wh.Id).demandInP0;
+                    // nicht aufgerundet
+                    double test2 = Convert.ToDouble(Convert.ToDouble(startAmountInP1) / Convert.ToDouble((GetDemandByID(wh.Id).demandInP1) / 5.0));
+                    // aufgerundet
                     coverageInP1 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP1 / (GetDemandByID(wh.Id).demandInP1 / 5)))));
 
                     coverageSum = 5 + coverageInP1;
                     // Periode 2
                     if (coverageInP1 > 5)
                     {
-                        startAmountInP2 = startAmountInP1 - GetDemandByID(wh.Id).demandInP1;
+                        startAmountInP2 = startAmountInP2 + startAmountInP1 - GetDemandByID(wh.Id).demandInP1;
+                        // nicht aufgerundet
+                        double test3 = Convert.ToDouble(Convert.ToDouble(startAmountInP2) / Convert.ToDouble((GetDemandByID(wh.Id).demandInP2) / 5.0));
+                        // aufgerundet
                         coverageInP2 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP2 / (GetDemandByID(wh.Id).demandInP2 / 5)))));
 
                         coverageSum = 10 + coverageInP2;
                         // Periode 3
                         if (coverageInP2 > 5)
                         {
-                            startAmountInP3 = startAmountInP2 - GetDemandByID(wh.Id).demandInP2;
+                            startAmountInP3 = startAmountInP3 + startAmountInP2 - GetDemandByID(wh.Id).demandInP2;
+                            // nicht aufgerundet
+                            double test4 = Convert.ToDouble(Convert.ToDouble(startAmountInP3) / Convert.ToDouble((GetDemandByID(wh.Id).demandInP3) / 5.0));
+                            // aufgerundet
                             coverageInP3 = Convert.ToInt32(Math.Ceiling((Convert.ToDouble(startAmountInP3 / (GetDemandByID(wh.Id).demandInP3 / 5)))));
 
                             coverageSum = 15 + coverageInP3;
@@ -210,7 +287,7 @@ namespace BikeProductionPlanner.Logic.Logic
                 }
 
                 // Anhand Reichweite Bestellungen bestimmen
-                if ((coverageSum <= 20) && (coverageSum.CompareTo(deliveryTimeInclDepartureTime) >= 0))
+                if ((coverageSum < 20) && (coverageSum.CompareTo(deliveryTimeInclDepartureTime) >= 0))
                 {
                     if (coverageSum.CompareTo(deliveryTimeInclDepartureTime) >= 5)
                     {
@@ -282,7 +359,7 @@ namespace BikeProductionPlanner.Logic.Logic
 
                 }
 
-                if ((coverageSum <= 20) && (coverageSum.CompareTo(deliveryTimeInclDepartureTime) < 0))
+                if ((coverageSum < 20) && (coverageSum.CompareTo(deliveryTimeInclDepartureTime) < 0))
                 {
                     if (coverageSum.CompareTo(deliveryTimePriority) >= 5)
                     {
@@ -295,6 +372,61 @@ namespace BikeProductionPlanner.Logic.Logic
                         // Eilbestellung
                         // Frontend aktualisieren: Menge und Eil
                         // Eilbestellung der Bestellliste hinzufügen
+
+                        // Typ 4 bedeutet Eilbestellung
+                        int orderType = 4;
+                        int daysOfPeriodGone = coverageSum;
+                        int daysOfPeriodLeft = 20 - coverageSum;
+                        int orderAmount = 0;
+                        int amountDifference = 0;
+
+                        // Periode 3
+                        if (daysOfPeriodLeft >= 0 && daysOfPeriodLeft <= 5)
+                        {
+                            orderAmount = (GetDemandByID(wh.Id).demandInP3 / 5) * daysOfPeriodLeft;
+
+                            daysOfPeriodGone = daysOfPeriodGone - 15;
+                            amountDifference = startAmountInP3 - ((GetDemandByID(wh.Id).demandInP3 / 5) * daysOfPeriodGone);
+                            orderAmount = orderAmount - amountDifference;
+                        }
+
+                        // Periode 2
+                        if (daysOfPeriodLeft > 5 && daysOfPeriodLeft <= 10)
+                        {
+                            daysOfPeriodLeft = daysOfPeriodLeft - 5;
+                            orderAmount = (GetDemandByID(wh.Id).demandInP2 / 5) * daysOfPeriodLeft + GetDemandByID(wh.Id).demandInP3;
+
+                            daysOfPeriodGone = daysOfPeriodGone - 10;
+                            amountDifference = startAmountInP2 - ((GetDemandByID(wh.Id).demandInP2 / 5) * daysOfPeriodGone);
+                            orderAmount = orderAmount - amountDifference;
+                        }
+
+                        // Periode 1
+                        if (daysOfPeriodLeft > 10 && daysOfPeriodLeft <= 15)
+                        {
+                            daysOfPeriodLeft = daysOfPeriodLeft - 10;
+                            orderAmount = (GetDemandByID(wh.Id).demandInP1 / 5) * daysOfPeriodLeft + GetDemandByID(wh.Id).demandInP2 +
+                                        GetDemandByID(wh.Id).demandInP3;
+
+                            daysOfPeriodGone = daysOfPeriodGone - 5;
+                            amountDifference = startAmountInP1 - ((GetDemandByID(wh.Id).demandInP1 / 5) * daysOfPeriodGone);
+                            orderAmount = orderAmount - amountDifference;
+                        }
+
+                        // Periode 0
+                        if (daysOfPeriodLeft > 15 && daysOfPeriodLeft <= 20)
+                        {
+                            daysOfPeriodLeft = daysOfPeriodLeft - 15;
+                            orderAmount = (GetDemandByID(wh.Id).demandInP0 / 5) * daysOfPeriodLeft + GetDemandByID(wh.Id).demandInP1 +
+                                        GetDemandByID(wh.Id).demandInP2 + GetDemandByID(wh.Id).demandInP3;
+
+                            amountDifference = startAmountInP0 - ((GetDemandByID(wh.Id).demandInP0 / 5) * daysOfPeriodGone);
+                            orderAmount = orderAmount - amountDifference;
+                        }
+
+                        // Füge Artikel der Bestellliste hinzu
+                        OrderList orderListItem = new OrderList(orderAmount, wh.Id, orderType);
+                        StorageService.Instance.AddOrderItem(orderListItem);
 
                         if (coverageSum.CompareTo(deliveryTimePriority) < 0)
                         {
@@ -309,21 +441,6 @@ namespace BikeProductionPlanner.Logic.Logic
             }
 
         }
-
-        // Anfangsbestand (+ Lieferzugänge) / VerbrauchProTagP0
-
-        // ReichweiteP0: AnfangsbestandP0 / VerbauchProTagP0
-        // if (ReichweiteP0 > 5)
-        // AnfangsbestandP1 = AnfangsbestandP0 - VerbrauchP0
-        // ReichweiteP1: AnfangsbestandP1 / VerbrauchProTagP1
-        // if (ReichweiteP1 > 5)
-        // AnfangsbestandP2 = AnfangsbestandP1 - VerbrauchP1
-        // ReichweiteP2: AnfangsbestandP2 / VerbrauchProTagP2
-        // if (ReichweiteP2 > 5)
-        // AnfangsbestandP3 = AnfangsbestandP2 - VerbrauchP2
-        // ReichweiteP3: AnfangsbestandP3 / VerbrauchProTagP3
-        // if (ReichweiteP3 > 5)
-        // Keine Bestellung; außer Part24, da 4 Wochen Lieferzeit
 
     }
 }
