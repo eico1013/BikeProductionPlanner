@@ -97,7 +97,7 @@ namespace BikeProductionPlanner.Logic.Logic
                 this.demandInP3 = demandInP3;
             }
         }
-            
+
         // Hole Kaufteilliste aus StorageService
         static List<WarehouseStock> purchasePartsFromXML = StorageService.Instance.GetPurchaseParts();
         static List<purchasePart> purchasePartsFromPurchase = GetPurchasePartsFromPurchase();
