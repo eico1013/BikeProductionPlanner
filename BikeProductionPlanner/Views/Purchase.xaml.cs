@@ -24,6 +24,7 @@ namespace BikeProductionPlanner.Views
         public Purchase()
         {
             InitializeComponent();
+            StorageService.Instance.ClearOrderItemList();
             BikeProductionPlanner.Logic.Logic.Purchase.calculateCoverage();
 
             // Hole Kaufteilliste aus StorageService
@@ -46,9 +47,10 @@ namespace BikeProductionPlanner.Views
             }
 
             // Hole Bestellliste aus StorageService
-            List<OrderList> orderList = StorageService.Instance.GetAllOrders();
-            // String inhaltOrderList = Convert.ToString(orderList.Count());
-            // MessageBox.Show(inhaltOrderList);
+            List<OrderList> orderList = new List<OrderList>();
+            orderList = StorageService.Instance.GetAllOrders();
+            String inhaltOrderList = Convert.ToString(orderList.Count());
+            MessageBox.Show(inhaltOrderList);
 
             // Iteriere Bestelliste durch
             foreach (OrderList orderListItem in orderList)
@@ -89,13 +91,82 @@ namespace BikeProductionPlanner.Views
             }
         }
 
-        /*
-       
-        private void currentStockP0D1K21_TextChanged(object sender, TextChangedEventArgs e)
+        private void btnNextPage_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Amount:" + Convert.ToString(StorageService.Instance.GetFutureInwardStockMovment(21).Amount));
+            // Hole Kaufteilliste aus StorageService
+            List<WarehouseStock> purchasePartsList = StorageService.Instance.GetPurchaseParts();
+
+            // Hole Bestellliste aus StorageService
+            List<OrderList> orderList = new List<OrderList>();
+            orderList = StorageService.Instance.GetAllOrders();
+
+            // Iteriere Kaufteilliste durch
+            foreach (WarehouseStock purchasePart in purchasePartsList)
+            {
+                // Kaufteil ID als String
+                String id = Convert.ToString(purchasePart.Id);
+                String tbOrderAmountName = "purchasePartOrderAmountK" + id;
+                String tbOrderTypeName = "purchasePartOrderTypeK" + id;
+
+                // Finde entsprechende Textboxen anhand ihres eindeutigen Namens
+                TextBox tbOrderAmount = (TextBox)this.FindName(tbOrderAmountName);
+                TextBox tbOrderType = (TextBox)this.FindName(tbOrderTypeName);
+
+                // Konvertiere Text aus Textboxen in Integer
+                int convertedOrderAmount = Convert.ToInt32(tbOrderAmount.Text);
+
+                if (convertedOrderAmount > 0 && (tbOrderType.Text == "Eil" || tbOrderType.Text == "Normal"))
+                {
+                    int convertedOrderType = 0;
+                    if (tbOrderType.Text == "Eil")
+                    {
+                        convertedOrderType = 4;
+                    }
+
+                    else
+                    {
+                        convertedOrderType = 5;
+                    }
+
+                    // Prüfe, ob das Kaufteil bereits in der Bestellliste enthalten ist.
+                    // Falls ja, dann suche nach dem Kaufteil und vergleiche die Werte für
+                    // die Bestellmenge und die Bestellart. Unterscheidet sich mind. einer, 
+                    // dann passe die Bestellliste mit den neuen Werten an.
+                    if (orderList.Exists(x => x.Article == purchasePart.Id))
+                    {
+                        OrderList item = orderList.Find(x => x.Article == purchasePart.Id);
+                        if (!(item.Quantity.Equals(convertedOrderAmount)) || !(item.Modus.Equals(convertedOrderType)))
+                        {
+                            int index = orderList.IndexOf(item);
+                            orderList[index].Quantity = convertedOrderAmount;
+                            orderList[index].Modus = convertedOrderType;
+                        }
+                    }
+
+                    // Falls nein, dann füge das neue Kaufteil der Bestellliste hinzu
+                    else
+                    {
+                        OrderList orderListItem = new OrderList(convertedOrderAmount, purchasePart.Id, convertedOrderType);
+                        StorageService.Instance.AddOrderItem(orderListItem);
+                    }
+
+                }
+
+                // Kaufteil von Bestellliste entfernen, wenn keine Bestellung gewünscht wird
+                if (convertedOrderAmount == 0 || tbOrderType.Text == "Keine")
+                {
+                    if (orderList.Exists(x => x.Article == purchasePart.Id))
+                    {
+                        OrderList item = orderList.Find(x => x.Article == purchasePart.Id);
+                        StorageService.Instance.RemoveOrderItem(item);
+                    }
+                }
+
+            }
+
+            String inhaltOrderList = Convert.ToString(orderList.Count());
+            MessageBox.Show(inhaltOrderList);
         }
 
-        */
     }
 }
