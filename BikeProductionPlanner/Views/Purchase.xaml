@@ -17,17 +17,17 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="56"></ColumnDefinition>
-                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="75"></ColumnDefinition>
                 <ColumnDefinition Width="75"></ColumnDefinition>
                 <ColumnDefinition Width="75"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
 
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="titlePurchase" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Einkauf" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"/>
-            <Button x:Name="btnShowDetails" Grid.Row="1" Grid.Column="1" Content="Details einblenden" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Click="btnShowDetails_Click"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="titlePurchase" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Einkauf" VerticalAlignment="Center" FontWeight="Bold" FontSize="20"/>
+            <Button x:Name="btnShowDetails" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Content="Details einblenden" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Click="btnShowDetails_Click" Margin="10,0,0,0"/>
 
             <TextBlock Grid.Row="2" Grid.Column="1" x:Name="captionPurchasePart" Text="Kaufteil" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <StackPanel Grid.Row="3" Grid.Column="1" x:Name="spPurchasePart" Height="750" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150">
+            <StackPanel Grid.Row="3" Grid.Column="1" x:Name="spPurchasePart" Height="750" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75">
 
                 <TextBox x:Name="purchasePartK21" TextWrapping="Wrap" Text="21" Padding="0" Margin="0" BorderThickness="1,1,1,1" IsReadOnly="True"/>
                 <TextBox x:Name="purchasePartK22" TextWrapping="Wrap" Text="22" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
@@ -60,77 +60,77 @@
                 <TextBox x:Name="purchasePartK59" TextWrapping="Wrap" Text="59" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
             </StackPanel>
 
-            <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" x:Name="captionOrder" TextWrapping="Wrap" Text="Bestellung" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="captionOrder" TextWrapping="Wrap" Text="Bestellung" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
 
 
             <TextBlock Grid.Row="2" Grid.Column="2" x:Name="captionOrderAmount" Text="Menge" Width="75" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Grid.Row="2" Grid.Column="3" x:Name="captionOrderType" Text="Art" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" />
             <StackPanel Grid.Row="3" Grid.Column="2" x:Name="spOrderAmount" Height="750" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75">
 
-                <TextBox x:Name="purchasePartOrderAmountK21" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,1,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK22" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK23" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK24" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK25" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK27" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK28" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK32" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK33" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK34" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK35" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK36" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK37" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK38" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK39" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK40" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK41" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK42" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK43" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK44" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK45" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK46" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK47" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK48" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK52" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK53" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK57" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK58" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderAmountK59" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
+                <TextBox x:Name="purchasePartOrderAmountK21" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,1,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK22" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK23" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK24" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK25" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK27" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK28" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK32" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK33" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK34" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK35" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK36" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK37" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK38" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK39" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK40" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK41" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK42" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK43" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK44" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK45" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK46" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK47" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK48" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK52" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK53" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK57" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK58" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderAmountK59" TextWrapping="Wrap" Text="0" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.Column="3" x:Name="spOrderType" Height="750" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75">
 
-                <TextBox x:Name="purchasePartOrderTypeK21" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,1,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK22" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK23" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK24" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK25" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK27" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK28" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK32" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK33" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK34" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK35" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK36" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK37" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK38" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK39" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK40" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK41" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK42" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK43" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK44" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK45" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK46" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK47" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK48" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK52" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK53" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK57" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK58" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
-                <TextBox x:Name="purchasePartOrderTypeK59" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1" IsReadOnly="True"/>
+                <TextBox x:Name="purchasePartOrderTypeK21" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,1,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK22" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK23" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK24" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK25" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK27" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK28" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK32" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK33" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK34" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK35" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK36" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK37" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK38" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK39" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK40" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK41" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK42" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK43" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK44" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK45" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK46" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK47" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK48" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK52" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK53" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK57" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK58" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
+                <TextBox x:Name="purchasePartOrderTypeK59" TextWrapping="Wrap" Text="Keine" Padding="0" Margin="0" BorderThickness="1,0,1,1"/>
             </StackPanel>
             
-            <Grid x:Name="gridDetail" Grid.Row="1" Grid.Column="4" Grid.RowSpan="3" Visibility="Hidden">
+            <Grid x:Name="gridDetail" Grid.Row="1" Grid.Column="4" Grid.RowSpan="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
@@ -159,7 +159,7 @@
                     <ColumnDefinition Width="63"></ColumnDefinition>
                     <ColumnDefinition Width="63"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="1" Grid.Column="0" x:Name="captionCurrentStock" TextWrapping="Wrap" VerticalAlignment="Top" Height="33"><Run Text="Anfangs-b"/><Run Text="estand"/></TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="0" x:Name="captionCurrentStock" TextWrapping="Wrap" VerticalAlignment="Top" Text="Anfangs-bestand" BorderThickness="0,1,3,1" IsReadOnly="True" Margin="1,0,0,0"/>
                 <StackPanel Grid.Row="2" Grid.Column="0" x:Name="spCurrentStock" HorizontalAlignment="Left" Height="750" VerticalAlignment="Top" Width="56">
 
                     <TextBox x:Name="currentStockK21" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,3,1" IsReadOnly="True" Margin="1,0,0,0"/>
@@ -194,8 +194,8 @@
                 </StackPanel>
 
 
-                <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="captionPeriod0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Periode 0" VerticalAlignment="Center" FontSize="16" Width="315" FontWeight="Bold" TextAlignment="Center"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" x:Name="captionCurrentStockP0D1" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" HorizontalAlignment="Left"><Run Text="End"/><Run Text="b"/><Run Text="es"/><Run Text="ta"/><Run Text="nd"/><Run Text=" "/><Run Text="Tag 1"/></TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="captionPeriod0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Endbestände Periode 0" VerticalAlignment="Center" FontSize="16" Width="315" FontWeight="Bold" TextAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" x:Name="captionCurrentStockP0D1" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Tag 1"/>
                 <StackPanel Grid.Row="2" Grid.Column="1" x:Name="spCurrentStockP0D1" HorizontalAlignment="Left" Height="750" VerticalAlignment="Top" Width="63">
 
                     <TextBox x:Name="currentStockP0D1K21" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderThickness="0,1,1,1" IsReadOnly="True" Margin="1,0,0,0"/>
@@ -885,7 +885,7 @@
             
            
           
-            <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" x:Name="btnPurchase" Content="Weiter" VerticalAlignment="Top"/>
+            <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" x:Name="btnNextPage" Content="Weiter" VerticalAlignment="Top" Click="btnNextPage_Click"/>
 
 
         </Grid>
