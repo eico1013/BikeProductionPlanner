@@ -20,6 +20,8 @@
     <sys:String x:Key="SafetyStock_Text_P2">Damenrad P2</sys:String>
     <sys:String x:Key="SafetyStock_Text_P3">Herrenrad P3</sys:String>
     <sys:String x:Key="SafetyStock_Button_Plan">Planen</sys:String>
-
+    <!--Impresum-->
+    <sys:String x:Key="Impressumbutton1">Datenschutz</sys:String>
+    <sys:String x:Key="Impressumbutton2">Haftung</sys:String>
 
 </ResourceDictionary>
