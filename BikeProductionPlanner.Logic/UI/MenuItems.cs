@@ -14,6 +14,7 @@
             Customisation,
             DataExport,
             UserSettings,
+            StartingPage,
             Impressum
         }
     }
