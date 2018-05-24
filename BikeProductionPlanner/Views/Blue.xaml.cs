@@ -19,8 +19,6 @@ namespace BikeProductionPlanner.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             XmlInputParser.Instance.ParseXml("C:/Wirtschaftsinformatik/7. Semester/Perioden/resultServlet.xml");
-            String PeriodevonXML = Convert.ToString(StorageService.Instance.GetPeriodFromXml());
-            MessageBox.Show(PeriodevonXML);
         }
     }
 }
