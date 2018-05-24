@@ -122,6 +122,8 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\hskalogo.jpg" />
+    <Resource Include="images\produktion.jpg" />
     <Resource Include="images\hska.png" />
     <Resource Include="images\Pflieger.jpg" />
     <Resource Include="images\schueler.jpg" />

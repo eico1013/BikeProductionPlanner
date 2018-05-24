@@ -5,19 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:BikeProductionPlanner.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
-    <Grid>
-        <Image Source="/images/hska.png" HorizontalAlignment="Left" Height="150" Margin="240,219,0,0" VerticalAlignment="Top" Width="308"/>
+             mc:Ignorable="d" d:DesignWidth="800" Background="White" Height="600">
+    <StackPanel>
+        <Grid Height="600">
+            <Label FontWeight="Bold" Content="Projekt: BikeProductionPlanner" HorizontalAlignment="Left" Margin="200,328,0,0" VerticalAlignment="Top"/>
+            <Image Source="/images/produktion.jpg" HorizontalAlignment="Left" Height="284" Margin="87,10,0,0" VerticalAlignment="Top" Width="437"/>
 
-  <Button
-  Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-  ToolTip="MaterialDesignFloatingActionMiniDarkButton" Margin="378,348,382,62" Background="White" Foreground="#FF313131" Click="Button_Click" >
-    <materialDesign:PackIcon
-    Kind="Bike"
-    Height="24"
-    Width="24" />
-  </Button>
+            <Button
+            Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+            ToolTip="Unser Team" Margin="200,448,544,96" Click="Button_Click_1">
+                <materialDesign:PackIcon
+                Kind="Bike"
+                Height="40"
+                Width="40" />
+            </Button>
+            <Button
+            Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+            ToolTip="Produktionsplanung starten" Margin="282,448,462,96" Click="Button_Click_2">
+                <materialDesign:PackIcon
+                Kind="ArrowRightDropCircleOutline"
+                Height="40"
+                Width="40" />
+            </Button>
+            <Image Source="/images/hskalogo.jpg" HorizontalAlignment="Left" Height="66" Margin="274,377,0,0" VerticalAlignment="Top" Width="64"/>
 
-    </Grid>
+        </Grid>
+    </StackPanel>
 </UserControl>
