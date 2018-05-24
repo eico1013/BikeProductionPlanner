@@ -81,7 +81,8 @@ namespace BikeProductionPlanner.Views
             TextBlock tblcaptionPeriod2 = (TextBlock)this.FindName("captionPeriod2");
             TextBlock tblcaptionPeriod3 = (TextBlock)this.FindName("captionPeriod3");
 
-            int currentPeriod = StorageService.Instance.GetPeriodFromXml() + 1;
+            int currentPeriod = 0;
+            currentPeriod = StorageService.Instance.GetPeriodFromXml() + 1;
             int period1 = currentPeriod + 1;
             int period2 = period1 + 1;
             int period3 = period2 + 1;
