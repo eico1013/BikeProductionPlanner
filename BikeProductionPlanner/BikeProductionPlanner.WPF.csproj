@@ -97,6 +97,9 @@
     <Compile Include="Views\DirectSales.xaml.cs">
       <DependentUpon>DirectSales.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StartingPage.xaml.cs">
+      <DependentUpon>StartingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Impressum.xaml.cs">
       <DependentUpon>Impressum.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\hska.png" />
     <Resource Include="images\Pflieger.jpg" />
     <Resource Include="images\schueler.jpg" />
     <Resource Include="images\mages.jpg" />
@@ -161,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DirectSales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StartingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

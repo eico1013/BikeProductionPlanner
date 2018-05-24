@@ -79,12 +79,13 @@ namespace BikeProductionPlanner
                 { MenuItems.MenuItemsEnum.Capacity, new CapacityPlanningPage() },
                 //{ MenuItems.Purchase, new PurchasePage() },
                 { MenuItems.MenuItemsEnum.DataExport, new XMLExportPage() },
+                { MenuItems.MenuItemsEnum.StartingPage, new StartingPage() },
                 //{ MenuItems.Customisation, new CustomizePage() }
                 { MenuItems.MenuItemsEnum.Impressum, new Impressum() }
             };
 
             UpdateUI(State.DataImport);
-            NavigateTo(MenuItems.MenuItemsEnum.DataImport);
+            NavigateTo(MenuItems.MenuItemsEnum.StartingPage);
         }
 
         public void NavigateTo(MenuItems.MenuItemsEnum tag)
