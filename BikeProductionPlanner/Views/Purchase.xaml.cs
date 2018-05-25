@@ -25,14 +25,18 @@ namespace BikeProductionPlanner.Views
         public Purchase()
         {
             InitializeComponent();
+        }
+
+        public void UpdatePurchaseFields()
+        {
             StorageService.Instance.ClearOrderItemList();
             BikeProductionPlanner.Logic.Logic.Purchase.calculateCoverage();
 
             // Hole Bestellliste aus StorageService
             List<OrderList> orderList = new List<OrderList>();
             orderList = StorageService.Instance.GetAllOrders();
-            String inhaltOrderList = Convert.ToString(orderList.Count());
-            MessageBox.Show(inhaltOrderList);
+            // String inhaltOrderList = Convert.ToString(orderList.Count());
+            // MessageBox.Show(inhaltOrderList);
 
             // Iteriere Bestellliste durch
             foreach (OrderList orderListItem in orderList)
@@ -326,8 +330,8 @@ namespace BikeProductionPlanner.Views
 
             }
 
-            String inhaltOrderList = Convert.ToString(orderList.Count());
-            MessageBox.Show(inhaltOrderList);
+            // String inhaltOrderList = Convert.ToString(orderList.Count());
+            // MessageBox.Show(inhaltOrderList);
         }
 
     }
