@@ -13,6 +13,7 @@ namespace BikeProductionPlanner.Logic
         public List<WaitingListWorkstation> WaitingListWorkstations { get; private set; }
         public List<WaitingListStock> WaitingListStocks { get; private set; }
         public List<OrderInWork> OrdersInWork { get; private set; }
+        public int PeriodFromXML { get; private set; }
 
         private static readonly XmlInputParser instance = new XmlInputParser();
         private static readonly String WAREHOUSE_STOCK = "warehousestock";
@@ -22,6 +23,8 @@ namespace BikeProductionPlanner.Logic
         private static readonly String WAITINGLIST_STOCK = "waitingliststock";
         private static readonly String ORDER_IN_WORK = "ordersinwork";
 
+        private static readonly String RESULTS = "results";
+
         private XmlInputParser()
         {
             WarehouseStocks = new List<WarehouseStock>();
@@ -29,6 +32,7 @@ namespace BikeProductionPlanner.Logic
             WaitingListWorkstations = new List<WaitingListWorkstation>();
             WaitingListStocks = new List<WaitingListStock>();
             OrdersInWork = new List<OrderInWork>();
+            PeriodFromXML = 0;
         }
 
         public static XmlInputParser Instance
@@ -58,6 +62,7 @@ namespace BikeProductionPlanner.Logic
             WaitingListWorkstations.Clear();
             WaitingListStocks.Clear();
             OrdersInWork.Clear();
+            PeriodFromXML = 0;
         }
 
         public bool ParseXml(String XmlFile)
@@ -75,6 +80,12 @@ namespace BikeProductionPlanner.Logic
 
             while (reader.Read())
             {
+                if (reader.NodeType == XmlNodeType.Element &&
+                    (reader.Name).Equals(RESULTS))
+                {
+                    reader = getPeriodFromXML(reader);
+                }
+
                 if (reader.NodeType == XmlNodeType.Element &&
                     ((reader.Name).Equals(WAREHOUSE_STOCK)
                         || (reader.Name).Equals(FUTURE_INWARD_STOCKMOVEMENT)
@@ -114,6 +125,20 @@ namespace BikeProductionPlanner.Logic
                 }
             } 
             return true;
+        }
+
+        private XmlTextReader getPeriodFromXML(XmlTextReader reader)
+        {
+            while (reader.MoveToNextAttribute())
+            {
+                switch (reader.Name)
+                {
+                    case "period":
+                        PeriodFromXML = Int32.Parse(reader.Value);
+                        break;
+                }
+            }
+            return reader;
         }
 
         private XmlTextReader getWarehouseStockValue(XmlTextReader reader)

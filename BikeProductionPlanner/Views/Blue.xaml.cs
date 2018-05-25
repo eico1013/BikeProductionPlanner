@@ -1,4 +1,8 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using BikeProductionPlanner.Logic;
+using System.Windows;
+using System.Windows.Controls;
+using BikeProductionPlanner.Logic.Database;
 
 namespace BikeProductionPlanner.Views
 {
@@ -10,6 +14,11 @@ namespace BikeProductionPlanner.Views
         public Blue()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            XmlInputParser.Instance.ParseXml("C:/Wirtschaftsinformatik/7. Semester/Perioden/resultServlet.xml");
         }
     }
 }
