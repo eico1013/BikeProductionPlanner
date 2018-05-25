@@ -11,7 +11,6 @@
         TextOptions.TextRenderingMode="Auto"
         Background="White"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        xmlns:viewmodels="clr-namespace:BikeProductionPlanner.ViewModels"
         xmlns:views="clr-namespace:BikeProductionPlanner.Views"
         xmlns:properties="clr-namespace:BikeProductionPlanner.Properties"
         mc:Ignorable="d" Height="700" Width="1080" 
