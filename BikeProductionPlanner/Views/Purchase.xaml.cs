@@ -106,6 +106,11 @@ namespace BikeProductionPlanner.Views
             tblcaptionPeriod2.Text = captionPeriod2;
             tblcaptionPeriod3.Text = captionPeriod3;
 
+            int deliveryTimeInclDepartureTime = 0;
+            int deliveryTimePriority = 0;
+
+            // Hole eingehende Bestellungen aus StorageService
+            List<FutureInwardStockMovment> futureInwardStockMovments = StorageService.Instance.GetFutureInwardStockMovment();
             // Hole Kaufteilliste aus StorageService
             List <WarehouseStock> purchasePartsList = new List<WarehouseStock>();
             purchasePartsList = StorageService.Instance.GetPurchaseParts();
@@ -116,6 +121,18 @@ namespace BikeProductionPlanner.Views
             // Iteriere Kaufteilliste durch
             foreach (WarehouseStock purchasePart in purchasePartsList)
             {
+                deliveryTimeInclDepartureTime = 0;
+                deliveryTimePriority = 0;
+                // Kaufteil ID als String
+                String id = Convert.ToString(purchasePart.Id);
+                List<FutureInwardStockMovment> incomingOrders;
+                // Extrahiere alle Bestellungen des Artikels
+                incomingOrders = futureInwardStockMovments.FindAll(item => item.Article.Equals(purchasePart.Id));
+
+                // Setze Lieferzeit mit Abweichung und Eillieferzeit für den Artikel
+                deliveryTimeInclDepartureTime = GetPurchasePartFromPurchaseByID(purchasePart.Id).deliveryTime + GetPurchasePartFromPurchaseByID(purchasePart.Id).departureTime;
+                deliveryTimePriority = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(GetPurchasePartFromPurchaseByID(purchasePart.Id).deliveryTime) / 2.0));
+
                 // Bedarfsberechnungen
                 Demand demandOfPart = demandOfPartsList.Find(x => x.idDemand == purchasePart.Id);
                 int demandP0PerDay = demandOfPart.demandInP0 / 5;
@@ -123,136 +140,128 @@ namespace BikeProductionPlanner.Views
                 int demandP2PerDay = demandOfPart.demandInP2 / 5;
                 int demandP3PerDay = demandOfPart.demandInP3 / 5;
 
-                // Mengenberechnungen
-                int amountP0D1 = purchasePart.Amount - demandP0PerDay;
-                int amountP0D2 = amountP0D1 - demandP0PerDay;
-                int amountP0D3 = amountP0D2 - demandP0PerDay;
-                int amountP0D4 = amountP0D3 - demandP0PerDay;
-                int amountP0D5 = amountP0D4 - demandP0PerDay;
+                // Befülle Startmengen mit Lieferzugängen aus der Liste
+                foreach (FutureInwardStockMovment incomingPart in incomingOrders)
+                {
+                    int incomingOrderDate = 0;
+                    int incomingOrderDay = 0;
+                    double incomingOrderAmount = 0.0;
 
-                int amountP1D1 = amountP0D5 - demandP1PerDay;
-                int amountP1D2 = amountP1D1 - demandP1PerDay;
-                int amountP1D3 = amountP1D2 - demandP1PerDay;
-                int amountP1D4 = amountP1D3 - demandP1PerDay;
-                int amountP1D5 = amountP1D4 - demandP1PerDay;
+                    // Berechne wann der Artikel eintrifft
+                    if (incomingPart.Mode.Equals(5))
+                    {
+                        incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimeInclDepartureTime;
+                    }
 
-                int amountP2D1 = amountP1D5 - demandP2PerDay;
-                int amountP2D2 = amountP2D1 - demandP2PerDay;
-                int amountP2D3 = amountP2D2 - demandP2PerDay;
-                int amountP2D4 = amountP2D3 - demandP2PerDay;
-                int amountP2D5 = amountP2D4 - demandP2PerDay;
+                    else
+                    {
+                        incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimePriority;
+                    }
 
-                int amountP3D1 = amountP2D5 - demandP3PerDay;
-                int amountP3D2 = amountP3D1 - demandP3PerDay;
-                int amountP3D3 = amountP3D2 - demandP3PerDay;
-                int amountP3D4 = amountP3D3 - demandP3PerDay;
-                int amountP3D5 = amountP3D4 - demandP3PerDay;
+                    incomingOrderDay = incomingOrderDate - currentPeriod * 5;
+                    incomingOrderAmount = Convert.ToDouble(incomingPart.Amount);
+                    TextBox tbCurrentStockPD;
+                    String tbCurrentStockPDName = "";
+
+                    if (incomingOrderDay >= 0 && incomingOrderDay < 5)
+                    {
+                        incomingOrderDay = incomingOrderDay + 1;
+                        tbCurrentStockPDName = "currentStockP0D" + incomingOrderDay + "K" + id;
+                    }
+
+                    if (incomingOrderDay >= 5 && incomingOrderDay < 10)
+                    {
+                        incomingOrderDay = incomingOrderDay + 1 - 5;
+                        tbCurrentStockPDName = "currentStockP1D" + incomingOrderDay + "K" + id;
+                    }
+
+                    if (incomingOrderDay >= 10 && incomingOrderDay < 15)
+                    {
+                        incomingOrderDay = incomingOrderDay + 1 - 10;
+                        tbCurrentStockPDName = "currentStockP2D" + incomingOrderDay + "K" + id;
+                    }
+
+                    if (incomingOrderDay >= 15 && incomingOrderDay < 20)
+                    {
+                        incomingOrderDay = incomingOrderDay + 1 - 15;
+                        tbCurrentStockPDName = "currentStockP3D" + incomingOrderDay + "K" + id;
+                    }
+
+                    tbCurrentStockPD = (TextBox)this.FindName(tbCurrentStockPDName);
+                    tbCurrentStockPD.Text = Convert.ToString(incomingOrderAmount);
+                }
+
+                // Initiale Mengenberechnung
+                int amountInLoop = purchasePart.Amount - demandP0PerDay;
+
+                String amountInLoopAsString = "";
+                String tbCurrentStockInLoopName = "";
+                int demandInLoop = 0;
+                TextBox tbCurrentStockInLoop;
+
+                for (int i = 0; i < 4; ++i)
+                {
+                    if (i == 0)
+                    {
+                        demandInLoop = demandP0PerDay;
+                    }
+
+                    if (i == 1)
+                    {
+                        demandInLoop = demandP1PerDay;
+                    }
+
+                    if (i == 2)
+                    {
+                        demandInLoop = demandP2PerDay;
+                    }
+
+                    if (i == 3)
+                    {
+                        demandInLoop = demandP3PerDay;
+                    }
+
+                    for (int j = 1; j < 6; ++j)
+                    {
+                        tbCurrentStockInLoopName = "currentStockP" + i + "D" + j + "K" + id;
+                        tbCurrentStockInLoop = (TextBox)this.FindName(tbCurrentStockInLoopName);
+                        int tbOldAmount = Convert.ToInt32(tbCurrentStockInLoop.Text);
+                        amountInLoop = amountInLoop + tbOldAmount;
+                        amountInLoopAsString = Convert.ToString(amountInLoop);
+                        tbCurrentStockInLoop.Text = amountInLoopAsString;
+
+                        // Hintergrundfarben setzen
+                        if (amountInLoop < 0)
+                        {
+                            tbCurrentStockInLoop.Background = Brushes.Tomato;
+                        }
+                        else if (amountInLoop > 0)
+                        {
+                            tbCurrentStockInLoop.Background = Brushes.LightGreen;
+                        }
+                        else
+                        {
+                            tbCurrentStockInLoop.Background = Brushes.WhiteSmoke;
+                        }
+
+                        // Mengenberechnung
+                        amountInLoop = amountInLoop - demandInLoop;
+                    }
+                }
+               
 
                 // Kaufteil Menge als String
                 String amount = Convert.ToString(purchasePart.Amount);
-                String amountP0D1AsString = Convert.ToString(amountP0D1);
-                String amountP0D2AsString = Convert.ToString(amountP0D2);
-                String amountP0D3AsString = Convert.ToString(amountP0D3);
-                String amountP0D4AsString = Convert.ToString(amountP0D4);
-                String amountP0D5AsString = Convert.ToString(amountP0D5);
-
-                String amountP1D1AsString = Convert.ToString(amountP1D1);
-                String amountP1D2AsString = Convert.ToString(amountP1D2);
-                String amountP1D3AsString = Convert.ToString(amountP1D3);
-                String amountP1D4AsString = Convert.ToString(amountP1D4);
-                String amountP1D5AsString = Convert.ToString(amountP1D5);
-
-                String amountP2D1AsString = Convert.ToString(amountP2D1);
-                String amountP2D2AsString = Convert.ToString(amountP2D2);
-                String amountP2D3AsString = Convert.ToString(amountP2D3);
-                String amountP2D4AsString = Convert.ToString(amountP2D4);
-                String amountP2D5AsString = Convert.ToString(amountP2D5);
-
-                String amountP3D1AsString = Convert.ToString(amountP3D1);
-                String amountP3D2AsString = Convert.ToString(amountP3D2);
-                String amountP3D3AsString = Convert.ToString(amountP3D3);
-                String amountP3D4AsString = Convert.ToString(amountP3D4);
-                String amountP3D5AsString = Convert.ToString(amountP3D5);
-
-                // Kaufteil ID als String
-                String id = Convert.ToString(purchasePart.Id);
+               
                 // Textbox Name
                 String tbCurrentStockName = "currentStockK" + id;
-                String tbCurrentStockP0D1Name = "currentStockP0D1K" + id;
-                String tbCurrentStockP0D2Name = "currentStockP0D2K" + id;
-                String tbCurrentStockP0D3Name = "currentStockP0D3K" + id;
-                String tbCurrentStockP0D4Name = "currentStockP0D4K" + id;
-                String tbCurrentStockP0D5Name = "currentStockP0D5K" + id;
-
-                String tbCurrentStockP1D1Name = "currentStockP1D1K" + id;
-                String tbCurrentStockP1D2Name = "currentStockP1D2K" + id;
-                String tbCurrentStockP1D3Name = "currentStockP1D3K" + id;
-                String tbCurrentStockP1D4Name = "currentStockP1D4K" + id;
-                String tbCurrentStockP1D5Name = "currentStockP1D5K" + id;
-
-                String tbCurrentStockP2D1Name = "currentStockP2D1K" + id;
-                String tbCurrentStockP2D2Name = "currentStockP2D2K" + id;
-                String tbCurrentStockP2D3Name = "currentStockP2D3K" + id;
-                String tbCurrentStockP2D4Name = "currentStockP2D4K" + id;
-                String tbCurrentStockP2D5Name = "currentStockP2D5K" + id;
-
-                String tbCurrentStockP3D1Name = "currentStockP3D1K" + id;
-                String tbCurrentStockP3D2Name = "currentStockP3D2K" + id;
-                String tbCurrentStockP3D3Name = "currentStockP3D3K" + id;
-                String tbCurrentStockP3D4Name = "currentStockP3D4K" + id;
-                String tbCurrentStockP3D5Name = "currentStockP3D5K" + id;
-
+                
                 // Finde entsprechende Textbox anhand ihres eindeutigen Namens
                 TextBox tbCurrentStock = (TextBox)this.FindName(tbCurrentStockName);
-                TextBox tbCurrentStockP0D1 = (TextBox)this.FindName(tbCurrentStockP0D1Name);
-                TextBox tbCurrentStockP0D2 = (TextBox)this.FindName(tbCurrentStockP0D2Name);
-                TextBox tbCurrentStockP0D3 = (TextBox)this.FindName(tbCurrentStockP0D3Name);
-                TextBox tbCurrentStockP0D4 = (TextBox)this.FindName(tbCurrentStockP0D4Name);
-                TextBox tbCurrentStockP0D5 = (TextBox)this.FindName(tbCurrentStockP0D5Name);
-
-                TextBox tbCurrentStockP1D1 = (TextBox)this.FindName(tbCurrentStockP1D1Name);
-                TextBox tbCurrentStockP1D2 = (TextBox)this.FindName(tbCurrentStockP1D2Name);
-                TextBox tbCurrentStockP1D3 = (TextBox)this.FindName(tbCurrentStockP1D3Name);
-                TextBox tbCurrentStockP1D4 = (TextBox)this.FindName(tbCurrentStockP1D4Name);
-                TextBox tbCurrentStockP1D5 = (TextBox)this.FindName(tbCurrentStockP1D5Name);
-
-                TextBox tbCurrentStockP2D1 = (TextBox)this.FindName(tbCurrentStockP2D1Name);
-                TextBox tbCurrentStockP2D2 = (TextBox)this.FindName(tbCurrentStockP2D2Name);
-                TextBox tbCurrentStockP2D3 = (TextBox)this.FindName(tbCurrentStockP2D3Name);
-                TextBox tbCurrentStockP2D4 = (TextBox)this.FindName(tbCurrentStockP2D4Name);
-                TextBox tbCurrentStockP2D5 = (TextBox)this.FindName(tbCurrentStockP2D5Name);
-
-                TextBox tbCurrentStockP3D1 = (TextBox)this.FindName(tbCurrentStockP3D1Name);
-                TextBox tbCurrentStockP3D2 = (TextBox)this.FindName(tbCurrentStockP3D2Name);
-                TextBox tbCurrentStockP3D3 = (TextBox)this.FindName(tbCurrentStockP3D3Name);
-                TextBox tbCurrentStockP3D4 = (TextBox)this.FindName(tbCurrentStockP3D4Name);
-                TextBox tbCurrentStockP3D5 = (TextBox)this.FindName(tbCurrentStockP3D5Name);
-
+                
                 // Bestände befüllen
                 tbCurrentStock.Text = amount;
-                tbCurrentStockP0D1.Text = amountP0D1AsString;
-                tbCurrentStockP0D2.Text = amountP0D2AsString;
-                tbCurrentStockP0D3.Text = amountP0D3AsString;
-                tbCurrentStockP0D4.Text = amountP0D4AsString;
-                tbCurrentStockP0D5.Text = amountP0D5AsString;
 
-                tbCurrentStockP1D1.Text = amountP1D1AsString;
-                tbCurrentStockP1D2.Text = amountP1D2AsString;
-                tbCurrentStockP1D3.Text = amountP1D3AsString;
-                tbCurrentStockP1D4.Text = amountP1D4AsString;
-                tbCurrentStockP1D5.Text = amountP1D5AsString;
-
-                tbCurrentStockP2D1.Text = amountP2D1AsString;
-                tbCurrentStockP2D2.Text = amountP2D2AsString;
-                tbCurrentStockP2D3.Text = amountP2D3AsString;
-                tbCurrentStockP2D4.Text = amountP2D4AsString;
-                tbCurrentStockP2D5.Text = amountP2D5AsString;
-
-                tbCurrentStockP3D1.Text = amountP3D1AsString;
-                tbCurrentStockP3D2.Text = amountP3D2AsString;
-                tbCurrentStockP3D3.Text = amountP3D3AsString;
-                tbCurrentStockP3D4.Text = amountP3D4AsString;
-                tbCurrentStockP3D5.Text = amountP3D5AsString;
             }
 
         }

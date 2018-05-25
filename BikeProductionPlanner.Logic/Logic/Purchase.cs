@@ -204,7 +204,7 @@ namespace BikeProductionPlanner.Logic.Logic
 
                 // Setze Lieferzeit mit Abweichung und Eillieferzeit für den Artikel
                 deliveryTimeInclDepartureTime = GetPurchasePartFromPurchaseByID(wh.Id).deliveryTime + GetPurchasePartFromPurchaseByID(wh.Id).departureTime;
-                deliveryTimePriority = GetPurchasePartFromPurchaseByID(wh.Id).deliveryTime / 2;
+                deliveryTimePriority = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(GetPurchasePartFromPurchaseByID(wh.Id).deliveryTime) / 2.0));
 
                 // Extrahiere alle Bestellungen des Artikels
                 incomingOrders = futureInwardStockMovments.FindAll(item => item.Article.Equals(wh.Id));
