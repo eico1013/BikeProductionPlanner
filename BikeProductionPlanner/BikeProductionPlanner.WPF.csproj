@@ -84,9 +84,6 @@
     <Compile Include="Views\Purchase.xaml.cs">
       <DependentUpon>Purchase.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Red.xaml.cs">
-      <DependentUpon>Red.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Sales.xaml.cs">
       <DependentUpon>Sales.xaml</DependentUpon>
     </Compile>
@@ -136,10 +133,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Purchase.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Red.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
