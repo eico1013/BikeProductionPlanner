@@ -72,10 +72,6 @@
     <Compile Include="MainWindowFinal.xaml.cs">
       <DependentUpon>MainWindowFinal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\BlueViewModel.cs" />
-    <Compile Include="Views\Blue.xaml.cs">
-      <DependentUpon>Blue.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CapacityPlanningPage.xaml.cs">
       <DependentUpon>CapacityPlanningPage.xaml</DependentUpon>
     </Compile>
@@ -127,10 +123,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Blue.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\CapacityPlanningPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +185,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

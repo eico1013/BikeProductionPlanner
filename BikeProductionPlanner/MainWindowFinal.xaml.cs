@@ -77,7 +77,7 @@ namespace BikeProductionPlanner
                 { MenuItems.MenuItemsEnum.SafetyStock, new SafetyStock() },
                 //{ MenuItems.MenuItemsEnum.ProductionPlan, new ProductionPlanPage() },
                 { MenuItems.MenuItemsEnum.Capacity, new CapacityPlanningPage() },
-                //{ MenuItems.Purchase, new PurchasePage() },
+                { MenuItems.MenuItemsEnum.Purchase, new Views.Purchase() },
                 { MenuItems.MenuItemsEnum.DataExport, new XMLExportPage() },
                 //{ MenuItems.Customisation, new CustomizePage() }
             };
@@ -132,7 +132,7 @@ namespace BikeProductionPlanner
                     //(pageMap[MenuItems.MenuItemsEnum.ProductionPlan] as ProductionPlan).UpdatePlanningFields();
                     (pageMap[MenuItems.MenuItemsEnum.Capacity] as CapacityPlanningPage).UpdateKapaFields();
 
-                    //(pageMap[MenuItems.MenuItemsEnum.Purchase] as PurchasePage).UpdatePurchase();
+                    (pageMap[MenuItems.MenuItemsEnum.Purchase] as Views.Purchase).UpdatePurchaseFields();
                     //(pageMap[MenuItems.MenuItemsEnum.Purchase] as PurchasePage).UpdateWarehouseStock();
 
                     //(pageMap[MenuItems.MenuItemsEnum.Customisation] as CustomizePage).UpdatePrioFields();
@@ -178,11 +178,11 @@ namespace BikeProductionPlanner
                 case 5:
                     NavigateTo(MenuItems.MenuItemsEnum.Capacity);
                     break;
+                case 6:
+                    NavigateTo(MenuItems.MenuItemsEnum.Purchase);
+                    break;
                 case 8:
                     NavigateTo(MenuItems.MenuItemsEnum.DataExport);
-                    break;
-                case 5:
-                    ContentControl.Content = new Purchase();
                     break;
                 default:
                     break;
