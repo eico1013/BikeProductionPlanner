@@ -77,15 +77,13 @@ namespace BikeProductionPlanner
                 { MenuItems.MenuItemsEnum.SafetyStock, new SafetyStock() },
                 //{ MenuItems.MenuItemsEnum.ProductionPlan, new ProductionPlanPage() },
                 { MenuItems.MenuItemsEnum.Capacity, new CapacityPlanningPage() },
-                { MenuItems.Purchase, new PurchasePage() },
+                { MenuItems.MenuItemsEnum.Purchase, new Views.Purchase() },
                 { MenuItems.MenuItemsEnum.DataExport, new XMLExportPage() },
-                { MenuItems.MenuItemsEnum.StartingPage, new StartingPage() },
                 //{ MenuItems.Customisation, new CustomizePage() }
-                { MenuItems.MenuItemsEnum.Impressum, new Impressum() }
             };
 
             UpdateUI(State.DataImport);
-            NavigateTo(MenuItems.MenuItemsEnum.StartingPage);
+            NavigateTo(MenuItems.MenuItemsEnum.DataImport);
         }
 
         public void NavigateTo(MenuItems.MenuItemsEnum tag)
@@ -134,7 +132,7 @@ namespace BikeProductionPlanner
                     //(pageMap[MenuItems.MenuItemsEnum.ProductionPlan] as ProductionPlan).UpdatePlanningFields();
                     (pageMap[MenuItems.MenuItemsEnum.Capacity] as CapacityPlanningPage).UpdateKapaFields();
 
-                    //(pageMap[MenuItems.MenuItemsEnum.Purchase] as PurchasePage).UpdatePurchase();
+                    (pageMap[MenuItems.MenuItemsEnum.Purchase] as Views.Purchase).UpdatePurchaseFields();
                     //(pageMap[MenuItems.MenuItemsEnum.Purchase] as PurchasePage).UpdateWarehouseStock();
 
                     //(pageMap[MenuItems.MenuItemsEnum.Customisation] as CustomizePage).UpdatePrioFields();
@@ -181,12 +179,14 @@ namespace BikeProductionPlanner
                     NavigateTo(MenuItems.MenuItemsEnum.Capacity);
                     break;
                 case 6:
-                    ContentControl.Content = new Purchase();
+                    NavigateTo(MenuItems.MenuItemsEnum.Purchase);
                     break;
                 case 8:
                     NavigateTo(MenuItems.MenuItemsEnum.DataExport);
                     break;
-
+                case 5:
+                    ContentControl.Content = new Purchase();
+                    break;
                 default:
                     break;
             }
