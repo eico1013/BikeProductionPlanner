@@ -130,7 +130,7 @@
                 <TextBox x:Name="purchasePartOrderTypeK59" TextWrapping="Wrap" Text="Keine" Padding="0" BorderThickness="0,0,3,1" Margin="1,0,0,0"/>
             </StackPanel>
             
-            <Grid x:Name="gridDetail" Grid.Row="1" Grid.Column="4" Grid.RowSpan="3">
+            <Grid x:Name="gridDetail" Grid.Row="1" Grid.Column="4" Grid.RowSpan="3" Visibility="Hidden">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
