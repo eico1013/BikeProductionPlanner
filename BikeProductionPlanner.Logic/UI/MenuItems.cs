@@ -13,7 +13,8 @@
             Purchase,
             CustomizePage,
             DataExport,
-            UserSettings
+            UserSettings,
+            Impressum
         }
     }
 }

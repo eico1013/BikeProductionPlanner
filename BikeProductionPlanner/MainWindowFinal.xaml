@@ -155,6 +155,12 @@
                     </ListViewItem>
                     <ListViewItem Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="Details" Width="20" Height="20" Foreground="#FF0069C1" Margin="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource ResourceKey=ImpressumLabel}" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="45" Padding="0">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Translate" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
                             <Menu Background="Transparent" Padding="0" DockPanel.Dock="Right" Width="201">
                                 <MenuItem Padding="10" Background="transparent" x:Name="menuItemLanguages" Header="{DynamicResource ResourceKey=LanguageLabel}" Width="239" FontSize="18">
