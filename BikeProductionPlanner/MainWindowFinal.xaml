@@ -124,8 +124,8 @@
         </ScrollViewer>
         <!--Entry Point Main Content-->
         <ContentControl Name="ContentControl" Grid.Row="0" Grid.Column="1" Content="{Binding}"></ContentControl>
-        <Button x:Name="ButtonClose2" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Foreground="#FF313131" Click="Click" Margin="0,0,20,0">
-            <materialDesign:PackIcon Kind="Close"/>
+        <Button x:Name="ButtonClose2" Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Foreground="#FF313131" Click="Click">
+            <materialDesign:PackIcon Kind="Close" Foreground="White"/>
         </Button>
     </Grid>
 </Window>

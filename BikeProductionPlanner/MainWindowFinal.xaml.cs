@@ -71,6 +71,7 @@ namespace BikeProductionPlanner
 
             pageMap = new Dictionary<MenuItems.MenuItemsEnum, UserControl>()
             {
+                { MenuItems.MenuItemsEnum.StartingPage, new StartingPage() },
                 { MenuItems.MenuItemsEnum.Dashboard, new Dashboard() },
                 { MenuItems.MenuItemsEnum.DataImport, new XMLImportPage() },
                 { MenuItems.MenuItemsEnum.Sales, new Sales() },
@@ -80,6 +81,7 @@ namespace BikeProductionPlanner
                 { MenuItems.MenuItemsEnum.Purchase, new Views.Purchase() },
                 { MenuItems.MenuItemsEnum.DataExport, new XMLExportPage() },
                 //{ MenuItems.Customisation, new CustomizePage() }
+                
             };
 
             UpdateUI(State.DataImport);
