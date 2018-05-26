@@ -2,15 +2,20 @@
 {
     public class MenuItems
     {
-        public const string DataImport = "DataImport";
-        public const string Sales = "Sales";
-        public const string SafetyStock = "SafetyStock";
-        public const string ProductionPlan = "ProductionPlan";
-        public const string Capacity = "Capacity"; //or Workplace
-        public const string Purchase = "Purchase";
-        public const string Customisation = "Customisation";
-        public const string DataExport = "DataExport";
-
-        public const string UserSettings = "UserSettings";
+        public enum MenuItemsEnum
+        {
+            Dashboard,
+            DataImport,
+            Sales,
+            SafetyStock,
+            ProductionPlan,
+            Capacity,
+            Purchase,
+            Customisation,
+            DataExport,
+            UserSettings,
+            StartingPage,
+            Impressum
+        }
     }
 }

@@ -84,7 +84,7 @@
 
             <Button Grid.Column="0" Margin="0,80,0,-94" Width="170" Height="50" Grid.Row="6"
             Background="#FF4A9AFF" HorizontalAlignment="Left"
-            Content="Planung durchführen" Click="Button2_Click" Grid.ColumnSpan="2"  />
+            Content="Speichern" Click="Button2_Click" Grid.ColumnSpan="2"  />
         </Grid>
 
         <ContentControl Name="ContentControl" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"></ContentControl>

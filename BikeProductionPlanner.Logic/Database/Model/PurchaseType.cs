@@ -2,7 +2,7 @@
 {
     public enum PurchaseType
     {
-        Normal = 4,
-        Priority = 5
+        Eil = 4,
+        Normal = 5
     }
 }

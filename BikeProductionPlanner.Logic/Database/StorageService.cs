@@ -10,9 +10,12 @@ namespace BikeProductionPlanner.Logic.Database
 
         // Input
         private List<WarehouseStock> articleList;
+        private List<WarehouseStock> purchasePartsList;
         private List<WaitingListWorkstation> waitingListWorkstationList;
         private List<OrderInWork> ordersInWorkList;
         private List<WaitingListStock> waitingListStocks;
+        private List<FutureInwardStockMovment> futureInwardStockMovments;
+        private int periodFromXml;
 
         // Temp
         private Dictionary<int, ForecastPeriod> forecastList;
@@ -29,9 +32,12 @@ namespace BikeProductionPlanner.Logic.Database
         private StorageService()
         {
             articleList = XmlInputParser.Instance.WarehouseStocks;
+            purchasePartsList = new List<WarehouseStock>();
             waitingListWorkstationList = XmlInputParser.Instance.WaitingListWorkstations;
             ordersInWorkList = XmlInputParser.Instance.OrdersInWork;
             waitingListStocks = XmlInputParser.Instance.WaitingListStocks;
+            futureInwardStockMovments = XmlInputParser.Instance.FutureInwardStockMovments;
+            periodFromXml = XmlInputParser.Instance.PeriodFromXML;
 
             forecastList = new Dictionary<int, ForecastPeriod>();
 
@@ -40,6 +46,36 @@ namespace BikeProductionPlanner.Logic.Database
             workingItemList = new List<WorkingItemList>();
             sellWishList = new List<SellWish>();
             selldirectList = new List<SellDirect>();
+
+            purchasePartsList.Add(GetWarehouseArticleById(21));
+            purchasePartsList.Add(GetWarehouseArticleById(22));
+            purchasePartsList.Add(GetWarehouseArticleById(23));
+            purchasePartsList.Add(GetWarehouseArticleById(24));
+            purchasePartsList.Add(GetWarehouseArticleById(25));
+            purchasePartsList.Add(GetWarehouseArticleById(27));
+            purchasePartsList.Add(GetWarehouseArticleById(28));
+            purchasePartsList.Add(GetWarehouseArticleById(32));
+            purchasePartsList.Add(GetWarehouseArticleById(33));
+            purchasePartsList.Add(GetWarehouseArticleById(34));
+            purchasePartsList.Add(GetWarehouseArticleById(35));
+            purchasePartsList.Add(GetWarehouseArticleById(36));
+            purchasePartsList.Add(GetWarehouseArticleById(37));
+            purchasePartsList.Add(GetWarehouseArticleById(38));
+            purchasePartsList.Add(GetWarehouseArticleById(39));
+            purchasePartsList.Add(GetWarehouseArticleById(40));
+            purchasePartsList.Add(GetWarehouseArticleById(41));
+            purchasePartsList.Add(GetWarehouseArticleById(42));
+            purchasePartsList.Add(GetWarehouseArticleById(43));
+            purchasePartsList.Add(GetWarehouseArticleById(44));
+            purchasePartsList.Add(GetWarehouseArticleById(45));
+            purchasePartsList.Add(GetWarehouseArticleById(46));
+            purchasePartsList.Add(GetWarehouseArticleById(47));
+            purchasePartsList.Add(GetWarehouseArticleById(48));
+            purchasePartsList.Add(GetWarehouseArticleById(52));
+            purchasePartsList.Add(GetWarehouseArticleById(53));
+            purchasePartsList.Add(GetWarehouseArticleById(57));
+            purchasePartsList.Add(GetWarehouseArticleById(58));
+            purchasePartsList.Add(GetWarehouseArticleById(59));
         }
 
         public static StorageService Instance
@@ -54,6 +90,25 @@ namespace BikeProductionPlanner.Logic.Database
                 return instance;
             }
         }
+
+        public int GetPeriodFromXml()
+        {
+            return periodFromXml;
+        }
+
+        #region FutureInwardStockMovment
+
+        public List<FutureInwardStockMovment> GetFutureInwardStockMovment()
+        {
+            return futureInwardStockMovments;
+        }
+
+        public FutureInwardStockMovment GetFutureInwardStockMovment(int id)
+        {
+            return futureInwardStockMovments.Find(x => x.Article == id);
+        }
+
+        #endregion
 
         #region WarehouseStock
 
@@ -79,6 +134,16 @@ namespace BikeProductionPlanner.Logic.Database
         public WarehouseStock GetWarehouseArticleById(int Id)
         {
             return articleList.Find(x => x.Id == Id);
+        }
+
+        public List<WarehouseStock> GetWarehouseArticles()
+        {
+            return articleList;
+        }
+
+        public List<WarehouseStock> GetPurchaseParts()
+        {
+            return purchasePartsList;
         }
 
         public int GetAmountFromWareHouseStockId(int Id)
@@ -225,6 +290,11 @@ namespace BikeProductionPlanner.Logic.Database
         #endregion
 
         #region Orders
+
+        public void ClearOrderItemList()
+        {
+            orderList.Clear();
+        }
 
         public void AddOrderItem(OrderList item)
         {

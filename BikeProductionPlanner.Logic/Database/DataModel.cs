@@ -53,11 +53,11 @@ namespace BikeProductionPlanner.Logic.Database
 
             if (modus == 4)
             {
-                Type = PurchaseType.Normal;
+                Type = PurchaseType.Eil;
             }
             else if (modus == 5)
             {
-                Type = PurchaseType.Priority;
+                Type = PurchaseType.Normal;
             }
         }
 

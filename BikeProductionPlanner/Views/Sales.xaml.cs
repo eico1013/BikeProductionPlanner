@@ -5,13 +5,33 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using BikeProductionPlanner.Logic.Database;
 
+using BikeProductionPlanner.Logic;
+
 namespace BikeProductionPlanner.Views
 {
     /// <summary>
     /// Interaction logic for SafetyStock.xaml
     /// </summary>
+    /// 
+
+
     public partial class Sales : UserControl
     {
+        public static int periode0produkt1;
+        public static int periode0produkt2;
+        public static int periode0produkt3;
+
+        public static int periode1produkt1;
+        public static int periode1produkt2;
+        public static int periode1produkt3;
+
+        public static int periode2produkt1;
+        public static int periode2produkt2;
+        public static int periode2produkt3;
+
+        public static int periode3produkt1;
+        public static int periode3produkt2;
+        public static int periode3produkt3;
 
         public Sales()
         {
@@ -24,6 +44,17 @@ namespace BikeProductionPlanner.Views
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private bool AllFilled()
+        {
+            if (period0product1.Text == "" || period0product2.Text == "" || period0product3.Text == ""
+                || period1product1.Text == "" || period1product2.Text == "" || period1product3.Text == ""
+                || period2product1.Text == "" || period2product2.Text == "" || period2product3.Text == "")
+            {
+                return false;
+            }
+            return true;
         }
 
         private void UpdateSummeFromForcast(object sender, TextChangedEventArgs e)
@@ -76,11 +107,11 @@ namespace BikeProductionPlanner.Views
             }
             catch { }
         }
-
+     
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
             //Direktvertrieb
-            ContentControl.Content = null;
+            
             ContentControl.Content = new DirectSales();
 
 
@@ -88,12 +119,32 @@ namespace BikeProductionPlanner.Views
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
-            //Planung durchführen
+            //Speichern
             Int32 maxValue = 1050;
 
             try
             {
-                if (Convert.ToInt32(period0sum.Text) > maxValue || Convert.ToInt32(period1sum.Text) > maxValue
+                StorageService.Instance.vertriebswunschP1 = Convert.ToInt32(period0product1.Text);
+                StorageService.Instance.vertriebswunschP2 = Convert.ToInt32(period0product2.Text);
+                StorageService.Instance.vertriebswunschP3 = Convert.ToInt32(period0product3.Text);
+
+                StorageService.Instance.prognose1P1 = Convert.ToInt32(period1product1.Text);
+                StorageService.Instance.prognose1P2 = Convert.ToInt32(period1product2.Text);
+                StorageService.Instance.prognose1P3 = Convert.ToInt32(period1product3.Text);
+
+                StorageService.Instance.prognose2P1 = Convert.ToInt32(period2product1.Text);
+                StorageService.Instance.prognose2P2 = Convert.ToInt32(period2product2.Text);
+                StorageService.Instance.prognose2P3 = Convert.ToInt32(period2product3.Text);
+
+                StorageService.Instance.prognose3P1 = Convert.ToInt32(period3product1.Text);
+                StorageService.Instance.prognose3P2 = Convert.ToInt32(period3product2.Text);
+                StorageService.Instance.prognose3P3 = Convert.ToInt32(period3product3.Text);
+
+                MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.SafetyStock);
+            }
+            catch
+            {
+if (Convert.ToInt32(period0sum.Text) > maxValue || Convert.ToInt32(period1sum.Text) > maxValue
                     || Convert.ToInt32(period2sum.Text) > maxValue || Convert.ToInt32(period3sum.Text) > maxValue)
                 {
                     MessageBox.Show("Fehler: Die Summe muss kleiner 1050 sein.");
@@ -111,13 +162,47 @@ namespace BikeProductionPlanner.Views
                     return;
                 }
             }
-            catch
+
+            
+
+            if (AllFilled())
             {
+                try
+                {
+                    StorageService.Instance.vertriebswunschP1 = Convert.ToInt32(period0product1.Text);
 
+                    periode0produkt1 = Convert.ToInt32(period0product1.Text);
+                    periode0produkt2 = Convert.ToInt32(period0product2.Text);
+                    periode0produkt3 = Convert.ToInt32(period0product3.Text);
+
+                    periode1produkt1 = Convert.ToInt32(period1product1.Text);
+                    periode1produkt2 = Convert.ToInt32(period1product2.Text);
+                    periode1produkt3 = Convert.ToInt32(period1product3.Text);
+
+                    periode2produkt1 = Convert.ToInt32(period2product1.Text);
+                    periode2produkt2 = Convert.ToInt32(period2product2.Text);
+                    periode2produkt3 = Convert.ToInt32(period2product3.Text);
+
+                    periode3produkt1 = Convert.ToInt32(period3product1.Text);
+                    periode3produkt2 = Convert.ToInt32(period3product2.Text);
+                    periode3produkt3 = Convert.ToInt32(period3product3.Text);
+        
+                    
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Fehler: Nur ganzzahlige Werte erlaubt.");
+                }
             }
-
+            else
+            {
+                MessageBox.Show("Fehler: Alle Felder müssen ausgefüllt werden.");
+                return;
+            }
         }
 
-        }
     }
+
+ }
+    
 

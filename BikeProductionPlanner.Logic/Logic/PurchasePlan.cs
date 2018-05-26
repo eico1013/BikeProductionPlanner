@@ -7,7 +7,8 @@ namespace BikeProductionPlanner.Logic.Logic
     public class PurchasePlan
     {
 
-        public List<BPKaufteil> PartList = new List<BPKaufteil>() {
+        public List<BPKaufteil> PartList = new List<BPKaufteil>
+        {
 
             new BPKaufteil(21, "Kette",         300,    9,    2,      50),
             new BPKaufteil(22, "Kette",         300,    9,    2,      50),
@@ -138,44 +139,44 @@ namespace BikeProductionPlanner.Logic.Logic
 
         public Double verbrauchProTagP0
         {
-            get { return this.verbrauchPeriode0 / 5; }
+            get { return verbrauchPeriode0 / 5; }
         }
 
         public Double verbrauchProTagP1
         {
-            get { return this.verbrauchPeriode1 / 5; }
+            get { return verbrauchPeriode1 / 5; }
         }
 
         public Double verbrauchProTagP2
         {
-            get { return this.verbrauchPeriode2 / 5; }
+            get { return verbrauchPeriode2 / 5; }
         }
 
         public Double verbrauchProTagP3
         {
-            get { return this.verbrauchPeriode3 / 5; }
+            get { return verbrauchPeriode3 / 5; }
         }
 
         public Double lieferzeitGesamt
         {
-            get { return this.lieferzeit + this.lieferzeitAbweichung; }
+            get { return lieferzeit + lieferzeitAbweichung; }
         }
 
         public Double bestellkostenEil
         {
-            get { return this.bestellkostenNormal * 10; }
+            get { return bestellkostenNormal * 10; }
         }
 
         public Double durchSchnittsverbrauchProTag
         {
-            get { return Math.Ceiling((this.verbrauchProTagP0 + this.verbrauchProTagP1 + this.verbrauchProTagP2 + this.verbrauchProTagP3) / 4); }
+            get { return Math.Ceiling((verbrauchProTagP0 + verbrauchProTagP1 + verbrauchProTagP2 + verbrauchProTagP3) / 4); }
         }
 
         public Double voraussichtlicherEndBestandPeriode0
         {
             get
             {
-                return StorageService.Instance.GetWarehouseArticleById(this.id).Amount + geplanteBestellzugaengePeriode0 - verbrauchPeriode0;
+                return StorageService.Instance.GetWarehouseArticleById(id).Amount + geplanteBestellzugaengePeriode0 - verbrauchPeriode0;
             }
         }
 
@@ -211,7 +212,8 @@ namespace BikeProductionPlanner.Logic.Logic
                 {
                     return optimaleBestellmengeNormalMitRabatt;
                 }
-                else return optimaleBestellmengeNormalOhneRabatt;
+
+                return optimaleBestellmengeNormalOhneRabatt;
             }
         }
 
@@ -223,7 +225,8 @@ namespace BikeProductionPlanner.Logic.Logic
                 {
                     return optimaleBestellmengeEilMitRabatt;
                 }
-                else return optimaleBestellmengeEilOhneRabatt;
+
+                return optimaleBestellmengeEilOhneRabatt;
 
             }
         }
@@ -236,7 +239,8 @@ namespace BikeProductionPlanner.Logic.Logic
                 {
                     return optimaleBestellmengeNormalMitRabattLB;
                 }
-                else return optimaleBestellmengeNormalOhneRabattLB;
+
+                return optimaleBestellmengeNormalOhneRabattLB;
             }
         }
 
@@ -248,7 +252,8 @@ namespace BikeProductionPlanner.Logic.Logic
                 {
                     return optimaleBestellmengeEilMitRabattLB;
                 }
-                else return optimaleBestellmengeEilOhneRabattLB;
+
+                return optimaleBestellmengeEilOhneRabattLB;
 
             }
         }
@@ -298,7 +303,7 @@ namespace BikeProductionPlanner.Logic.Logic
         {
             get
             {
-                return (Convert.ToDouble(StorageService.Instance.GetWarehouseArticleById(this.id).Amount) + this.geplanteBestellzugaengePeriode0 - this.sicherheitsBestand) / this.durchSchnittsverbrauchProTag;
+                return (Convert.ToDouble(StorageService.Instance.GetWarehouseArticleById(id).Amount) + geplanteBestellzugaengePeriode0 - sicherheitsBestand) / durchSchnittsverbrauchProTag;
             }
         }
 
@@ -311,8 +316,8 @@ namespace BikeProductionPlanner.Logic.Logic
             this.lieferzeitAbweichung = lieferzeitAbweichung;
             this.bestellkostenNormal = bestellkostenNormal;
 
-            this.teileWert = StorageService.Instance.GetWarehouseArticleById(id).Price;
-            this.verbrauchPeriode0 = ProductionPlan.GetDemandById(id);
+            teileWert = StorageService.Instance.GetWarehouseArticleById(id).Price;
+            verbrauchPeriode0 = ProductionPlan.GetDemandById(id);
             //this.verbrauchPeriode1 = ProduktionsplanungPeriode1.getBedarfByID(id);
             //this.verbrauchPeriode2 = ProduktionsplanungPeriode2.getBedarfByID(id);
             //this.verbrauchPeriode3 = ProduktionsplanungPeriode3.getBedarfByID(id);
@@ -338,10 +343,10 @@ namespace BikeProductionPlanner.Logic.Logic
             //    }
             //}
 
-            this.sicherheitsBestand = (int)(((lieferzeitAbweichung * StorageService.Instance.sicherheitsFaktor) * durchSchnittsverbrauchProTag));
-            this.sicherheitsBestand = this.sicherheitsBestand + ((10 - (this.sicherheitsBestand % 10)) % 10);
-            this.meldeBestand = ((int)((lieferzeit * durchSchnittsverbrauchProTag) + sicherheitsBestand));
-            this.meldeBestand = this.meldeBestand + ((10 - (this.meldeBestand % 10)) % 10);
+            sicherheitsBestand = (int)(((lieferzeitAbweichung * StorageService.Instance.sicherheitsFaktor) * durchSchnittsverbrauchProTag));
+            sicherheitsBestand = sicherheitsBestand + ((10 - (sicherheitsBestand % 10)) % 10);
+            meldeBestand = ((int)((lieferzeit * durchSchnittsverbrauchProTag) + sicherheitsBestand));
+            meldeBestand = meldeBestand + ((10 - (meldeBestand % 10)) % 10);
         }
     }
 
@@ -353,7 +358,7 @@ namespace BikeProductionPlanner.Logic.Logic
 
         public BPBestellung(int artikelID, double menge, Boolean isEil)
         {
-            this.isEilbestellung = isEil;
+            isEilbestellung = isEil;
             this.menge = menge;
             this.artikelID = artikelID;
         }

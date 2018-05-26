@@ -1,0 +1,15 @@
+﻿<Window x:Class="BikeProductionPlanner.Views.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BikeProductionPlanner.Views"
+        mc:Ignorable="d"
+        Title="Hilfe - Import und Export" Height="246" Width="375.5">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="29,10,0,0" TextWrapping="Wrap" Text="Hilfe - Import und Export" VerticalAlignment="Top" Height="29" Width="280" RenderTransformOrigin="-0.115,-0.616" FontSize="18" FontWeight="Bold"/>
+        <TextBox HorizontalAlignment="Left" Height="75" Margin="29,44,0,0" TextWrapping="Wrap" Text="Mithilfe von 'SCM Login' können sie sich im Onlineportal des Planspiels einloggen und eine Periode auswählen. Die Daten werden dann automatisch aus der jeweiligen Periode ausgewählt und in die Datenbank übertragen." VerticalAlignment="Top" Width="300"/>
+        <TextBox HorizontalAlignment="Left" Height="75" Margin="29,124,0,0" TextWrapping="Wrap" Text="Mithilfe von 'XML Import' können sie eine XML-Datei von ihrem Computer hochladen. Diese XML-Datei wird dann in die Datenbank übernommen und die Planung wird mit diesen Daten durchgeführt." VerticalAlignment="Top" Width="300"/>
+
+    </Grid>
+</Window>

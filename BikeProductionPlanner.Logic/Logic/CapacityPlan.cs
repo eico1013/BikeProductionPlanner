@@ -6,33 +6,39 @@ namespace BikeProductionPlanner.Logic.Logic
 {
     public class CapacityPlan
     {
-        public Workplace a1 = new Workplace(1, new List<WorkplaceTask>() {
+        public Workplace a1 = new Workplace(1, new List<WorkplaceTask>
+        {
             new WorkplaceTask(49, 6, 20),
             new WorkplaceTask(54, 6, 20),
             new WorkplaceTask(29, 6, 20)
         });
-        public Workplace a2 = new Workplace(2, new List<WorkplaceTask>() {
+        public Workplace a2 = new Workplace(2, new List<WorkplaceTask>
+        {
             new WorkplaceTask(50, 5, 30),
             new WorkplaceTask(55, 5, 30),
             new WorkplaceTask(30, 5, 20)
         });
-        public Workplace a3 = new Workplace(3, new List<WorkplaceTask>() {
+        public Workplace a3 = new Workplace(3, new List<WorkplaceTask>
+        {
             new WorkplaceTask(51, 5, 20),
             new WorkplaceTask(56, 6, 20),
             new WorkplaceTask(31, 6, 20)
         });
-        public Workplace a4 = new Workplace(4, new List<WorkplaceTask>() {
+        public Workplace a4 = new Workplace(4, new List<WorkplaceTask>
+        {
             new WorkplaceTask(1, 6, 30),
             new WorkplaceTask(2, 7, 20),
             new WorkplaceTask(3, 7, 30)
         });
-        public Workplace a6 = new Workplace(6, new List<WorkplaceTask>() {
+        public Workplace a6 = new Workplace(6, new List<WorkplaceTask>
+        {
             new WorkplaceTask(16, 2, 15),
             new WorkplaceTask(18, 3, 15),
             new WorkplaceTask(19, 3, 15),
             new WorkplaceTask(20, 3, 15)
         });
-        public Workplace a7 = new Workplace(7, new List<WorkplaceTask>() {
+        public Workplace a7 = new Workplace(7, new List<WorkplaceTask>
+        {
             new WorkplaceTask(10, 2, 20),
             new WorkplaceTask(11, 2, 20),
             new WorkplaceTask(12, 2, 20),
@@ -44,7 +50,8 @@ namespace BikeProductionPlanner.Logic.Logic
             new WorkplaceTask(20, 2, 20),
             new WorkplaceTask(26, 2, 30)
         });
-        public Workplace a8 = new Workplace(8, new List<WorkplaceTask>() {
+        public Workplace a8 = new Workplace(8, new List<WorkplaceTask>
+        {
             new WorkplaceTask(10, 1, 15),
             new WorkplaceTask(11, 2, 15),
             new WorkplaceTask(12, 2, 15),
@@ -55,7 +62,8 @@ namespace BikeProductionPlanner.Logic.Logic
             new WorkplaceTask(19, 3, 25),
             new WorkplaceTask(20, 3, 20)
         });
-        public Workplace a9 = new Workplace(9, new List<WorkplaceTask>() {
+        public Workplace a9 = new Workplace(9, new List<WorkplaceTask>
+        {
             new WorkplaceTask(10, 3, 15),
             new WorkplaceTask(11, 3, 15),
             new WorkplaceTask(12, 3, 15),
@@ -66,7 +74,8 @@ namespace BikeProductionPlanner.Logic.Logic
             new WorkplaceTask(19, 2, 15),
             new WorkplaceTask(20, 2, 15)
         });
-        public Workplace a10 = new Workplace(10, new List<WorkplaceTask>() {
+        public Workplace a10 = new Workplace(10, new List<WorkplaceTask>
+        {
             new WorkplaceTask(4, 4, 20),
             new WorkplaceTask(5, 4, 20),
             new WorkplaceTask(6, 4, 20),
@@ -74,7 +83,8 @@ namespace BikeProductionPlanner.Logic.Logic
             new WorkplaceTask(8, 4, 20),
             new WorkplaceTask(9, 4, 20)
         });
-        public Workplace a11 = new Workplace(11, new List<WorkplaceTask>() {
+        public Workplace a11 = new Workplace(11, new List<WorkplaceTask>
+        {
             new WorkplaceTask(4, 3, 10),
             new WorkplaceTask(5, 3, 10),
             new WorkplaceTask(6, 3, 20),
@@ -82,7 +92,8 @@ namespace BikeProductionPlanner.Logic.Logic
             new WorkplaceTask(8, 3, 20),
             new WorkplaceTask(9, 3, 20)
         });
-        public Workplace a12 = new Workplace(12, new List<WorkplaceTask>() {
+        public Workplace a12 = new Workplace(12, new List<WorkplaceTask>
+        {
             new WorkplaceTask(10, 3, 0),
             new WorkplaceTask(11, 3, 0),
             new WorkplaceTask(12, 3, 0),
@@ -90,7 +101,8 @@ namespace BikeProductionPlanner.Logic.Logic
             new WorkplaceTask(14, 3, 0),
             new WorkplaceTask(15, 3, 0)
         });
-        public Workplace a13 = new Workplace(13, new List<WorkplaceTask>() {
+        public Workplace a13 = new Workplace(13, new List<WorkplaceTask>
+        {
             new WorkplaceTask(10, 2, 0),
             new WorkplaceTask(11, 2, 0),
             new WorkplaceTask(12, 2, 0),
@@ -98,10 +110,12 @@ namespace BikeProductionPlanner.Logic.Logic
             new WorkplaceTask(14, 2, 0),
             new WorkplaceTask(15, 2, 0)
         });
-        public Workplace a14 = new Workplace(14, new List<WorkplaceTask>() {
+        public Workplace a14 = new Workplace(14, new List<WorkplaceTask>
+        {
             new WorkplaceTask(16, 3, 0)
         });
-        public Workplace a15 = new Workplace(15, new List<WorkplaceTask>() {
+        public Workplace a15 = new Workplace(15, new List<WorkplaceTask>
+        {
             new WorkplaceTask(17, 3, 15),
             new WorkplaceTask(26, 3, 15)
         });
@@ -125,7 +139,7 @@ namespace BikeProductionPlanner.Logic.Logic
 
         private CapacityPlan()
         {
-            WorkplaceList = new List<Workplace>()
+            WorkplaceList = new List<Workplace>
             {
                 a1,a2,a3,a4,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15
             };
