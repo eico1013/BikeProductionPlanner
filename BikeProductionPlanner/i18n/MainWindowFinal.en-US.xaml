@@ -14,11 +14,14 @@
     <sys:String x:Key="SafetyLabel">Safety Stock</sys:String>
     <sys:String x:Key="PurchaseLabel">Purchase</sys:String>
     <sys:String x:Key="LanguageLabel">Language</sys:String>
+    <sys:String x:Key="ImpressumLabel">Impressum</sys:String>
     <!--SafetyStock-->
     <sys:String x:Key="SafetyStock_Text_P1">Kids Bike P1</sys:String>
     <sys:String x:Key="SafetyStock_Text_P2">Womans Bike P2</sys:String>
     <sys:String x:Key="SafetyStock_Text_P3">Mens Bike P3</sys:String>
     <sys:String x:Key="SafetyStock_Button_Plan">Plan</sys:String>
-    
+    <!--Impresum-->
+    <sys:String x:Key="Impressumbutton1">Copyright</sys:String>
+    <sys:String x:Key="Impressumbutton2">Liability</sys:String>
 
 </ResourceDictionary>

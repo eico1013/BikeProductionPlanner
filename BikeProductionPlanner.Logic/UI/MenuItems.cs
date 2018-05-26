@@ -13,7 +13,9 @@
             Purchase,
             Customisation,
             DataExport,
-            UserSettings
+            UserSettings,
+            StartingPage,
+            Impressum
         }
     }
 }
