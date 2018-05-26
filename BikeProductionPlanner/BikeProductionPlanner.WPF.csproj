@@ -75,6 +75,9 @@
     <Compile Include="Views\CapacityPlanningPage.xaml.cs">
       <DependentUpon>CapacityPlanningPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomizePage.xaml.cs">
+      <DependentUpon>CustomizePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,10 @@
     <Page Include="Views\CapacityPlanningPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomizePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Dashboard.xaml">
       <SubType>Designer</SubType>

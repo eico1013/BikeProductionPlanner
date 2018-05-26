@@ -91,6 +91,12 @@
                         </ListViewItem>
                         <ListViewItem Height="45" Padding="0">
                             <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Brush" Width="20" Height="20" Foreground="#FF0069C1" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="{DynamicResource ResourceKey=CustomizeLabel}" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="45" Padding="0">
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
                                 <materialDesign:PackIcon Kind="Settings" Width="20" Height="20" Foreground="#FF0069C1" Margin="5" VerticalAlignment="Center"/>
                                 <TextBlock Text="{DynamicResource ResourceKey=SettingsLabel}" Margin="10"/>
                             </StackPanel>
