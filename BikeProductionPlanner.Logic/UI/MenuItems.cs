@@ -11,7 +11,7 @@
             ProductionPlan,
             Capacity,
             Purchase,
-            Customisation,
+            CustomizePage,
             DataExport,
             UserSettings,
             Impressum

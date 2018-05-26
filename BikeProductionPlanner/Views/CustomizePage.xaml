@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="BikeProductionPlanner.WPF.Views.CustomizePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BikeProductionPlanner.WPF.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Background="White">
+
+    <StackPanel>
+        <TextBlock Text="Anpassungen der Produktion" Margin="20, 10" FontSize="26" FontWeight="Bold"/>
+
+        <Grid Background="White">
+            <DataGrid Height="287" HorizontalAlignment="Left" Margin="20,10,0,0"  Name="prio" VerticalAlignment="Top" Width="770" IsReadOnly="True" AutoGenerateColumns="False">
+                <DataGrid.Columns >
+                    <DataGridTextColumn x:Name="Prio1_Position" Header="Position" Binding="{Binding Position}"></DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Prio1_Teilenr" Header="Teilnr" Binding="{Binding Teilenr}"></DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Prio1_Anzahl" Header="Anzahl" Binding="{Binding Anzahl}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Hoch" Height="45" HorizontalAlignment="Left" Margin="400,321,0,-2.8" x:Name="up" VerticalAlignment="Top" Width="122" Click="up_Click" />
+            <Button Content="Runter" Height="46" HorizontalAlignment="Left" Margin="400,376,0,-58.8" x:Name="down" VerticalAlignment="Top" Width="122" Click="down_Click" RenderTransformOrigin="1.405,0.605"  />
+            <Button Content="Löschen" Height="46" HorizontalAlignment="Left" Margin="598,376,0,-58.8" x:Name="delete" VerticalAlignment="Top" Width="122" Click="delete_Click"  />
+            <Button Content="Hinzufügen" Height="101" HorizontalAlignment="Left" Margin="174,321,0,-58.8" x:Name="add" VerticalAlignment="Top" Width="142" Click="add_Click"  />
+            <Button Content="Splitten" Height="48" HorizontalAlignment="Left" Margin="598,318,0,-2.8" x:Name="split" VerticalAlignment="Top" Width="122" Click="split_Click"  />
+            <TextBox x:Name="prioAddItem" HorizontalAlignment="Left" Height="23" Margin="21,340,0,-0.143" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="4" TextChanged="Forecast1_TextChanged" PreviewTextInput="NumberIntValidationTextBox" />
+            <TextBox x:Name="prioAddAmount" HorizontalAlignment="Left" Height="23" Margin="20,399,0,-58.8" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="4" TextChanged="Forecast1_TextChanged" PreviewTextInput="NumberIntValidationTextBox" />
+            <Label x:Name="prioAddItemDescription" Content="Teilnr:" HorizontalAlignment="Left" Margin="21,309,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.02,-5.231"/>
+            <Label x:Name="prioAddAmountDescription" Content="Anzahl:" HorizontalAlignment="Left" Margin="21,368,0,-30.8" VerticalAlignment="Top" RenderTransformOrigin="2.02,-5.231"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

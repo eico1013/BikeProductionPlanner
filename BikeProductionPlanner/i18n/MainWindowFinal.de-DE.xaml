@@ -14,7 +14,9 @@
     <sys:String x:Key="SafetyLabel">Sicherheitsbestand</sys:String>
     <sys:String x:Key="PurchaseLabel">Einkauf</sys:String>
     <sys:String x:Key="LanguageLabel">Sprache</sys:String>
+    <sys:String x:Key="CustomizeLabel">Anpassungen</sys:String>
     <sys:String x:Key="ImpressumLabel">Impressum</sys:String>
+   
     <!--SafetyStock-->
     <sys:String x:Key="SafetyStock_Text_P1">Kinderrad P1</sys:String>
     <sys:String x:Key="SafetyStock_Text_P2">Damenrad P2</sys:String>
