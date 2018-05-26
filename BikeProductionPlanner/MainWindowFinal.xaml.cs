@@ -188,7 +188,7 @@ namespace BikeProductionPlanner
                 case 9:
                     NavigateTo(MenuItems.MenuItemsEnum.DataExport);
                     break;
-                case 9:
+                case 11:
                     NavigateTo(MenuItems.MenuItemsEnum.Impressum);
                     break;
 
