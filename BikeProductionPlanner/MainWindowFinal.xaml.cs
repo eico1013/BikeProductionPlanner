@@ -83,7 +83,7 @@ namespace BikeProductionPlanner
             };
 
             UpdateUI(State.DataImport);
-            NavigateTo(MenuItems.MenuItemsEnum.DataImport);
+            NavigateTo(MenuItems.MenuItemsEnum.StartingPage);
         }
 
         public void NavigateTo(MenuItems.MenuItemsEnum tag)
