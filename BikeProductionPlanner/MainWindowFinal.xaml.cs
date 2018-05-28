@@ -140,7 +140,7 @@ namespace BikeProductionPlanner
                     (pageMap[MenuItems.MenuItemsEnum.Dashboard] as Dashboard).UpdateDashboardFields();
                     //(pageMap[MenuItems.MenuItemsEnum.Purchase] as PurchasePage).UpdateWarehouseStock();
 
-                    //(pageMap[MenuItems.MenuItemsEnum.Customisation] as CustomizePage).UpdatePrioFields();
+                    (pageMap[MenuItems.MenuItemsEnum.CustomizePage] as CustomizePage).UpdatePrioFields();
                     break;
                 default:
                     break;
