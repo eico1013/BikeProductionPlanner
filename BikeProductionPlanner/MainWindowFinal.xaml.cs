@@ -76,7 +76,7 @@ namespace BikeProductionPlanner
                 { MenuItems.MenuItemsEnum.DataImport, new XMLImportPage() },
                 { MenuItems.MenuItemsEnum.Sales, new Sales() },
                 { MenuItems.MenuItemsEnum.SafetyStock, new SafetyStock() },
-                //{ MenuItems.MenuItemsEnum.ProductionPlan, new ProductionPlanPage() },
+                { MenuItems.MenuItemsEnum.ProductionPlan, new ProductionPlanner() },
                 { MenuItems.MenuItemsEnum.Capacity, new CapacityPlanningPage() },
                 { MenuItems.MenuItemsEnum.Purchase, new Views.Purchase() },
                 { MenuItems.MenuItemsEnum.DataExport, new XMLExportPage() },
@@ -102,10 +102,10 @@ namespace BikeProductionPlanner
 
         public void UpdateUI(State newState)
         {
-            if (this.uiState == newState)
-            {
-                return;
-            }
+            //if (this.uiState == newState)
+            //{
+            //    return;
+            //}
 
             this.uiState = newState;
 
@@ -132,10 +132,12 @@ namespace BikeProductionPlanner
 
                     PlanCalculations.Calculate();
 
-                    //(pageMap[MenuItems.MenuItemsEnum.ProductionPlan] as ProductionPlan).UpdatePlanningFields();
+                    (pageMap[MenuItems.MenuItemsEnum.ProductionPlan] as ProductionPlanner).UpdatePlanningFields();
                     (pageMap[MenuItems.MenuItemsEnum.Capacity] as CapacityPlanningPage).UpdateKapaFields();
+                    
 
                     (pageMap[MenuItems.MenuItemsEnum.Purchase] as Views.Purchase).UpdatePurchaseFields();
+                    //(pageMap[MenuItems.MenuItemsEnum.Dashboard] as Dashboard).UpdateDashboardFields();
                     //(pageMap[MenuItems.MenuItemsEnum.Purchase] as PurchasePage).UpdateWarehouseStock();
 
                     //(pageMap[MenuItems.MenuItemsEnum.Customisation] as CustomizePage).UpdatePrioFields();
@@ -177,6 +179,9 @@ namespace BikeProductionPlanner
                     break;
                 case 3:
                     NavigateTo(MenuItems.MenuItemsEnum.SafetyStock);
+                    break;
+                case 4:
+                    NavigateTo(MenuItems.MenuItemsEnum.ProductionPlan);
                     break;
                 case 5:
                     NavigateTo(MenuItems.MenuItemsEnum.Capacity);

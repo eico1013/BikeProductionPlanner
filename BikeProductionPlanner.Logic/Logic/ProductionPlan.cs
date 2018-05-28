@@ -166,47 +166,45 @@ namespace BikeProductionPlanner.Logic.Logic
         public static void Calculate()
         {
             StorageService vs = StorageService.Instance;
-            
-            #region Verbindliche Aufträge
-            // Kinderfahrrad
+
             p1 = vs.vertriebswunschP1 + vs.sicherheitsbestandP1 - vs.GetWarehouseArticleById(1).Amount - vs.GetWorkplaceArticleAmountById(1) - vs.GetOrderInWorkArticleAmountById(1);
             p1 = p1 + ((10 - (p1 % 10)) % 10);
             if (p1 < 0) p1 = 0;
 
-            e26K = p1 + vs.GetWorkplaceArticleAmountById(1) + vs.sicherheitsbestandP1 - (vs.GetWarehouseArticleById(26).Amount / 3 + vs.GetWorkplaceArticleAmountById(26) / 3 + vs.GetOrderInWorkArticleAmountById(26) / 3);
+            e26K = p1 + vs.GetWorkplaceArticleAmountById(1) + vs.sicherheitsbestandE26K - (vs.GetWarehouseArticleById(26).Amount / 3 + vs.GetWorkplaceArticleAmountById(26) / 3 + vs.GetOrderInWorkArticleAmountById(26) / 3);
             e26K = e26K + ((10 - (e26K % 10)) % 10);
             if (e26K < 0) e26K = 0;
-            e51 = p1 + vs.GetWorkplaceArticleAmountById(1) + vs.sicherheitsbestandP1 - (vs.GetWarehouseArticleById(51).Amount + vs.GetWorkplaceArticleAmountById(51) + vs.GetOrderInWorkArticleAmountById(51));
+            e51 = p1 + vs.GetWorkplaceArticleAmountById(1) + vs.sicherheitsbestandE51 - (vs.GetWarehouseArticleById(51).Amount + vs.GetWorkplaceArticleAmountById(51) + vs.GetOrderInWorkArticleAmountById(51));
             e51 = e51 + ((10 - (e51 % 10)) % 10);
             if (e51 < 0) e51 = 0;
 
-            e16K = e51 + vs.GetWorkplaceArticleAmountById(51) + vs.sicherheitsbestandP1 - (vs.GetWarehouseArticleById(16).Amount / 3 + vs.GetWorkplaceArticleAmountById(16) / 3 + vs.GetOrderInWorkArticleAmountById(16) / 3);
+            e16K = e51 + vs.GetWorkplaceArticleAmountById(51) + vs.sicherheitsbestandE16K - (vs.GetWarehouseArticleById(16).Amount / 3 + vs.GetWorkplaceArticleAmountById(16) / 3 + vs.GetOrderInWorkArticleAmountById(16) / 3);
             e16K = e16K + ((10 - (e16K % 10)) % 10);
             if (e16K < 0) e16K = 0;
-            e17K = e51 + vs.GetWorkplaceArticleAmountById(51) + vs.sicherheitsbestandP1 - (vs.GetWarehouseArticleById(17).Amount / 3 + vs.GetWorkplaceArticleAmountById(17) / 3 + vs.GetOrderInWorkArticleAmountById(17) / 3);
+            e17K = e51 + vs.GetWorkplaceArticleAmountById(51) + vs.sicherheitsbestandE17K - (vs.GetWarehouseArticleById(17).Amount / 3 + vs.GetWorkplaceArticleAmountById(17) / 3 + vs.GetOrderInWorkArticleAmountById(17) / 3);
             e17K = e17K + ((10 - (e17K % 10)) % 10);
             if (e17K < 0) e17K = 0;
-            e50 = e51 + vs.GetWorkplaceArticleAmountById(51) + vs.sicherheitsbestandP1 - (vs.GetWarehouseArticleById(50).Amount + vs.GetWorkplaceArticleAmountById(50) + vs.GetOrderInWorkArticleAmountById(50));
+            e50 = e51 + vs.GetWorkplaceArticleAmountById(51) + vs.sicherheitsbestandE50 - (vs.GetWarehouseArticleById(50).Amount + vs.GetWorkplaceArticleAmountById(50) + vs.GetOrderInWorkArticleAmountById(50));
             e50 = e50 + ((10 - (e50 % 10)) % 10);
             if (e50 < 0) e50 = 0;
 
-            e4 = e50 + vs.GetWorkplaceArticleAmountById(50) + vs.sicherheitsbestandP1 - (vs.GetWarehouseArticleById(4).Amount + vs.GetWorkplaceArticleAmountById(4) + vs.GetOrderInWorkArticleAmountById(4));
+            e4 = e50 + vs.GetWorkplaceArticleAmountById(50) + vs.sicherheitsbestandE4 - (vs.GetWarehouseArticleById(4).Amount + vs.GetWorkplaceArticleAmountById(4) + vs.GetOrderInWorkArticleAmountById(4));
             e4 = e4 + ((10 - (e4 % 10)) % 10);
             if (e4 < 0) e4 = 0;
-            e10 = e50 + vs.GetWorkplaceArticleAmountById(50) + vs.sicherheitsbestandP1 - (vs.GetWarehouseArticleById(10).Amount + vs.GetWorkplaceArticleAmountById(10) + vs.GetOrderInWorkArticleAmountById(10));
+            e10 = e50 + vs.GetWorkplaceArticleAmountById(50) + vs.sicherheitsbestandE10 - (vs.GetWarehouseArticleById(10).Amount + vs.GetWorkplaceArticleAmountById(10) + vs.GetOrderInWorkArticleAmountById(10));
             e10 = e10 + ((10 - (e10 % 10)) % 10);
             if (e10 < 0) e10 = 0;
-            e49 = e50 + vs.GetWorkplaceArticleAmountById(50) + vs.sicherheitsbestandP1 - (vs.GetWarehouseArticleById(49).Amount + vs.GetWorkplaceArticleAmountById(49) + vs.GetOrderInWorkArticleAmountById(49));
+            e49 = e50 + vs.GetWorkplaceArticleAmountById(50) + vs.sicherheitsbestandE49 - (vs.GetWarehouseArticleById(49).Amount + vs.GetWorkplaceArticleAmountById(49) + vs.GetOrderInWorkArticleAmountById(49));
             e49 = e49 + ((10 - (e49 % 10)) % 10);
             if (e49 < 0) e49 = 0;
 
-            e7 = e49 + vs.GetWorkplaceArticleAmountById(49) + vs.sicherheitsbestandP1 - (vs.GetWarehouseArticleById(7).Amount + vs.GetWorkplaceArticleAmountById(7) + vs.GetOrderInWorkArticleAmountById(7));
+            e7 = e49 + vs.GetWorkplaceArticleAmountById(49) + vs.sicherheitsbestandE7 - (vs.GetWarehouseArticleById(7).Amount + vs.GetWorkplaceArticleAmountById(7) + vs.GetOrderInWorkArticleAmountById(7));
             e7 = e7 + ((10 - (e7 % 10)) % 10);
             if (e7 < 0) e7 = 0;
-            e13 = e49 + vs.GetWorkplaceArticleAmountById(49) + vs.sicherheitsbestandP1 - (vs.GetWarehouseArticleById(13).Amount + vs.GetWorkplaceArticleAmountById(13) + vs.GetOrderInWorkArticleAmountById(13));
+            e13 = e49 + vs.GetWorkplaceArticleAmountById(49) + vs.sicherheitsbestandE13 - (vs.GetWarehouseArticleById(13).Amount + vs.GetWorkplaceArticleAmountById(13) + vs.GetOrderInWorkArticleAmountById(13));
             e13 = e13 + ((10 - (e13 % 10)) % 10);
             if (e13 < 0) e13 = 0;
-            e18 = e49 + vs.GetWorkplaceArticleAmountById(49) + vs.sicherheitsbestandP1 - (vs.GetWarehouseArticleById(18).Amount + vs.GetWorkplaceArticleAmountById(18) + vs.GetOrderInWorkArticleAmountById(18));
+            e18 = e49 + vs.GetWorkplaceArticleAmountById(49) + vs.sicherheitsbestandE18 - (vs.GetWarehouseArticleById(18).Amount + vs.GetWorkplaceArticleAmountById(18) + vs.GetOrderInWorkArticleAmountById(18));
             e18 = e18 + ((10 - (e18 % 10)) % 10);
             if (e18 < 0) e18 = 0;
 
@@ -215,40 +213,40 @@ namespace BikeProductionPlanner.Logic.Logic
             p2 = p2 + ((10 - (p2 % 10)) % 10);
             if (p2 < 0) p2 = 0;
 
-            e26D = p2 + vs.GetWorkplaceArticleAmountById(2) + vs.sicherheitsbestandP2 - (vs.GetWarehouseArticleById(26).Amount / 3 + vs.GetWorkplaceArticleAmountById(26) / 3 + vs.GetOrderInWorkArticleAmountById(26) / 3);
+            e26D = p2 + vs.GetWorkplaceArticleAmountById(2) + vs.sicherheitsbestandE26D - (vs.GetWarehouseArticleById(26).Amount / 3 + vs.GetWorkplaceArticleAmountById(26) / 3 + vs.GetOrderInWorkArticleAmountById(26) / 3);
             e26D = e26D + ((10 - (e26D % 10)) % 10);
             if (e26D < 0) e26D = 0;
-            e56 = p2 + vs.GetWorkplaceArticleAmountById(2) + vs.sicherheitsbestandP2 - (vs.GetWarehouseArticleById(56).Amount + vs.GetWorkplaceArticleAmountById(56) + vs.GetOrderInWorkArticleAmountById(56));
+            e56 = p2 + vs.GetWorkplaceArticleAmountById(2) + vs.sicherheitsbestandE56 - (vs.GetWarehouseArticleById(56).Amount + vs.GetWorkplaceArticleAmountById(56) + vs.GetOrderInWorkArticleAmountById(56));
             e56 = e56 + ((10 - (e56 % 10)) % 10);
             if (e56 < 0) e56 = 0;
 
-            e16D = e56 + vs.GetWorkplaceArticleAmountById(56) + vs.sicherheitsbestandP2 - (vs.GetWarehouseArticleById(16).Amount / 3 + vs.GetWorkplaceArticleAmountById(16) / 3 + vs.GetOrderInWorkArticleAmountById(16) / 3);
+            e16D = e56 + vs.GetWorkplaceArticleAmountById(56) + vs.sicherheitsbestandE16D - (vs.GetWarehouseArticleById(16).Amount / 3 + vs.GetWorkplaceArticleAmountById(16) / 3 + vs.GetOrderInWorkArticleAmountById(16) / 3);
             e16D = e16D + ((10 - (e16D % 10)) % 10);
             if (e16D < 0) e16D = 0;
-            e17D = e56 + vs.GetWorkplaceArticleAmountById(56) + vs.sicherheitsbestandP2 - (vs.GetWarehouseArticleById(17).Amount / 3 + vs.GetWorkplaceArticleAmountById(17) / 3 + vs.GetOrderInWorkArticleAmountById(17) / 3);
+            e17D = e56 + vs.GetWorkplaceArticleAmountById(56) + vs.sicherheitsbestandE17D - (vs.GetWarehouseArticleById(17).Amount / 3 + vs.GetWorkplaceArticleAmountById(17) / 3 + vs.GetOrderInWorkArticleAmountById(17) / 3);
             e17D = e17D + ((10 - (e17D % 10)) % 10);
             if (e17D < 0) e17D = 0;
-            e55 = e56 + vs.GetWorkplaceArticleAmountById(56) + vs.sicherheitsbestandP2 - (vs.GetWarehouseArticleById(55).Amount + vs.GetWorkplaceArticleAmountById(55) + vs.GetOrderInWorkArticleAmountById(55));
+            e55 = e56 + vs.GetWorkplaceArticleAmountById(56) + vs.sicherheitsbestandE55 - (vs.GetWarehouseArticleById(55).Amount + vs.GetWorkplaceArticleAmountById(55) + vs.GetOrderInWorkArticleAmountById(55));
             e55 = e55 + ((10 - (e55 % 10)) % 10);
             if (e55 < 0) e55 = 0;
 
-            e5 = e55 + vs.GetWorkplaceArticleAmountById(55) + vs.sicherheitsbestandP2 - (vs.GetWarehouseArticleById(5).Amount + vs.GetWorkplaceArticleAmountById(5) + vs.GetOrderInWorkArticleAmountById(5));
+            e5 = e55 + vs.GetWorkplaceArticleAmountById(55) + vs.sicherheitsbestandE5 - (vs.GetWarehouseArticleById(5).Amount + vs.GetWorkplaceArticleAmountById(5) + vs.GetOrderInWorkArticleAmountById(5));
             e5 = e5 + ((10 - (e5 % 10)) % 10);
             if (e5 < 0) e5 = 0;
-            e11 = e55 + vs.GetWorkplaceArticleAmountById(55) + vs.sicherheitsbestandP2 - (vs.GetWarehouseArticleById(11).Amount + vs.GetWorkplaceArticleAmountById(11) + vs.GetOrderInWorkArticleAmountById(11));
+            e11 = e55 + vs.GetWorkplaceArticleAmountById(55) + vs.sicherheitsbestandE11 - (vs.GetWarehouseArticleById(11).Amount + vs.GetWorkplaceArticleAmountById(11) + vs.GetOrderInWorkArticleAmountById(11));
             e11 = e11 + ((10 - (e11 % 10)) % 10);
             if (e11 < 0) e11 = 0;
-            e54 = e55 + vs.GetWorkplaceArticleAmountById(55) + vs.sicherheitsbestandP2 - (vs.GetWarehouseArticleById(54).Amount + vs.GetWorkplaceArticleAmountById(54) + vs.GetOrderInWorkArticleAmountById(54));
+            e54 = e55 + vs.GetWorkplaceArticleAmountById(55) + vs.sicherheitsbestandE54 - (vs.GetWarehouseArticleById(54).Amount + vs.GetWorkplaceArticleAmountById(54) + vs.GetOrderInWorkArticleAmountById(54));
             e54 = e54 + ((10 - (e54 % 10)) % 10);
             if (e54 < 0) e54 = 0;
 
-            e8 = e54 + vs.GetWorkplaceArticleAmountById(54) + vs.sicherheitsbestandP2 - (vs.GetWarehouseArticleById(8).Amount + vs.GetWorkplaceArticleAmountById(8) + vs.GetOrderInWorkArticleAmountById(8));
+            e8 = e54 + vs.GetWorkplaceArticleAmountById(54) + vs.sicherheitsbestandE8 - (vs.GetWarehouseArticleById(8).Amount + vs.GetWorkplaceArticleAmountById(8) + vs.GetOrderInWorkArticleAmountById(8));
             e8 = e8 + ((10 - (e8 % 10)) % 10);
             if (e8 < 0) e8 = 0;
-            e14 = e54 + vs.GetWorkplaceArticleAmountById(54) + vs.sicherheitsbestandP2 - (vs.GetWarehouseArticleById(14).Amount + vs.GetWorkplaceArticleAmountById(14) + vs.GetOrderInWorkArticleAmountById(14));
+            e14 = e54 + vs.GetWorkplaceArticleAmountById(54) + vs.sicherheitsbestandE14 - (vs.GetWarehouseArticleById(14).Amount + vs.GetWorkplaceArticleAmountById(14) + vs.GetOrderInWorkArticleAmountById(14));
             e14 = e14 + ((10 - (e14 % 10)) % 10);
             if (e14 < 0) e14 = 0;
-            e19 = e54 + vs.GetWorkplaceArticleAmountById(54) + vs.sicherheitsbestandP2 - (vs.GetWarehouseArticleById(19).Amount + vs.GetWorkplaceArticleAmountById(19) + vs.GetOrderInWorkArticleAmountById(19));
+            e19 = e54 + vs.GetWorkplaceArticleAmountById(54) + vs.sicherheitsbestandE19 - (vs.GetWarehouseArticleById(19).Amount + vs.GetWorkplaceArticleAmountById(19) + vs.GetOrderInWorkArticleAmountById(19));
             e19 = e19 + ((10 - (e19 % 10)) % 10);
             if (e19 < 0) e19 = 0;
 
@@ -257,45 +255,43 @@ namespace BikeProductionPlanner.Logic.Logic
             p3 = p3 + ((10 - (p3 % 10)) % 10);
             if (p3 < 0) p3 = 0;
 
-            e26H = p3 + vs.GetWorkplaceArticleAmountById(3) + vs.sicherheitsbestandP3 - (vs.GetWarehouseArticleById(26).Amount / 3 + vs.GetWorkplaceArticleAmountById(26) / 3 + vs.GetOrderInWorkArticleAmountById(26) / 3);
+            e26H = p3 + vs.GetWorkplaceArticleAmountById(3) + vs.sicherheitsbestandE26H - (vs.GetWarehouseArticleById(26).Amount / 3 + vs.GetWorkplaceArticleAmountById(26) / 3 + vs.GetOrderInWorkArticleAmountById(26) / 3);
             e26H = e26H + ((10 - (e26H % 10)) % 10);
             if (e26H < 0) e26H = 0;
-            e31 = p3 + vs.GetWorkplaceArticleAmountById(3) + vs.sicherheitsbestandP3 - (vs.GetWarehouseArticleById(31).Amount + vs.GetWorkplaceArticleAmountById(31) + vs.GetOrderInWorkArticleAmountById(31));
+            e31 = p3 + vs.GetWorkplaceArticleAmountById(3) + vs.sicherheitsbestandE31 - (vs.GetWarehouseArticleById(31).Amount + vs.GetWorkplaceArticleAmountById(31) + vs.GetOrderInWorkArticleAmountById(31));
             e31 = e31 + ((10 - (e31 % 10)) % 10);
             if (e31 < 0) e31 = 0;
 
-            e16H = e31 + vs.GetWorkplaceArticleAmountById(31) + vs.sicherheitsbestandP3 - (vs.GetWarehouseArticleById(16).Amount / 3 + vs.GetWorkplaceArticleAmountById(16) / 3 + vs.GetOrderInWorkArticleAmountById(16) / 3);
+            e16H = e31 + vs.GetWorkplaceArticleAmountById(31) + vs.sicherheitsbestandE16H - (vs.GetWarehouseArticleById(16).Amount / 3 + vs.GetWorkplaceArticleAmountById(16) / 3 + vs.GetOrderInWorkArticleAmountById(16) / 3);
             e16H = e16H + ((10 - (e16H % 10)) % 10);
             if (e16H < 0) e16H = 0;
             //System.Windows.MessageBox.Show(e31 + " + " + vs.GetWorkplaceArticleAmountById(31) + " + " + vs.sicherheitsbestandP3 + " - (" + (vs.GetWarehouseArticleById(17).Amount / 3 + " + "  + vs.GetWorkplaceArticleAmountById(17) / 3 + " + " + vs.GetOrderInWorkArticleAmountById(17) / 3) + ")");
-            e17H = e31 + vs.GetWorkplaceArticleAmountById(31) + vs.sicherheitsbestandP3 - (vs.GetWarehouseArticleById(17).Amount / 3 + vs.GetWorkplaceArticleAmountById(17) / 3 + vs.GetOrderInWorkArticleAmountById(17) / 3);
+            e17H = e31 + vs.GetWorkplaceArticleAmountById(31) + vs.sicherheitsbestandE17H - (vs.GetWarehouseArticleById(17).Amount / 3 + vs.GetWorkplaceArticleAmountById(17) / 3 + vs.GetOrderInWorkArticleAmountById(17) / 3);
             e17H = e17H + ((10 - (e17H % 10)) % 10);
             if (e17H < 0) e17H = 0;
-            e30 = e31 + vs.GetWorkplaceArticleAmountById(31) + vs.sicherheitsbestandP3 - (vs.GetWarehouseArticleById(30).Amount + vs.GetWorkplaceArticleAmountById(30) + vs.GetOrderInWorkArticleAmountById(30));
+            e30 = e31 + vs.GetWorkplaceArticleAmountById(31) + vs.sicherheitsbestandE30 - (vs.GetWarehouseArticleById(30).Amount + vs.GetWorkplaceArticleAmountById(30) + vs.GetOrderInWorkArticleAmountById(30));
             e30 = e30 + ((10 - (e30 % 10)) % 10);
             if (e30 < 0) e30 = 0;
 
-            e6 = e30 + vs.GetWorkplaceArticleAmountById(30) + vs.sicherheitsbestandP3 - (vs.GetWarehouseArticleById(6).Amount + vs.GetWorkplaceArticleAmountById(6) + vs.GetOrderInWorkArticleAmountById(6));
+            e6 = e30 + vs.GetWorkplaceArticleAmountById(30) + vs.sicherheitsbestandE6 - (vs.GetWarehouseArticleById(6).Amount + vs.GetWorkplaceArticleAmountById(6) + vs.GetOrderInWorkArticleAmountById(6));
             e6 = e6 + ((10 - (e6 % 10)) % 10);
             if (e6 < 0) e6 = 0;
-            e12 = e30 + vs.GetWorkplaceArticleAmountById(30) + vs.sicherheitsbestandP3 - (vs.GetWarehouseArticleById(12).Amount + vs.GetWorkplaceArticleAmountById(12) + vs.GetOrderInWorkArticleAmountById(12));
+            e12 = e30 + vs.GetWorkplaceArticleAmountById(30) + vs.sicherheitsbestandE12 - (vs.GetWarehouseArticleById(12).Amount + vs.GetWorkplaceArticleAmountById(12) + vs.GetOrderInWorkArticleAmountById(12));
             e12 = e12 + ((10 - (e12 % 10)) % 10);
             if (e12 < 0) e12 = 0;
-            e29 = e30 + vs.GetWorkplaceArticleAmountById(30) + vs.sicherheitsbestandP3 - (vs.GetWarehouseArticleById(29).Amount + vs.GetWorkplaceArticleAmountById(29) + vs.GetOrderInWorkArticleAmountById(29));
+            e29 = e30 + vs.GetWorkplaceArticleAmountById(30) + vs.sicherheitsbestandE29 - (vs.GetWarehouseArticleById(29).Amount + vs.GetWorkplaceArticleAmountById(29) + vs.GetOrderInWorkArticleAmountById(29));
             e29 = e29 + ((10 - (e29 % 10)) % 10);
             if (e29 < 0) e29 = 0;
 
-            e9 = e29 + vs.GetWorkplaceArticleAmountById(29) + vs.sicherheitsbestandP3 - (vs.GetWarehouseArticleById(9).Amount + vs.GetWorkplaceArticleAmountById(9) + vs.GetOrderInWorkArticleAmountById(9));
+            e9 = e29 + vs.GetWorkplaceArticleAmountById(29) + vs.sicherheitsbestandE9 - (vs.GetWarehouseArticleById(9).Amount + vs.GetWorkplaceArticleAmountById(9) + vs.GetOrderInWorkArticleAmountById(9));
             e9 = e9 + ((10 - (e9 % 10)) % 10);
             if (e9 < 0) e9 = 0;
-            e15 = e29 + vs.GetWorkplaceArticleAmountById(29) + vs.sicherheitsbestandP3 - (vs.GetWarehouseArticleById(15).Amount + vs.GetWorkplaceArticleAmountById(15) + vs.GetOrderInWorkArticleAmountById(15));
+            e15 = e29 + vs.GetWorkplaceArticleAmountById(29) + vs.sicherheitsbestandE15 - (vs.GetWarehouseArticleById(15).Amount + vs.GetWorkplaceArticleAmountById(15) + vs.GetOrderInWorkArticleAmountById(15));
             e15 = e15 + ((10 - (e15 % 10)) % 10);
             if (e15 < 0) e15 = 0;
-            e20 = e29 + vs.GetWorkplaceArticleAmountById(29) + vs.sicherheitsbestandP3 - (vs.GetWarehouseArticleById(20).Amount + vs.GetWorkplaceArticleAmountById(20) + vs.GetOrderInWorkArticleAmountById(20));
+            e20 = e29 + vs.GetWorkplaceArticleAmountById(29) + vs.sicherheitsbestandE20 - (vs.GetWarehouseArticleById(20).Amount + vs.GetWorkplaceArticleAmountById(20) + vs.GetOrderInWorkArticleAmountById(20));
             e20 = e20 + ((10 - (e20 % 10)) % 10);
             if (e20 < 0) e20 = 0;
-
-            #endregion
 
             #region Kaufteile
 

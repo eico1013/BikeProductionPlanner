@@ -155,16 +155,16 @@ namespace BikeProductionPlanner.Logic
                         newWarehousestock.Amount = Int32.Parse(reader.Value);
                         break;
                     case "price":
-                        newWarehousestock.Price = Double.Parse(reader.Value);
+                        newWarehousestock.Price = Double.Parse(reader.Value.Replace(".", ","));
                         break;
                     case "stockvalue":
-                        newWarehousestock.StockValue = Double.Parse(reader.Value);
+                        newWarehousestock.StockValue = Double.Parse(reader.Value.Replace(".", ","));
                         break;
                     case "startamount":
                         newWarehousestock.StartAmount = Int32.Parse(reader.Value);
                         break;
                     case "pct":
-                        newWarehousestock.PCT = Double.Parse(reader.Value);
+                        newWarehousestock.PCT = Double.Parse(reader.Value.Replace(".", ","));
                         break;
                 }
             }

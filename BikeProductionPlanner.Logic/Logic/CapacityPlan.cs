@@ -135,6 +135,11 @@ namespace BikeProductionPlanner.Logic.Logic
 
                 return instance;
             }
+
+            set
+            {
+                instance = value;
+            }
         }
 
         private CapacityPlan()
