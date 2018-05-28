@@ -21,7 +21,7 @@ namespace BikeProductionPlanner.Views
         private int Value1;
         private int Value2;
         private int Value3;
-        public double Totalstackvalue1;
+        public double Totalstackvalue;
 
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
@@ -30,34 +30,34 @@ namespace BikeProductionPlanner.Views
         public Dashboard()
         {
             InitializeComponent();
-            //Value = StorageService.Instance.CheckTotalstockvalue1(Totalstackvalue1);
+            //Value = StorageService.Instance.CheckTotalstockvalue(Totalstackvalue);
             //DataContext = this;
 
             //Value1 = StorageService.Instance.GetAmountFromWareHouseStockId(1);
             //Value2 = StorageService.Instance.GetAmountFromWareHouseStockId(2);
             //Value3 = StorageService.Instance.GetAmountFromWareHouseStockId(3);
 
-            //SeriesCollection = new SeriesCollection
-            //{
-            //    new ColumnSeries
-            //    {
-            //        Values = new ChartValues<int> { Value1, Value2, Value3}
-            //    }
-            //};
+            SeriesCollection = new SeriesCollection
+            {
+                new ColumnSeries
+                {
+                    Values = new ChartValues<int> { Value1, Value2, Value3}
+                }
+            };
 
-            //Labels = new[] { "P1", "P2", "P3" };
-            //Formatter = value => value.ToString("N");
+            Labels = new[] { "P1", "P2", "P3" };
+            Formatter = value => value.ToString("N");
 
-            //DataContext = this;
+            DataContext = this;
         }
 
-        //public void UpdateDashboardFields()
-        //{
-        //    Value1 = StorageService.Instance.GetAmountFromWareHouseStockId(1);
-        //    Value2 = StorageService.Instance.GetAmountFromWareHouseStockId(2);
-        //    Value3 = StorageService.Instance.GetAmountFromWareHouseStockId(3);
-        //    Dash1.Value = StorageService.Instance.CheckTotalstockvalue1(Totalstackvalue1);
-        //    Dash2.Series = new SeriesCollection { new ColumnSeries { Values = new ChartValues<int> { Value1, Value2, Value3 } } };
-        //}
+        public void UpdateDashboardFields()
+        {
+            Value1 = StorageService.Instance.GetAmountFromWareHouseStockId(1);
+            Value2 = StorageService.Instance.GetAmountFromWareHouseStockId(2);
+            Value3 = StorageService.Instance.GetAmountFromWareHouseStockId(3);
+            Dash1.Value = StorageService.Instance.CheckTotalstockvalue(Totalstackvalue);
+            Dash2.Series = new SeriesCollection { new ColumnSeries { Values = new ChartValues<int> { Value1, Value2, Value3 } } };
+        }
     }
 }
