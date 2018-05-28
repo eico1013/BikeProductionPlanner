@@ -172,6 +172,14 @@ namespace BikeProductionPlanner.Logic.Database
             return Totalstockvalue == test;
         }
 
+        public double CheckTotalstockvalue1(double Totalstockvalue1)
+        {
+            double test1 = 0.0;
+            foreach (WarehouseStock b in articleList)
+                test1 += b.StockValue;
+            return test1;
+        }
+
         #endregion
 
         public List<WaitingListStock> GetAllWaitingListStocks()
@@ -434,6 +442,39 @@ namespace BikeProductionPlanner.Logic.Database
         public int sicherheitsbestandP1;
         public int sicherheitsbestandP2;
         public int sicherheitsbestandP3;
+        public int sicherheitsbestandE26K;
+        public int sicherheitsbestandE51;
+        public int sicherheitsbestandE16K;
+        public int sicherheitsbestandE17K;
+        public int sicherheitsbestandE50;
+        public int sicherheitsbestandE4;
+        public int sicherheitsbestandE10;
+        public int sicherheitsbestandE49;
+        public int sicherheitsbestandE7;
+        public int sicherheitsbestandE13;
+        public int sicherheitsbestandE18;
+        public int sicherheitsbestandE26D;
+        public int sicherheitsbestandE56;
+        public int sicherheitsbestandE16D;
+        public int sicherheitsbestandE17D;
+        public int sicherheitsbestandE55;
+        public int sicherheitsbestandE5;
+        public int sicherheitsbestandE11;
+        public int sicherheitsbestandE54;
+        public int sicherheitsbestandE8;
+        public int sicherheitsbestandE14;
+        public int sicherheitsbestandE19;
+        public int sicherheitsbestandE26H;
+        public int sicherheitsbestandE31;
+        public int sicherheitsbestandE16H;
+        public int sicherheitsbestandE17H;
+        public int sicherheitsbestandE30;
+        public int sicherheitsbestandE6;
+        public int sicherheitsbestandE12;
+        public int sicherheitsbestandE29;
+        public int sicherheitsbestandE9;
+        public int sicherheitsbestandE15;
+        public int sicherheitsbestandE20;
 
         //Periode 1
         public int prognose1P1;

@@ -63,6 +63,25 @@ namespace BikeProductionPlanner.Views
 
         public void UpdateKapaFields()
         {
+            for (int id = 0; id < _workItems.Values.Count; id++)
+            {
+                var kapaItem = _workItems[id + 1];
+
+                foreach (ItemNo kapaProdItem in kapaItem.Item1)
+                {
+                    int partId = System.Convert.ToInt32(Regex.Replace(kapaProdItem.Id, "[^0-9]+", string.Empty));
+                    kapaProdItem.CostSum = CapacityPlan.Instance.WorkplaceList[id].TaskList.Find(x => x.articleId == partId).kapaDemandPerUnit.ToString();
+                    kapaProdItem.Amount = ProductionPlan.GetDemandById(partId).ToString();
+                }
+
+                //...
+
+                for (int n = 0; n < kapaItem.Item2.Count; n++)
+                {
+                    kapaItem.Item2[n].Calculation = CapacityPlan.Instance.WorkplaceList[id].GetFieldsById(n).ToString();
+                }
+            }
+
             Kapa1.Text = CapacityPlan.Instance.WorkplaceList[0].GetFieldsById(4).ToString();
             Kapa2.Text = CapacityPlan.Instance.WorkplaceList[1].GetFieldsById(4).ToString();
             Kapa3.Text = CapacityPlan.Instance.WorkplaceList[2].GetFieldsById(4).ToString();
@@ -108,24 +127,7 @@ namespace BikeProductionPlanner.Views
             Schicht14.Text = CapacityPlan.Instance.WorkplaceList[12].GetFieldsById(5).ToString();
             Schicht15.Text = CapacityPlan.Instance.WorkplaceList[13].GetFieldsById(5).ToString();
 
-            for (int id = 0; id < _workItems.Values.Count; id++)
-            {
-                var kapaItem = _workItems[id + 1];
-
-                foreach (ItemNo kapaProdItem in kapaItem.Item1)
-                {
-                    int partId = System.Convert.ToInt32(Regex.Replace(kapaProdItem.Id, "[^0-9]+", string.Empty));
-                    kapaProdItem.CostSum = CapacityPlan.Instance.WorkplaceList[id].TaskList.Find(x => x.articleId == partId).kapaDemandPerUnit.ToString();
-                    kapaProdItem.Amount = ProductionPlan.GetDemandById(partId).ToString();
-                }
-
-                //...
-
-                for (int n = 0; n < kapaItem.Item2.Count; n++)
-                {
-                    kapaItem.Item2[n].Calculation = CapacityPlan.Instance.WorkplaceList[id].GetFieldsById(n).ToString();
-                }
-            }
+            CapacityPlan.Instance = null;
         }
 
         private ObservableCollection<KapNo> CreateWorkPlan()
