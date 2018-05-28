@@ -137,7 +137,7 @@ namespace BikeProductionPlanner
                     
 
                     (pageMap[MenuItems.MenuItemsEnum.Purchase] as Views.Purchase).UpdatePurchaseFields();
-                    //(pageMap[MenuItems.MenuItemsEnum.Dashboard] as Dashboard).UpdateDashboardFields();
+                    (pageMap[MenuItems.MenuItemsEnum.Dashboard] as Dashboard).UpdateDashboardFields();
                     //(pageMap[MenuItems.MenuItemsEnum.Purchase] as PurchasePage).UpdateWarehouseStock();
 
                     //(pageMap[MenuItems.MenuItemsEnum.Customisation] as CustomizePage).UpdatePrioFields();

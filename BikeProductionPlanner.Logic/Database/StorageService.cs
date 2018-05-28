@@ -164,20 +164,12 @@ namespace BikeProductionPlanner.Logic.Database
             return articleList;
         }
 
-        public bool CheckTotalstockvalue(double Totalstockvalue)
+        public double CheckTotalstockvalue(double Totalstockvalue)
         {
             double test = 0.0;
             foreach (WarehouseStock a in articleList)
                 test += a.StockValue;
-            return Totalstockvalue == test;
-        }
-
-        public double CheckTotalstockvalue1(double Totalstockvalue1)
-        {
-            double test1 = 0.0;
-            foreach (WarehouseStock b in articleList)
-                test1 += b.StockValue;
-            return test1;
+            return test;
         }
 
         #endregion

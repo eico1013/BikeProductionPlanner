@@ -116,7 +116,6 @@ namespace BikeProductionPlanner.Logic.Database
         public int Amount { get; set; }
         public double Price { get; set; }
         public double StockValue { get; set; }
-        public double StockValue1 { get; set; }
 
         public int StartAmount { get; set; }
 
@@ -128,7 +127,6 @@ namespace BikeProductionPlanner.Logic.Database
             this.Amount = amount;
             this.Price = price;
             this.StockValue = articleStockValue;
-            this.StockValue1 = articleStockValue;
 
             this.StartAmount = startamount;
             this.PCT = pct;
