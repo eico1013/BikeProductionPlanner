@@ -58,6 +58,21 @@ namespace BikeProductionPlanner.Views
                 // Bestellart befüllen
                 tbOrderType.Text = orderType;
             }
+
+            List <purchasePartTooltip> purchasePartsTooltip = new List<purchasePartTooltip>();
+            purchasePartsTooltip = Logic.Logic.Purchase.GetPurchasePartsTooltip();
+
+            // Iteriere Kaufteilliste durch
+            foreach (purchasePartTooltip purchasePartTooltip in purchasePartsTooltip)
+            {
+                String id = Convert.ToString(purchasePartTooltip.idPPTooltip);
+                String tbPurchasePartName = "purchasePartK" + id;
+                TextBox tbPurchasePart = (TextBox)this.FindName(tbPurchasePartName);
+                tbPurchasePart.ToolTip = "Teilverwendung \r\n \r\n" + "Kaufteil " + id + " " + 
+                                            purchasePartTooltip.name + ": \r\n \r\n" + purchasePartTooltip.rawString;
+                
+            }
+
         }
 
         // Zeige/Schließe Detail-Ansicht
@@ -186,6 +201,7 @@ namespace BikeProductionPlanner.Views
                         tbCurrentStockPD = (TextBox)this.FindName(tbCurrentStockPDName);
                         tbCurrentStockPD.Text = Convert.ToString(incomingOrderAmount);
                         tbCurrentStockPD.FontWeight = FontWeights.Bold;
+                        tbCurrentStockPD.ToolTip = "Eingehende Lieferung: " + Convert.ToString(incomingOrderAmount);
                     }
 
                     String amountInLoopAsString = "";
@@ -434,8 +450,10 @@ namespace BikeProductionPlanner.Views
 
             }
 
-            // String inhaltOrderList = Convert.ToString(orderList.Count());
-            // MessageBox.Show(inhaltOrderList);
+            // Wechsle auf nächste Seite
+            MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.CustomizePage);
+            ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
+            lvMenu.SelectedIndex = 7;
         }
 
     }

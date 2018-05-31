@@ -79,6 +79,90 @@ namespace BikeProductionPlanner.Logic.Logic
             return GetPurchasePartsFromPurchase().Find(x => x.id == id);
         }
 
+        // Kaufteilklasse für Tooltip
+        public class purchasePartTooltip
+        {
+            public int idPPTooltip;
+            public String name;
+            public String rawString;
+
+            public purchasePartTooltip(int idPPTooltip, String name, String rawString)
+            {
+                this.idPPTooltip = idPPTooltip;
+                this.name = name;
+                this.rawString = rawString;
+            }
+        }
+
+        // Liste der Kaufteil für Tooltip
+        public static List<purchasePartTooltip> purchasePartsTooltip = new List<purchasePartTooltip>()
+        {
+            new purchasePartTooltip(21, "Kette", "1 * P1 Kinderfahrrad"),
+            new purchasePartTooltip(22, "Kette", "1 * P2 Damenfahrrad"),
+            new purchasePartTooltip(23, "Kette", "1 * P3 Herrenfahrrad"),
+            new purchasePartTooltip(24, "Mutter 3/8", "1 * P1 Kinderfahrrad \r\n 1 * E51 Fahrrad ohne Pedal \r\n 1 * E16 Lenker cpl. \r\n" +
+                                                      "2 * E50 Rahmen und Räder \r\n 2 * E49 Vorderrad cpl. \r\n \r\n 1 * P2 Damenfahrrad \r\n" +
+                                                      "1 * E56 Fahrrad ohne Pedal \r\n 1 * E16 Lenker cpl. \r\n 2 * E55 Rahmen und Räder \r\n" +
+                                                      "2 * E54 Vorderrad cpl. \r\n \r\n 1 * P3 Herrenfahrrad \r\n 1 * E31 Fahrrad ohne Pedal \r\n" +
+                                                      "1 * E16 Lenker cpl. \r\n 2 * E30 Rahmen und Räder \r\n 2 * E29 Vorderrad montiert"),
+            new purchasePartTooltip(25, "Scheibe 3/8", "Kinderfahrrad \r\n 2 * E50 Rahmen und Räder \r\n 2 * E49 Vorderrad cpl. \r\n \r\n Damenfahrrad \r\n" + 
+                                                       "2 * E55 Rahmen und Räder \r\n 2 * E54 Vorderrad cpl. \r\n \r\n Herrenfahrrad \r\n" + 
+                                                       "2 * E30 Rahmen und Räder \r\n 2 * E29 Vorderrad montiert"),
+            new purchasePartTooltip(27, "Schraube 3/8", "1 * P1 Kinderfahrrad \r\n 1 * E51 Fahrrad ohne Pedal \r\n \r\n 1 * P2 Damenfahrrad \r\n" +
+                                                        "1 * E56 Fahrrad ohne Pedal \r\n \r\n 1 * P3 Herrenfahrrad \r\n 1 * E31 Fahrrad ohne Pedal"),
+            new purchasePartTooltip(28, "Rohr 3/4", "Kinderfahrrad \r\n 1 * E16 Lenker cpl. \r\n 3 * E18 Rahmen \r\n \r\n Damenfahrrad \r\n" + 
+                                                    "1 * E16 Lenker cpl. \r\n 4 * E19 Rahmen \r\n \r\n Herrenfahrrad \r\n 1 * E16 Lenker cpl. \r\n 5 * E20 Rahmen"),
+            new purchasePartTooltip(32, "Farbe", "Kinderfahrrad \r\n 1 * E10 Schutzblech hinten \r\n 1 * E13 Schutzblech vorn \r\n 1 * E18 Rahmen \r\n \r\n" +
+                                                 "Damenfahrrad \r\n 1 * E11 Schutzblech hinten \r\n 1 * E14 Schutzblech vorn \r\n 1 * E19 Rahmen \r\n \r\n" +
+                                                 "Herrenfahrrad \r\n 1 * E12 Schutzblech hinten \r\n 1 * E15 Schutzblech vorn \r\n 1 * E20 Rahmen"),
+            new purchasePartTooltip(33, "Felge cpl.", "Herrenfahrrad \r\n 1 * E6 Hinterradgruppe \r\n 1 * E9 Vorderradgruppe"),
+            new purchasePartTooltip(34, "Speiche", "Herrenfahrrad \r\n 36 * E6 Hinterradgruppe \r\n 36 * E9 Vorderradgruppe"),
+            new purchasePartTooltip(35, "Nabe", "Kinderfahrrad \r\n 2 * E4 Hinterradgruppe \r\n 2 * E7 Vorderradgruppe \r\n \r\n Damenfahrrad \r\n" + 
+                                                "2 * E5 Hinterradgruppe \r\n 2 * E8 Vorderradgruppe \r\n \r\n Herrenfahrrad \r\n 2 * E6 Hinterradgruppe \r\n" +
+                                                "2 * E9 Vorderradgruppe"),
+            new purchasePartTooltip(36, "Freilauf", "Kinderfahrrad \r\n 1 * E4 Hinterradgruppe \r\n \r\n Damenfahrrad \r\n 1 * E5 Hinterradgruppe \r\n \r\n" +
+                                                    "Herrenfahrrad \r\n 1 * E6 Hinterradgruppe"),
+            new purchasePartTooltip(37, "Gabel", "Kinderfahrrad \r\n 1 * E7 Vorderradgruppe \r\n \r\n Damenfahrrad \r\n 1 * E8 Vorderradgruppe \r\n \r\n" +
+                                                 "Herrenfahrrad \r\n 1 * E9 Vorderradgruppe"),
+            new purchasePartTooltip(38, "Welle", "Kinderfahrrad \r\n 1 * E7 Vorderradgruppe \r\n \r\n Damenfahrrad \r\n 1 * E8 Vorderradgruppe \r\n \r\n" +
+                                                 "Herrenfahrrad \r\n 1 * E9 Vorderradgruppe"),
+            new purchasePartTooltip(39, "Blech", "Kinderfahrrad \r\n 1 * E10 Schutzblech hinten \r\n 1 * E13 Schutzblech vorn \r\n \r\n" +
+                                                 "Damenfahrrad \r\n 1 * E11 Schutzblech hinten \r\n 1 * E14 Schutzblech vorn \r\n \r\n" +
+                                                 "Herrenfahrrad \r\n 1 * E12 Schutzblech hinten \r\n 1 * E15 Schutzblech vorn"),
+            new purchasePartTooltip(40, "Lenker", "Kinderfahrrad \r\n 1 * E16 Lenker cpl. \r\n \r\n Damenfahrrad \r\n 1 * E16 Lenker cpl. \r\n \r\n" +
+                                                  "Herrenfahrrad \r\n 1 * E16 Lenker cpl."),
+            new purchasePartTooltip(41, "Mutter 3/4", "Kinderfahrrad \r\n 1 * E16 Lenker cpl. \r\n \r\n Damenfahrrad \r\n 1 * E16 Lenker cpl. \r\n \r\n" +
+                                                      "Herrenfahrrad \r\n 1 * E16 Lenker cpl."),
+            new purchasePartTooltip(42, "Griff", "Kinderfahrrad \r\n 2 * E16 Lenker cpl. \r\n \r\n Damenfahrrad \r\n 2 * E16 Lenker cpl. \r\n \r\n" +
+                                                 "Herrenfahrrad \r\n 2 * E16 Lenker cpl."),
+            new purchasePartTooltip(43, "Sattel", "Kinderfahrrad \r\n 1 * E17 Sattel cpl. \r\n \r\n Damenfahrrad \r\n 1 * E17 Sattel cpl. \r\n \r\n" +
+                                                  "Herrenfahrrad \r\n 1 * E17 Sattel cpl."),
+            new purchasePartTooltip(44, "Stange 1/2", "Kinderfahrrad \r\n 2 * E26 Pedal cpl. \r\n 1 * E17 Sattel cpl. \r\n \r\n" +
+                                                      "Damenfahrrad \r\n 2 * E26 Pedal cpl. \r\n 1 * E17 Sattel cpl. \r\n \r\n" +
+                                                      "Herrenfahrrad \r\n 2 * E26 Pedal cpl. \r\n 1 * E17 Sattel cpl."),
+            new purchasePartTooltip(45, "Mutter 1/4", "Kinderfahrrad \r\n 1 * E17 Sattel cpl. \r\n \r\n Damenfahrrad \r\n 1 * E17 Sattel cpl. \r\n \r\n" +
+                                                      "Herrenfahrrad \r\n 1 * E17 Sattel cpl."),
+            new purchasePartTooltip(46, "Schraube 1/4", "Kinderfahrrad \r\n 1 * E17 Sattel cpl. \r\n \r\n Damenfahrrad \r\n 1 * E17 Sattel cpl. \r\n \r\n" +
+                                                        "Herrenfahrrad \r\n 1 * E17 Sattel cpl."),
+            new purchasePartTooltip(47, "Zahnkranz", "Kinderfahrrad \r\n 1 * E26 Pedal cpl. \r\n \r\n Damenfahrrad \r\n 1 * E26 Pedal cpl. \r\n \r\n" +
+                                                     "Herrenfahrrad \r\n 1 * E26 Pedal cpl."),
+            new purchasePartTooltip(48, "Pedal", "Kinderfahrrad \r\n 2 * E26 Pedal cpl. \r\n \r\n Damenfahrrad \r\n 2 * E26 Pedal cpl. \r\n \r\n" +
+                                                 "Herrenfahrrad \r\n 2 * E26 Pedal cpl."),
+            new purchasePartTooltip(52, "Felge cpl.", "Kinderfahrrad \r\n 1 * E4 Hinterradgruppe \r\n 1 * E7 Vorderradgruppe"),
+            new purchasePartTooltip(53, "Speiche", "Kinderfahrrad \r\n 36 * E4 Hinterradgruppe \r\n 36 * E7 Vorderradgruppe"),
+            new purchasePartTooltip(57, "Felge cpl.", "Damenfahrrad \r\n 1 * E5 Hinterradgruppe \r\n 1 * E8 Vorderradgruppe"),
+            new purchasePartTooltip(58, "Speiche", "Damenfahrrad \r\n 36 * E5 Hinterradgruppe \r\n 36 * E8 Vorderradgruppe"),
+            new purchasePartTooltip(59, "Schweißdraht", "Kinderfahrrad \r\n 2 * E18 Rahmen \r\n \r\n Damenfahrrad \r\n 2 * E19 Rahmen \r\n \r\n" +
+                                                        "Herrenfahrrad \r\n 2 * E20 Rahmen"),
+
+        };
+
+        public static List<purchasePartTooltip> GetPurchasePartsTooltip()
+        {
+            return purchasePartsTooltip;
+        }
+
+
         // Bedarfsklasse
         public class Demand
         {
@@ -150,6 +234,16 @@ namespace BikeProductionPlanner.Logic.Logic
                 new DemandP0(59, ProductionPlan.k59)
         };
 
+        public static List<DemandP0> GetPurchasePartsInP0()
+        {
+            return purchasePartsInP0;
+        }
+
+        // Hole Kaufteil anhand seiner ID
+        public static DemandP0 GetGetPurchasePartsInP0ByID(int id)
+        {
+            return GetPurchasePartsInP0().Find(x => x.idDemandP0 == id);
+        }
 
         // Hole Prognosen aus StorageService
         //Periode 1
@@ -173,7 +267,7 @@ namespace BikeProductionPlanner.Logic.Logic
 
             foreach (purchasePart pb in purchasePartsFromPurchase)
             {
-                int calculatedDemandP0 = purchasePartsInP0.Find(x => x.idDemandP0 == pb.id).demandInP0Only;
+                int calculatedDemandP0 = GetGetPurchasePartsInP0ByID(pb.id).demandInP0Only;
 
                 int calculatedDemandP1 = pb.useInBike1 * salesOfBike1InP1 +
                                             pb.useInBike2 * salesOfBike2InP1 +
