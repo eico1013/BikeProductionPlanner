@@ -1,4 +1,5 @@
 ﻿using BikeProductionPlanner.Logic.Database;
+using System.Collections.Generic;
 
 namespace BikeProductionPlanner.Logic.Logic
 {
@@ -326,6 +327,7 @@ namespace BikeProductionPlanner.Logic.Logic
             k59 = 2 * e18 + 2 * e19 + 2 * e20;
 
             #endregion
+
         }
 
     }

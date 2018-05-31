@@ -194,7 +194,7 @@ namespace BikeProductionPlanner.Views
                     int demandInLoop = 0;
                     TextBox tbCurrentStockInLoop;
                     // Initiale Mengenberechnung
-                    amountInLoop = purchasePart.Amount - demandP0PerDay;
+                    amountInLoop = purchasePart.Amount;
 
                     for (int i = 0; i < 4; ++i)
                     {
@@ -220,6 +220,9 @@ namespace BikeProductionPlanner.Views
 
                         for (int j = 1; j < 6; ++j)
                         {
+                            // Mengenberechnung
+                            amountInLoop = amountInLoop - demandInLoop;
+
                             tbCurrentStockInLoopName = "currentStockP" + i + "D" + j + "K" + id;
                             tbCurrentStockInLoop = (TextBox)this.FindName(tbCurrentStockInLoopName);
                             int tbOldAmount = Convert.ToInt32(tbCurrentStockInLoop.Text);
@@ -241,8 +244,6 @@ namespace BikeProductionPlanner.Views
                                 tbCurrentStockInLoop.Background = Brushes.WhiteSmoke;
                             }
 
-                            // Mengenberechnung
-                            amountInLoop = amountInLoop - demandInLoop;
                         }
                     }
 
