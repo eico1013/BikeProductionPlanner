@@ -30,7 +30,6 @@
                     <Button Margin="20, 10" Width="250" Height="50" Content="Neue Daten einlesen" Click="Button_RemoveData" RenderTransformOrigin="1.024,0.158" />
 
                     <Button Margin="2, 10" Width="250" Height="50"
-                        Background="#FF4A9AFF"
                         Content="Planung starten" Click="Button_Click_1" />
                 </StackPanel>
             </StackPanel>
