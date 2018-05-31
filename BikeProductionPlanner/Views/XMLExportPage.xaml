@@ -5,13 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BikeProductionPlanner.WPF.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="800" Background="White">
+      d:DesignHeight="450" d:DesignWidth="750" Background="White">
 
-    <StackPanel>
-        <TextBlock Text="Datenexport" Margin="20, 10" FontSize="26" FontWeight="Bold"/>
-
-        <Button Margin="20, 10" Width="250" Height="50"
-                Background="#FF4A9AFF" HorizontalAlignment="Left"
-                Content="Datei exportieren" Click="Button_Click" />
+    <StackPanel VerticalAlignment="Center">
+        <TextBlock Text="Export" Margin="20, 10" FontSize="48" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button Margin="215,10,212,10" Width="373" Height="100"
+                Background="#FF4A9AFF" VerticalAlignment="Center" HorizontalAlignment="Center"
+                Content="Datei exportieren" Click="Button_Click" FontSize="24" />
     </StackPanel>
 </UserControl>

@@ -45,14 +45,7 @@ namespace BikeProductionPlanner.WPF.Views
             DataImportSuccess.Visibility = Visibility.Visible;
             ImportButtons.IsEnabled = false;
             NextButtons.Visibility = Visibility.Visible;
-            Border.Visibility = Visibility.Visible;
-            ImportDataInfo.Visibility = Visibility.Visible;
-
-            this.data1.Text = XmlInputParser.Instance.WarehouseStocks.Count + " Lagerbestände";
-            this.data2.Text = XmlInputParser.Instance.WaitingListWorkstations.Count + " Wartelisten Arbeitsplatz";
-            this.data3.Text = XmlInputParser.Instance.WaitingListStocks.Count + " Wartelisten Material";
-            this.data4.Text = XmlInputParser.Instance.OrdersInWork.Count + " Aufträge in Bearbeitung";
-            this.data5.Text = XmlInputParser.Instance.FutureInwardStockMovments.Count + " Zukünftige Bestellmenge";
+           
 
         }
 
@@ -80,24 +73,10 @@ namespace BikeProductionPlanner.WPF.Views
 
             webserviceImportWindow.ShowDialog();
 
-            this.data1.Text = XmlInputParser.Instance.WarehouseStocks.Count + " Lagerbestände";
-            this.data2.Text = XmlInputParser.Instance.WaitingListWorkstations.Count + " Wartelisten Arbeitsplatz";
-            this.data3.Text = XmlInputParser.Instance.WaitingListStocks.Count + " Wartelisten Material";
-            this.data4.Text = XmlInputParser.Instance.OrdersInWork.Count + " Aufträge in Bearbeitung";
-            this.data5.Text = XmlInputParser.Instance.FutureInwardStockMovments.Count + " Zukünftige Bestellmenge";
-
 
             DataImportSuccess.Visibility = Visibility.Visible;
             ImportButtons.IsEnabled = false;
             NextButtons.Visibility = Visibility.Visible;
-            Border.Visibility = Visibility.Visible;
-            ImportDataInfo.Visibility = Visibility.Visible;
-
-            this.data1.Text = XmlInputParser.Instance.WarehouseStocks.Count + " Lagerbestände";
-            this.data2.Text = XmlInputParser.Instance.WaitingListWorkstations.Count + " Wartelisten Arbeitsplatz";
-            this.data3.Text = XmlInputParser.Instance.WaitingListStocks.Count + " Wartelisten Material";
-            this.data4.Text = XmlInputParser.Instance.OrdersInWork.Count + " Aufträge in Bearbeitung";
-            this.data5.Text = XmlInputParser.Instance.FutureInwardStockMovments.Count + " Zukünftige Bestellmenge";
 
            // MainWindow.Instance.UpdateUI(State.Input);
         }
