@@ -98,16 +98,60 @@ namespace BikeProductionPlanner.Logic.Logic
             }
         }
 
+        // Bedarfsklasse für P0
+        public class DemandP0
+        {
+            public int idDemandP0;
+            public int demandInP0Only;
+
+            public DemandP0(int idDemandP0, int demandInP0Only)
+            {
+                this.idDemandP0 = idDemandP0;
+                this.demandInP0Only = demandInP0Only;
+            }
+        }
+
         // Hole Kaufteilliste aus StorageService
         static List<WarehouseStock> purchasePartsFromXML = StorageService.Instance.GetPurchaseParts();
         static List<purchasePart> purchasePartsFromPurchase = GetPurchasePartsFromPurchase();
-            
 
-        // Hole Vertriebswunsch und Prognosen aus StorageService
-        // Periode 0
-        public static int salesOfBike1InP0 = StorageService.Instance.vertriebswunschP1;
-        public static int salesOfBike2InP0 = StorageService.Instance.vertriebswunschP2;
-        public static int salesOfBike3InP0 = StorageService.Instance.vertriebswunschP3;
+
+        // Generiere Bedarfsliste für Periode 0
+        public static List<DemandP0> purchasePartsInP0 = new List<DemandP0>()
+        {
+                new DemandP0(21, ProductionPlan.k21),
+                new DemandP0(22, ProductionPlan.k22),
+                new DemandP0(23, ProductionPlan.k23),
+                new DemandP0(24, ProductionPlan.k24),
+                new DemandP0(25, ProductionPlan.k25),
+                new DemandP0(27, ProductionPlan.k27),
+                new DemandP0(28, ProductionPlan.k28),
+                new DemandP0(32, ProductionPlan.k32),
+                new DemandP0(33, ProductionPlan.k33),
+                new DemandP0(34, ProductionPlan.k34),
+                new DemandP0(35, ProductionPlan.k35),
+                new DemandP0(36, ProductionPlan.k36),
+                new DemandP0(37, ProductionPlan.k37),
+                new DemandP0(38, ProductionPlan.k38),
+                new DemandP0(39, ProductionPlan.k39),
+                new DemandP0(40, ProductionPlan.k40),
+                new DemandP0(41, ProductionPlan.k41),
+                new DemandP0(42, ProductionPlan.k42),
+                new DemandP0(43, ProductionPlan.k43),
+                new DemandP0(44, ProductionPlan.k44),
+                new DemandP0(45, ProductionPlan.k45),
+                new DemandP0(46, ProductionPlan.k46),
+                new DemandP0(47, ProductionPlan.k47),
+                new DemandP0(48, ProductionPlan.k48),
+                new DemandP0(52, ProductionPlan.k52),
+                new DemandP0(53, ProductionPlan.k53),
+                new DemandP0(57, ProductionPlan.k57),
+                new DemandP0(58, ProductionPlan.k58),
+                new DemandP0(59, ProductionPlan.k59)
+        };
+
+
+        // Hole Prognosen aus StorageService
         //Periode 1
         public static int salesOfBike1InP1 = StorageService.Instance.prognose1P1;
         public static int salesOfBike2InP1 = StorageService.Instance.prognose1P2;
@@ -121,6 +165,7 @@ namespace BikeProductionPlanner.Logic.Logic
         public static int salesOfBike2InP3 = StorageService.Instance.prognose3P2;
         public static int salesOfBike3InP3 = StorageService.Instance.prognose3P3;
 
+
         // Bedarf für jedes Kaufteil berechnen und zurückgeben       
         public static List<Demand> GetDemandOfParts()
         {
@@ -128,9 +173,7 @@ namespace BikeProductionPlanner.Logic.Logic
 
             foreach (purchasePart pb in purchasePartsFromPurchase)
             {
-                int calculatedDemandP0 = pb.useInBike1 * salesOfBike1InP0 +
-                                            pb.useInBike2 * salesOfBike2InP0 +
-                                            pb.useInBike3 * salesOfBike3InP0;
+                int calculatedDemandP0 = purchasePartsInP0.Find(x => x.idDemandP0 == pb.id).demandInP0Only;
 
                 int calculatedDemandP1 = pb.useInBike1 * salesOfBike1InP1 +
                                             pb.useInBike2 * salesOfBike2InP1 +
@@ -270,19 +313,23 @@ namespace BikeProductionPlanner.Logic.Logic
                 // Reichweitenberechnung für den Artikel
                 // Periode 0
                 startAmountP0 = startAmountP0 + Convert.ToDouble(wh.Amount);
-                // nicht aufgerundet
-                double test0 = startAmountP0 / demandP0PerDay;
-                // aufgerundet
-                coverageInP0 = Convert.ToInt32(Math.Floor(startAmountP0 / demandP0PerDay));
-                if (test0 > 5.0 && test0 < 6.0)
+
+                if (demandP0 > 0)
                 {
-                    coverageInP0 = coverageInP0 + 1;
-                }
-                coverageSum = coverageInP0;
-                coverageSumAsDouble = test0;
+                    // nicht aufgerundet
+                    double test0 = startAmountP0 / demandP0PerDay;
+                    // aufgerundet
+                    coverageInP0 = Convert.ToInt32(Math.Floor(startAmountP0 / demandP0PerDay));
+                    if (test0 > 5.0 && test0 < 6.0)
+                    {
+                        coverageInP0 = coverageInP0 + 1;
+                    }
+                    coverageSum = coverageInP0;
+                    coverageSumAsDouble = test0;
+                }                
 
                 // Periode 1
-                if (coverageInP0 > 5)
+                if (coverageInP0 > 5 || demandP0 == 0)
                 {
                     startAmountP1 = startAmountP1 + startAmountP0 - demandP0;
                     // nicht aufgerundet
