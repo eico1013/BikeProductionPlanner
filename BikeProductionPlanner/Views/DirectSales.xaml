@@ -63,7 +63,7 @@
         </Grid>
 
         <Button Margin="20, 10" Width="250" Height="50"
-                Background="#FF4A9AFF" HorizontalAlignment="Left"
+                HorizontalAlignment="Left"
                 Content="Speichern und Fortfahren" Click="Button_Click" />
 
     </StackPanel>

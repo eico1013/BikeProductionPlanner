@@ -44,6 +44,8 @@ namespace BikeProductionPlanner.Views
                 StorageService.Instance.AddSellDirect(new SellDirect(Convert.ToInt32(directProduct3.Text), 3, Convert.ToInt32(contractPenaltyProduct3.Text), Convert.ToInt32(retailPriceProduct3.Text)));
 
                 MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.SafetyStock);
+                ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
+                lvMenu.SelectedIndex = 3;
             }
             catch
             {

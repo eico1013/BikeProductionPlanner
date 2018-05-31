@@ -164,5 +164,12 @@ namespace BikeProductionPlanner.WPF.Views
         {
 
         }
+
+        private void down_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.DataExport);
+            ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
+            lvMenu.SelectedIndex = 8;
+        }
     }
 }

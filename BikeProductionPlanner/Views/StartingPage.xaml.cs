@@ -26,24 +26,22 @@ namespace BikeProductionPlanner.Views
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            //MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.Impressum);
-        }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //Unser Team
 
-            //MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.Impressum);
+            MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.Impressum);
+            ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
+            lvMenu.SelectedIndex = 9;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             //Start Planning
 
-            //MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.XMLImportPage);
+            MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.DataImport);
+            ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
+            lvMenu.SelectedIndex = 1;
         }
     }
 }

@@ -10,7 +10,7 @@
     <StackPanel VerticalAlignment="Center">
         <TextBlock Text="Export" Margin="20, 10" FontSize="48" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Button Margin="215,10,212,10" Width="373" Height="100"
-                Background="#FF4A9AFF" VerticalAlignment="Center" HorizontalAlignment="Center"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
                 Content="Datei exportieren" Click="Button_Click" FontSize="24" />
     </StackPanel>
 </UserControl>

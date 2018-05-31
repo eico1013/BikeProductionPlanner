@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="800" Background="#FFE5E5E5">
+      d:DesignHeight="1000" d:DesignWidth="800" Background="#FFE5E5E5">
 
     <StackPanel>
         <TextBlock Text="Kapazitäten an den Arbeitsplätzen" Margin="20, 10" FontSize="26" FontWeight="Bold"/>
@@ -238,5 +238,6 @@
                     </StackPanel>
             </materialDesign:Card>
         </Grid>
+        <Button Content="Weiter" Margin="270,0,368,0" Click="Button_Click"/>
     </StackPanel>
 </UserControl>

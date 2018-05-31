@@ -8,8 +8,7 @@
              d:DesignHeight="600" d:DesignWidth="800">
     <ScrollViewer PanningMode="VerticalOnly" VerticalScrollBarVisibility="Auto">
         <StackPanel>
-
-            <Button Content="Calculate" Width="100" Click="Button_Click" RenderTransformOrigin="1.784,3.006"/>
+            <Button Content="Aktualisieren" Width="124" Click="Button_Click" RenderTransformOrigin="1.784,3.006"/>
             <TabControl Height="500" Width="775">
                 <TabItem Header="Kinderfahrrad" Background="LightSlateGray">
                     <Grid MaxWidth="800" HorizontalAlignment="Stretch" Margin="0,0,2,52">
@@ -106,7 +105,7 @@
                         <TextBox x:Name="kind210" HorizontalAlignment="Left" Height="23" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="False" Grid.Column="5"/>
                         <TextBox x:Name="kind211" HorizontalAlignment="Left" Height="23" Margin="10,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="False" Grid.Column="5"/>
                         <TextBox x:Name="kind212" HorizontalAlignment="Left" Height="23" Margin="10,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="False" Grid.Column="5"/>
-                        
+
                         <TextBox x:Name="kind31" HorizontalAlignment="Left" Height="23" Margin="10,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="True" Grid.Column="7"/>
                         <TextBox x:Name="kind32" HorizontalAlignment="Left" Height="23" Margin="10,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="True" Grid.Column="7"/>
                         <TextBox x:Name="kind33" HorizontalAlignment="Left" Height="23" Margin="10,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="True" Grid.Column="7"/>
@@ -311,7 +310,7 @@
                         <Label Content="+" HorizontalAlignment="Left" Margin="75,330,0,0" VerticalAlignment="Top" Grid.Column="5" FontWeight="Bold" Grid.ColumnSpan="2"/>
                         <Label Content="+" HorizontalAlignment="Left" Margin="75,360,0,0" VerticalAlignment="Top" Grid.Column="5" FontWeight="Bold" Grid.ColumnSpan="2"/>
                         <Label Content="+" HorizontalAlignment="Left" Margin="75,390,0,0" VerticalAlignment="Top" Grid.Column="5" FontWeight="Bold" Grid.ColumnSpan="2"/>
-                        
+
                         <TextBox x:Name="damen22" HorizontalAlignment="Left" Height="23" Margin="10,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="False" Grid.Column="5"/>
                         <TextBox x:Name="damen23" HorizontalAlignment="Left" Height="23" Margin="10,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="False" Grid.Column="5"/>
                         <TextBox x:Name="damen24" HorizontalAlignment="Left" Height="23" Margin="10,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="False" Grid.Column="5"/>
@@ -467,7 +466,7 @@
                             <ColumnDefinition Width="85"/>
                             <ColumnDefinition Width="20"/>
                         </Grid.ColumnDefinitions>
-                        
+
                         <Label x:Name="ProduktVertrieb2" Content="Vertriebs-&#xA;wunsch" HorizontalAlignment="Center" Margin="0,5,13,0" VerticalAlignment="Top" Height="45" Width="60" Grid.Column="3"/>
                         <Label x:Name="ProduktSicher2" Content="Sicherheits- &#xA;bestand" HorizontalAlignment="Center"  Margin="6,5,7,0" VerticalAlignment="Top" Height="45" Width="72" Grid.Column="7"/>
                         <Label x:Name="ProduktLager2" Content="Lagerbestand &#xA;Vorperiode" HorizontalAlignment="Center"  Margin="17,5,18,0" VerticalAlignment="Top" Height="45" Width="90" Grid.Column="8" Grid.ColumnSpan="3"/>
@@ -539,7 +538,7 @@
                         <TextBox x:Name="herren210" HorizontalAlignment="Left" Height="23" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="False" Grid.Column="5"/>
                         <TextBox x:Name="herren211" HorizontalAlignment="Left" Height="23" Margin="10,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="False" Grid.Column="5"/>
                         <TextBox x:Name="herren212" HorizontalAlignment="Left" Height="23" Margin="10,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="False" Grid.Column="5"/>
-                        
+
                         <TextBox x:Name="herren31" HorizontalAlignment="Left" Height="23" Margin="10,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="True" Grid.Column="7"/>
                         <TextBox x:Name="herren32" HorizontalAlignment="Left" Height="23" Margin="10,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="True" Grid.Column="7"/>
                         <TextBox x:Name="herren33" HorizontalAlignment="Left" Height="23" Margin="10,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" IsEnabled="True" Grid.Column="7"/>
@@ -661,6 +660,7 @@
                     </Grid>
                 </TabItem>
             </TabControl>
+            <Button Content="Weiter" Width="76" Click="Button_Click_1"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

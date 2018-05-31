@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BikeProductionPlanner.WPF.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="800"
       Background="White">
 
     <StackPanel>
@@ -28,6 +28,7 @@
             <TextBox x:Name="prioAddAmount" HorizontalAlignment="Left" Height="23" Margin="20,399,0,-58.8" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="4" TextChanged="Forecast1_TextChanged" PreviewTextInput="NumberIntValidationTextBox" />
             <Label x:Name="prioAddItemDescription" Content="Teilnr:" HorizontalAlignment="Left" Margin="21,309,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.02,-5.231"/>
             <Label x:Name="prioAddAmountDescription" Content="Anzahl:" HorizontalAlignment="Left" Margin="21,368,0,-30.8" VerticalAlignment="Top" RenderTransformOrigin="2.02,-5.231"/>
+            <Button Content="Weiter" Height="46" HorizontalAlignment="Left" Margin="174,497,0,-180" x:Name="down_Copy" VerticalAlignment="Top" Width="122" RenderTransformOrigin="1.405,0.605" Click="down_Copy_Click"  />
         </Grid>
     </StackPanel>
 </UserControl>

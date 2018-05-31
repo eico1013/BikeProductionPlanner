@@ -823,6 +823,13 @@ namespace BikeProductionPlanner.Views
 
             MainWindowFinal.Instance.UpdateUI(State.Result);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.Capacity);
+            ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
+            lvMenu.SelectedIndex = 5;
+        }
     }
 }
 

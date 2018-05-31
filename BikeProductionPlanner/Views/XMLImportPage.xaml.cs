@@ -51,12 +51,17 @@ namespace BikeProductionPlanner.WPF.Views
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ContentControl.Content = new Sales();
+            MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.Sales);
+            ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
+            lvMenu.SelectedIndex = 2;
         }
 
         private void Button_RemoveData(object sender, RoutedEventArgs e)
         {
-            ContentControl.Content = new XMLImportPage();
+            MainWindowFinal.Instance.pageMap[Logic.UI.MenuItems.MenuItemsEnum.DataImport] = new XMLImportPage();
+            MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.DataImport);
+            ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
+            lvMenu.SelectedIndex = 1;
         }
 
         private void OpenHelpButton(object sender, RoutedEventArgs e)

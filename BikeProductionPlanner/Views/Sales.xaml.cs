@@ -141,12 +141,14 @@ namespace BikeProductionPlanner.Views
                 StorageService.Instance.prognose3P3 = Convert.ToInt32(period3product3.Text);
 
                 MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.SafetyStock);
+                ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
+                lvMenu.SelectedIndex = 3;
             }
             catch
             {
-if (Convert.ToInt32(period0sum.Text) > maxValue || Convert.ToInt32(period1sum.Text) > maxValue
+                if (Convert.ToInt32(period0sum.Text) > maxValue || Convert.ToInt32(period1sum.Text) > maxValue
                     || Convert.ToInt32(period2sum.Text) > maxValue || Convert.ToInt32(period3sum.Text) > maxValue)
-                {
+                { 
                     MessageBox.Show("Fehler: Die Summe muss kleiner 1050 sein.");
                     return;
                 }

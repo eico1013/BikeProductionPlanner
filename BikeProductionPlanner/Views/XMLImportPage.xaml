@@ -18,7 +18,7 @@
             <StackPanel Width="858" Margin="0,0,0,-0.4">
                 <StackPanel x:Name="ImportButtons" RenderTransformOrigin="1.067,0.521" Height="152" Width="600" Margin="69,0,68.6,0">
 
-                    <Button Margin="158,10,175,10" Height="129" Content="XML Import (offline)" Click="Button_Click" RenderTransformOrigin="1.296,2.336" />
+                    <Button Margin="158,10,175,10" Height="129" Content="XML Import" Click="Button_Click" RenderTransformOrigin="1.296,2.336" FontSize="24" />
                 </StackPanel>
 
                 <StackPanel RenderTransformOrigin="0.504,0.048" Height="121" Margin="60,0,-0.4,0">

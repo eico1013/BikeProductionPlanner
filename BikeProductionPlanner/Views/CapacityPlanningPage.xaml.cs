@@ -311,5 +311,12 @@ namespace BikeProductionPlanner.Views
                 }
             }
         }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.Purchase);
+            ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
+            lvMenu.SelectedIndex = 6;
+        }
     }
 }

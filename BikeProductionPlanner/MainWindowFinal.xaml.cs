@@ -17,7 +17,7 @@ namespace BikeProductionPlanner
 
         private State uiState;
         private Dictionary<string, Button> menuButtonMap;
-        private Dictionary<MenuItems.MenuItemsEnum, UserControl> pageMap;
+        public Dictionary<MenuItems.MenuItemsEnum, UserControl> pageMap;
 
         public static MainWindowFinal Instance;
 
@@ -192,10 +192,10 @@ namespace BikeProductionPlanner
                 case 7:
                     NavigateTo(MenuItems.MenuItemsEnum.CustomizePage);
                     break;
-                case 9:
+                case 8:
                     NavigateTo(MenuItems.MenuItemsEnum.DataExport);
                     break;
-                case 10:
+                case 9:
                     NavigateTo(MenuItems.MenuItemsEnum.Impressum);
                     break;
                 default:
