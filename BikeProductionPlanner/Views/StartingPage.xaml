@@ -8,12 +8,12 @@
              mc:Ignorable="d" d:DesignWidth="800" Background="White" Height="600">
     <StackPanel>
         <Grid Height="600">
-            <Label FontWeight="Bold" Content="Projekt: BikeProductionPlanner" HorizontalAlignment="Left" Margin="200,328,0,0" VerticalAlignment="Top"/>
-            <Image Source="/images/produktion.jpg" HorizontalAlignment="Left" Height="284" Margin="87,10,0,0" VerticalAlignment="Top" Width="437"/>
+            <Label FontWeight="Bold" Content="Projekt: BikeProductionPlanner" Margin="315,359,298,215"/>
+            <Image Source="/images/produktion.jpg" Margin="180,39,207,277"/>
 
             <Button
             Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-            ToolTip="Unser Team" Margin="200,448,544,96" Click="Button_Click_1">
+            ToolTip="Unser Team" Margin="315,504,429,40" Click="Button_Click_1">
                 <materialDesign:PackIcon
                 Kind="Bike"
                 Height="40"
@@ -21,13 +21,13 @@
             </Button>
             <Button
             Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-            ToolTip="Produktionsplanung starten" Margin="282,448,462,96" Click="Button_Click_2">
+            ToolTip="Produktionsplanung starten" Margin="446,504,298,40" Click="Button_Click_2">
                 <materialDesign:PackIcon
                 Kind="ArrowRightDropCircleOutline"
                 Height="40"
                 Width="40" />
             </Button>
-            <Image Source="/images/hskalogo.jpg" HorizontalAlignment="Left" Height="66" Margin="274,377,0,0" VerticalAlignment="Top" Width="64"/>
+            <Image Source="/images/hskalogo.jpg" Margin="378,390,363,144" RenderTransformOrigin="-0.803,0.611"/>
 
         </Grid>
     </StackPanel>
