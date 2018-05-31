@@ -481,23 +481,17 @@ namespace BikeProductionPlanner.Logic.Logic
                         // Normalbestellung
                         // Frontend aktualisieren: Menge und Normal
                         // Normalbestellung der Bestellliste hinzufügen
-
                         // Typ 5 bedeutet Normalbestellung
                         int orderType = 5;
                         int daysOfPeriodGone = coverageSum;
                         int daysOfPeriodLeft = 20 - coverageSum;
                         double daysOfPeriodLeftAsDouble = 20 - coverageSumAsDouble;
                         double orderAmount = 0.0;
-                        //double amountDifference = 0.0;
 
                         // Periode 3
                         if (daysOfPeriodLeft >= 0 && daysOfPeriodLeft <= 5)
                         {
                             orderAmount = demandP3PerDay * daysOfPeriodLeftAsDouble;
-
-                            //daysOfPeriodGone = daysOfPeriodGone - 15;
-                            //amountDifference = startAmountP3 - demandP3PerDay * daysOfPeriodGone;
-                            //orderAmount = orderAmount - amountDifference;
                         }
 
                         // Periode 2
@@ -505,10 +499,6 @@ namespace BikeProductionPlanner.Logic.Logic
                         {
                             daysOfPeriodLeftAsDouble = daysOfPeriodLeftAsDouble - 5;
                             orderAmount = demandP2PerDay * daysOfPeriodLeftAsDouble + demandP3;
-
-                            //daysOfPeriodGone = daysOfPeriodGone - 10;
-                            //amountDifference = startAmountP2 - demandP2PerDay * daysOfPeriodGone;
-                            //orderAmount = orderAmount - amountDifference;
                         }
 
                         // Periode 1
@@ -516,10 +506,6 @@ namespace BikeProductionPlanner.Logic.Logic
                         {
                             daysOfPeriodLeftAsDouble = daysOfPeriodLeftAsDouble - 10;
                             orderAmount = demandP1PerDay * daysOfPeriodLeftAsDouble + demandP2 + demandP3;
-
-                            //daysOfPeriodGone = daysOfPeriodGone - 5;
-                            //amountDifference = startAmountP1 - demandP1PerDay * daysOfPeriodGone;
-                            //orderAmount = orderAmount - amountDifference;
                         }
 
                         // Periode 0
@@ -527,9 +513,6 @@ namespace BikeProductionPlanner.Logic.Logic
                         {
                             daysOfPeriodLeftAsDouble = daysOfPeriodLeftAsDouble - 15;
                             orderAmount = demandP0PerDay * daysOfPeriodLeftAsDouble + demandP1 + demandP2 + demandP3;
-
-                            //amountDifference = startAmountP0 - demandP0PerDay * daysOfPeriodGone;
-                            //orderAmount = orderAmount - amountDifference;
                         }
 
                         int convertedOrderAmount = Convert.ToInt32(orderAmount);
@@ -560,16 +543,11 @@ namespace BikeProductionPlanner.Logic.Logic
                         int daysOfPeriodLeft = 20 - coverageSum;
                         double daysOfPeriodLeftAsDouble = 20 - coverageSumAsDouble;
                         double orderAmount = 0.0;
-                        //double amountDifference = 0.0;
 
                         // Periode 3
                         if (daysOfPeriodLeft >= 0 && daysOfPeriodLeft <= 5)
                         {
                             orderAmount = demandP3PerDay * daysOfPeriodLeftAsDouble;
-
-                            //daysOfPeriodGone = daysOfPeriodGone - 15;
-                            //amountDifference = startAmountP3 - demandP3PerDay * daysOfPeriodGone;
-                            //orderAmount = orderAmount - amountDifference;
                         }
 
                         // Periode 2
@@ -577,10 +555,6 @@ namespace BikeProductionPlanner.Logic.Logic
                         {
                             daysOfPeriodLeftAsDouble = daysOfPeriodLeftAsDouble - 5;
                             orderAmount = demandP2PerDay * daysOfPeriodLeftAsDouble + demandP3;
-
-                            //daysOfPeriodGone = daysOfPeriodGone - 10;
-                            //amountDifference = startAmountP2 - demandP2PerDay * daysOfPeriodGone;
-                            //orderAmount = orderAmount - amountDifference;
                         }
 
                         // Periode 1
@@ -588,10 +562,6 @@ namespace BikeProductionPlanner.Logic.Logic
                         {
                             daysOfPeriodLeftAsDouble = daysOfPeriodLeftAsDouble - 10;
                             orderAmount = demandP1PerDay * daysOfPeriodLeftAsDouble + demandP2 + demandP3;
-
-                            //daysOfPeriodGone = daysOfPeriodGone - 5;
-                            //amountDifference = startAmountP1 - demandP1PerDay * daysOfPeriodGone;
-                            //orderAmount = orderAmount - amountDifference;
                         }
 
                         // Periode 0
@@ -599,9 +569,6 @@ namespace BikeProductionPlanner.Logic.Logic
                         {
                             daysOfPeriodLeftAsDouble = daysOfPeriodLeftAsDouble - 15;
                             orderAmount = demandP0PerDay * daysOfPeriodLeftAsDouble + demandP1 + demandP2 + demandP3;
-
-                            //amountDifference = startAmountP0 - demandP0PerDay * daysOfPeriodGone;
-                            //orderAmount = orderAmount - amountDifference;
                         }
 
                         int convertedOrderAmount = Convert.ToInt32(orderAmount);
@@ -611,65 +578,7 @@ namespace BikeProductionPlanner.Logic.Logic
 
                         //if ((coverageSum - deliveryTimePriority) < 0)
                         //{
-                        //    // Eilbestellung
-                        //    // Frontend aktualisieren: Menge und Eil und 
                         //    // Hinweis: Auch Eilbestellung kommt nicht rechtzeitig!
-                        //    // Eilbestellung der Bestellliste hinzufügen
-
-                        //    // Typ 4 bedeutet Eilbestellung
-                        //    orderType = 4;
-                        //    daysOfPeriodGone = coverageSum;
-                        //    daysOfPeriodLeft = 20 - coverageSum;
-                        //    daysOfPeriodLeftAsDouble = 20 - coverageSumAsDouble;
-                        //    orderAmount = 0.0;
-                        //    //double amountDifference = 0.0;
-
-                        //    // Periode 3
-                        //    if (daysOfPeriodLeft >= 0 && daysOfPeriodLeft <= 5)
-                        //    {
-                        //        orderAmount = demandP3PerDay * daysOfPeriodLeftAsDouble;
-
-                        //        //daysOfPeriodGone = daysOfPeriodGone - 15;
-                        //        //amountDifference = startAmountP3 - demandP3PerDay * daysOfPeriodGone;
-                        //        //orderAmount = orderAmount - amountDifference;
-                        //    }
-
-                        //    // Periode 2
-                        //    if (daysOfPeriodLeft > 5 && daysOfPeriodLeft <= 10)
-                        //    {
-                        //        daysOfPeriodLeftAsDouble = daysOfPeriodLeftAsDouble - 5;
-                        //        orderAmount = demandP2PerDay * daysOfPeriodLeftAsDouble + demandP3;
-
-                        //        //daysOfPeriodGone = daysOfPeriodGone - 10;
-                        //        //amountDifference = startAmountP2 - demandP2PerDay * daysOfPeriodGone;
-                        //        //orderAmount = orderAmount - amountDifference;
-                        //    }
-
-                        //    // Periode 1
-                        //    if (daysOfPeriodLeft > 10 && daysOfPeriodLeft <= 15)
-                        //    {
-                        //        daysOfPeriodLeftAsDouble = daysOfPeriodLeftAsDouble - 10;
-                        //        orderAmount = demandP1PerDay * daysOfPeriodLeftAsDouble + demandP2 + demandP3;
-
-                        //        //daysOfPeriodGone = daysOfPeriodGone - 5;
-                        //        //amountDifference = startAmountP1 - demandP1PerDay * daysOfPeriodGone;
-                        //        //orderAmount = orderAmount - amountDifference;
-                        //    }
-
-                        //    // Periode 0
-                        //    if (daysOfPeriodLeft > 15 && daysOfPeriodLeft <= 20)
-                        //    {
-                        //        daysOfPeriodLeftAsDouble = daysOfPeriodLeftAsDouble - 15;
-                        //        orderAmount = demandP0PerDay * daysOfPeriodLeftAsDouble + demandP1 + demandP2 + demandP3;
-
-                        //        //amountDifference = startAmountP0 - demandP0PerDay * daysOfPeriodGone;
-                        //        //orderAmount = orderAmount - amountDifference;
-                        //    }
-
-                        //    convertedOrderAmount = Convert.ToInt32(orderAmount);
-                        //    // Füge Artikel der Bestellliste hinzu
-                        //    orderListItem = new OrderList(convertedOrderAmount, wh.Id, orderType);
-                        //    StorageService.Instance.AddOrderItem(orderListItem);
                         //}
                     }
                 }
