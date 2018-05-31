@@ -29,35 +29,35 @@
             <TextBox Grid.Row="2" Grid.Column="1" x:Name="captionPurchasePart" TextWrapping="Wrap" VerticalAlignment="Top" Text="Kaufteil" BorderThickness="3,1,1,1" IsReadOnly="True" Height="40" TextAlignment="Center" Width="75" HorizontalAlignment="Left"/>
             <StackPanel Grid.Row="3" Grid.Column="1" x:Name="spPurchasePart" Height="750" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75">
 
-                <TextBox x:Name="purchasePartK21" TextWrapping="Wrap" Text="21" Padding="0" BorderThickness="3,1,1,1" IsReadOnly="True" Margin="0" Width="75" HorizontalAlignment="Left" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK22" TextWrapping="Wrap" Text="22" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK23" TextWrapping="Wrap" Text="23" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK24" TextWrapping="Wrap" Text="24" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK25" TextWrapping="Wrap" Text="25" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK27" TextWrapping="Wrap" Text="27" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK28" TextWrapping="Wrap" Text="28" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK32" TextWrapping="Wrap" Text="32" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK33" TextWrapping="Wrap" Text="33" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK34" TextWrapping="Wrap" Text="34" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK35" TextWrapping="Wrap" Text="35" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK36" TextWrapping="Wrap" Text="36" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK37" TextWrapping="Wrap" Text="37" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK38" TextWrapping="Wrap" Text="38" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK39" TextWrapping="Wrap" Text="39" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK40" TextWrapping="Wrap" Text="40" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK41" TextWrapping="Wrap" Text="41" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK42" TextWrapping="Wrap" Text="42" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK43" TextWrapping="Wrap" Text="43" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK44" TextWrapping="Wrap" Text="44" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK45" TextWrapping="Wrap" Text="45" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK46" TextWrapping="Wrap" Text="46" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK47" TextWrapping="Wrap" Text="47" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK48" TextWrapping="Wrap" Text="48" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK52" TextWrapping="Wrap" Text="52" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK53" TextWrapping="Wrap" Text="53" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK57" TextWrapping="Wrap" Text="57" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK58" TextWrapping="Wrap" Text="58" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
-                <TextBox x:Name="purchasePartK59" TextWrapping="Wrap" Text="59" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK21" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="21" Padding="0" BorderThickness="3,1,1,1" IsReadOnly="True" Margin="0" Width="75" HorizontalAlignment="Left" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK22" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="22" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK23" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="23" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK24" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="24" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK25" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="25" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK27" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="27" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK28" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="28" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK32" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="32" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK33" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="33" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK34" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="34" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK35" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="35" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK36" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="36" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK37" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="37" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK38" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="38" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK39" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="39" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK40" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="40" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK41" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="41" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK42" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="42" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK43" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="43" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK44" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="44" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK45" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="45" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK46" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="46" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK47" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="47" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK48" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="48" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK52" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="52" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK53" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="53" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK57" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="57" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK58" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="58" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
+                <TextBox x:Name="purchasePartK59" ToolTipService.ShowDuration="60000" TextWrapping="Wrap" Text="59" Padding="0" Margin="0" BorderThickness="3,0,1,1" IsReadOnly="True" TextAlignment="Center"/>
             </StackPanel>
 
             <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="captionOrder" TextWrapping="Wrap" Text="Bestellung" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>

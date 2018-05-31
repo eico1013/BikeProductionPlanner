@@ -96,7 +96,7 @@ namespace BikeProductionPlanner
                 
                 ContentControl.Content = pageMap[tag];
 
-                this.Title = "ZODABA Bikes SCM - " + tag;
+                this.Title = "Zweirad Fabrik SCM - " + tag;
             }
         }
 
