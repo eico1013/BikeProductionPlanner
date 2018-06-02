@@ -23,7 +23,16 @@ namespace BikeProductionPlanner.Views
 
         private void KapaCombo_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (e.AddedItems.Count > 0)
+            {
+                int tag = -1;
 
+                if (int.TryParse((e.AddedItems[0] as ComboBoxItem).Tag.ToString(), out tag))
+                {
+                    this.kapaProdList.ItemsSource = _workItems[tag].Item1;
+                    this.kapaKpiList.ItemsSource = _workItems[tag].Item2;
+                }
+            }
         }
 
         protected override void OnInitialized(EventArgs e)
