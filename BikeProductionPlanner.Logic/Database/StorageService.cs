@@ -174,6 +174,19 @@ namespace BikeProductionPlanner.Logic.Database
             return 0;
         }
 
+        public int GetStockValueFromWareHouseStockId(int Id)
+        {
+            foreach (var item in articleList)
+            {
+                if (item.Id == Id)
+                {
+                    return (int)item.StockValue;
+                }
+            }
+
+            return 0;
+        }
+
         public List<WarehouseStock> GetWarehouseStock()
         {
             return articleList;
