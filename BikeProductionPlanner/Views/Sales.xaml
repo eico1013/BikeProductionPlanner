@@ -44,39 +44,39 @@
                 <RowDefinition Height="35" />
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Periode" Grid.Column="0" Grid.Row="1" />
-            <TextBlock Text="Kinderrad P1" Grid.Column="0" Grid.Row="2" />
-            <TextBlock Text="Damenrad P2" Grid.Column="0" Grid.Row="3" />
-            <TextBlock Text="Herrenrad P3" Grid.Column="0" Grid.Row="4" />
-            <TextBlock Text="Summe" Grid.Column="0" Grid.Row="6" />
+            <TextBlock Text="Periode" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" />
+            <TextBlock Text="Kinderrad P1" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" />
+            <TextBlock Text="Damenrad P2" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" />
+            <TextBlock Text="Herrenrad P3" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" />
+            <TextBlock Text="Summe" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" />
 
-            <TextBlock Text="Verbindliche Aufträge" TextWrapping="Wrap" Grid.Column="1" Grid.Row="0" />
-            <TextBlock Text="Prognosen" Grid.Column="3" Grid.Row="0" />
+            <TextBlock Text="Verbindliche Aufträge" TextWrapping="Wrap" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" />
+            <TextBlock Text="Prognosen" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" />
 
-            <TextBlock x:Name="periodVar0" Text="8" Grid.Column="1" Grid.Row="1" />
-            <TextBlock x:Name="periodVar1" Text="9" Grid.Column="3" Grid.Row="1" />
-            <TextBlock x:Name="periodVar2" Text="10" Grid.Column="4" Grid.Row="1" />
-            <TextBlock x:Name="periodVar3" Text="11" Grid.Column="5" Grid.Row="1" />
+            <TextBlock x:Name="periodVar0" Text="8" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" />
+            <TextBlock x:Name="periodVar1" Text="9" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" />
+            <TextBlock x:Name="periodVar2" Text="10" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center" />
+            <TextBlock x:Name="periodVar3" Text="11" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Center" />
 
-            <TextBox x:Name="period0product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="2" />
-            <TextBox x:Name="period0product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="3" />
-            <TextBox x:Name="period0product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="4" />
-            <TextBox x:Name="period0sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="1" Grid.Row="6" />
+            <TextBox x:Name="period0product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" />
+            <TextBox x:Name="period0product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" />
+            <TextBox x:Name="period0product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" />
+            <TextBox x:Name="period0sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" />
 
-            <TextBox x:Name="period1product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="2" />
-            <TextBox x:Name="period1product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="3" />
-            <TextBox x:Name="period1product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="4" />
-            <TextBox x:Name="period1sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="3" Grid.Row="6" />
+            <TextBox x:Name="period1product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" />
+            <TextBox x:Name="period1product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" />
+            <TextBox x:Name="period1product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" />
+            <TextBox x:Name="period1sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" />
 
-            <TextBox x:Name="period2product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="2" />
-            <TextBox x:Name="period2product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="3" />
-            <TextBox x:Name="period2product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="4" />
-            <TextBox x:Name="period2sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="4" Grid.Row="6" />
+            <TextBox x:Name="period2product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Center" />
+            <TextBox x:Name="period2product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Center" />
+            <TextBox x:Name="period2product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Center" />
+            <TextBox x:Name="period2sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="4" Grid.Row="6" HorizontalAlignment="Center" />
 
-            <TextBox x:Name="period3product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="2" />
-            <TextBox x:Name="period3product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="3" />
-            <TextBox x:Name="period3product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="4" />
-            <TextBox x:Name="period3sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="5" Grid.Row="6" />
+            <TextBox x:Name="period3product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Center" />
+            <TextBox x:Name="period3product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="3" HorizontalAlignment="Center" />
+            <TextBox x:Name="period3product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="4" HorizontalAlignment="Center" />
+            <TextBox x:Name="period3sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="5" Grid.Row="6" HorizontalAlignment="Center" />
 
             <Button Grid.Column="4" Margin="109,80,0,-95" Width="170" Height="50" Grid.Row="6" 
             HorizontalAlignment="Left"
@@ -85,6 +85,9 @@
             <Button Grid.Column="0" Margin="0,80,0,-94" Width="170" Height="50" Grid.Row="6"
             HorizontalAlignment="Left"
             Content="Speichern" Click="Button2_Click" Grid.ColumnSpan="2"  />
+            <Button Name="Fortfahren_Button" Grid.Column="1" Margin="33,80,0,-95" Width="170" Height="50" Grid.Row="6"
+                HorizontalAlignment="Left"
+                Content="Fortfahren" Grid.ColumnSpan="3" Click="Button_Click" Visibility="Hidden"  />
         </Grid>
 
         <ContentControl Name="ContentControl" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"></ContentControl>

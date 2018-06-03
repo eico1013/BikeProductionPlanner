@@ -134,7 +134,8 @@ namespace BikeProductionPlanner
 
                     (pageMap[MenuItems.MenuItemsEnum.ProductionPlan] as ProductionPlanner).UpdatePlanningFields();
                     (pageMap[MenuItems.MenuItemsEnum.Capacity] as CapacityPlanningPage).UpdateKapaFields();
-                    
+
+                    PlanCalculations.Calculate();
 
                     (pageMap[MenuItems.MenuItemsEnum.Purchase] as Views.Purchase).UpdatePurchaseFields();
                     (pageMap[MenuItems.MenuItemsEnum.Dashboard] as Dashboard).UpdateDashboardFields();

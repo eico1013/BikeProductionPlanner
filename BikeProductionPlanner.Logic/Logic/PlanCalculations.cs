@@ -27,6 +27,8 @@ namespace BikeProductionPlanner.Logic.Logic
         {
             ProductionPlan.Calculate();
 
+            StorageService.Instance.GetAllProductionItems().Clear();
+
             for (int i = 1; i < 21; i++)
             {
                 StorageService.Instance.AddProductionItem(new ProductionList(i, ProductionPlan.GetDemandById(i)));

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using BikeProductionPlanner.Logic.Database;
 using LiveCharts;
@@ -35,23 +37,48 @@ namespace BikeProductionPlanner.Views
             {
                 new ColumnSeries
                 {
-                    Values = new ChartValues<int> { Value1, Value2, Value3}
+                    Values = new ChartValues<int> { Value1, Value2, Value3},
+                    Title = "Bestand",
                 }
             };
 
-            Labels = new[] { "P1", "P2", "P3" };
             Formatter = value => value.ToString("N");
+            
 
             DataContext = this;
         }
 
         public void UpdateDashboardFields()
         {
-            Value1 = StorageService.Instance.GetAmountFromWareHouseStockId(1);
-            Value2 = StorageService.Instance.GetAmountFromWareHouseStockId(2);
-            Value3 = StorageService.Instance.GetAmountFromWareHouseStockId(3);
+            List<int> stockinventar = new List<int>();
+            List<int> stockvalues = new List<int>();
+
+            List<string> labels = new List<string>();
+            for (int i = 1; i <= 59; i++)
+            {
+                int amount = StorageService.Instance.GetAmountFromWareHouseStockId(i);
+                int stockvalue = StorageService.Instance.GetStockValueFromWareHouseStockId(i);
+                if (amount > 0)
+                {
+                    stockinventar.Add(amount);
+                    stockvalues.Add(stockvalue);
+                    labels.Add($"Produkt {i}");
+                }
+                
+            }
+            //Value1 = StorageService.Instance.GetAmountFromWareHouseStockId(1);
+            //Value2 = StorageService.Instance.GetAmountFromWareHouseStockId(2);
+            //Value3 = StorageService.Instance.GetAmountFromWareHouseStockId(3);
             Dash1.Value = StorageService.Instance.CheckTotalstockvalue(Totalstackvalue);
-            Dash2.Series = new SeriesCollection { new ColumnSeries { Values = new ChartValues<int> { Value1, Value2, Value3 } } };
+            Dash2.Series = new SeriesCollection
+            {
+                new ColumnSeries { Values = new ChartValues<int>(stockinventar),Title = "Bestand"}
+            };
+            Dash3.Series = new SeriesCollection
+            {
+                new ColumnSeries {Values = new ChartValues<int>(stockvalues),Title = "Wert"}
+            };
+            Labels = labels.ToArray();
         }
     }
 }

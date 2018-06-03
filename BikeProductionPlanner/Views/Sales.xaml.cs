@@ -118,6 +118,7 @@ namespace BikeProductionPlanner.Views
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
+
             //Speichern
             Int32 maxValue = 1050;
 
@@ -145,9 +146,7 @@ namespace BikeProductionPlanner.Views
                 StorageService.Instance.prognose3P2 = Convert.ToInt32(period3product2.Text);
                 StorageService.Instance.prognose3P3 = Convert.ToInt32(period3product3.Text);
 
-                MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.SafetyStock);
-                ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
-                lvMenu.SelectedIndex = 3;
+                Fortfahren_Button.Visibility = Visibility.Visible;
             }
             catch
             {
@@ -208,6 +207,12 @@ namespace BikeProductionPlanner.Views
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.SafetyStock);
+            ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
+            lvMenu.SelectedIndex = 3;
+        }
     }
 
  }
