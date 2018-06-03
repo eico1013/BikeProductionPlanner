@@ -4,8 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using BikeProductionPlanner.Logic.Database;
-
-using BikeProductionPlanner.Logic;
+using BikeProductionPlanner.Logic.Database.Model;
 
 namespace BikeProductionPlanner.Views
 {
@@ -124,6 +123,12 @@ namespace BikeProductionPlanner.Views
 
             try
             {
+
+                StorageService.Instance.AddForecast(0, new ForecastPeriod(Convert.ToInt32(period0product1.Text), Convert.ToInt32(period0product2.Text), Convert.ToInt32(period0product3.Text)));
+                StorageService.Instance.AddForecast(1, new ForecastPeriod(Convert.ToInt32(period1product1.Text), Convert.ToInt32(period1product2.Text), Convert.ToInt32(period1product3.Text)));
+                StorageService.Instance.AddForecast(2, new ForecastPeriod(Convert.ToInt32(period2product1.Text), Convert.ToInt32(period2product2.Text), Convert.ToInt32(period2product3.Text)));
+                StorageService.Instance.AddForecast(3, new ForecastPeriod(Convert.ToInt32(period3product1.Text), Convert.ToInt32(period3product2.Text), Convert.ToInt32(period3product3.Text)));
+
                 StorageService.Instance.vertriebswunschP1 = Convert.ToInt32(period0product1.Text);
                 StorageService.Instance.vertriebswunschP2 = Convert.ToInt32(period0product2.Text);
                 StorageService.Instance.vertriebswunschP3 = Convert.ToInt32(period0product3.Text);

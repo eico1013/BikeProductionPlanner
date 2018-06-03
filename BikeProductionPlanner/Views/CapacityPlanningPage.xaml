@@ -182,8 +182,8 @@
                                             <!--<TextBlock Text="Bauteil:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="0" Grid.Column="0"/>
                                 <TextBlock Text="{Binding Title}" Grid.Row="0" Grid.Column="1"/>-->
 
-                                            <TextBlock Text="Teile:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="1" Grid.Column="0"/>
-                                            <TextBlock Text="{Binding Id}" Grid.Row="1" Grid.Column="1"/>
+                                            <TextBlock Text="Teil:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="1" Grid.Column="0"/>
+                                            <TextBlock Text="{Binding Id}" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
 
                                             <TextBlock Text="Produkt:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="2" Grid.Column="0"/>
                                             <TextBlock Text="{Binding Type}" Grid.Row="2" Grid.Column="1"/>
@@ -191,10 +191,10 @@
                                             <TextBlock Text="Menge:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="3" Grid.Column="0"/>
                                             <TextBlock Text="{Binding Amount}" Grid.Row="3" Grid.Column="1"/>
 
-                                            <TextBlock Text="Aufwand:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="4" Grid.Column="0"/>
+                                            <TextBlock Text="Aufwand pro Teil:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="4" Grid.Column="0"/>
                                             <TextBlock Text="{Binding Cost}" Grid.Row="4" Grid.Column="1"/>
 
-                                            <TextBlock Text="Summe:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="5" Grid.Column="0"/>
+                                            <TextBlock Text="Gesamtaufwand:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="5" Grid.Column="0"/>
                                             <TextBlock Text="{Binding CostSum}" Grid.Row="5" Grid.Column="1"/>
                                         </Grid>
                                     </DataTemplate>

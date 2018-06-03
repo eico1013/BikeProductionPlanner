@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
-using BikeProductionPlanner.Logic;
 using BikeProductionPlanner.Logic.Database;
 using LiveCharts;
-using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 
 namespace BikeProductionPlanner.Views
