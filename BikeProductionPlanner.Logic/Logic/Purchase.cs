@@ -182,57 +182,11 @@ namespace BikeProductionPlanner.Logic.Logic
             }
         }
 
-        // Bedarfsklasse für P0
-        public class DemandP0
-        {
-            public int idDemandP0;
-            public int demandInP0Only;
 
-            public DemandP0(int idDemandP0, int demandInP0Only)
-            {
-                this.idDemandP0 = idDemandP0;
-                this.demandInP0Only = demandInP0Only;
-            }
-        }
-
-        // Hole Kaufteilliste aus StorageService
+        // Hole Listen aus StorageService
         static List<WarehouseStock> purchasePartsFromXML = StorageService.Instance.GetPurchaseParts();
         static List<purchasePart> purchasePartsFromPurchase = GetPurchasePartsFromPurchase();
-
-
-        // Generiere Bedarfsliste für Periode 0
-        public static List<DemandP0> purchasePartsInP0 = new List<DemandP0>()
-        {
-                new DemandP0(21, ProductionPlan.k21),
-                new DemandP0(22, ProductionPlan.k22),
-                new DemandP0(23, ProductionPlan.k23),
-                new DemandP0(24, ProductionPlan.k24),
-                new DemandP0(25, ProductionPlan.k25),
-                new DemandP0(27, ProductionPlan.k27),
-                new DemandP0(28, ProductionPlan.k28),
-                new DemandP0(32, ProductionPlan.k32),
-                new DemandP0(33, ProductionPlan.k33),
-                new DemandP0(34, ProductionPlan.k34),
-                new DemandP0(35, ProductionPlan.k35),
-                new DemandP0(36, ProductionPlan.k36),
-                new DemandP0(37, ProductionPlan.k37),
-                new DemandP0(38, ProductionPlan.k38),
-                new DemandP0(39, ProductionPlan.k39),
-                new DemandP0(40, ProductionPlan.k40),
-                new DemandP0(41, ProductionPlan.k41),
-                new DemandP0(42, ProductionPlan.k42),
-                new DemandP0(43, ProductionPlan.k43),
-                new DemandP0(44, ProductionPlan.k44),
-                new DemandP0(45, ProductionPlan.k45),
-                new DemandP0(46, ProductionPlan.k46),
-                new DemandP0(47, ProductionPlan.k47),
-                new DemandP0(48, ProductionPlan.k48),
-                new DemandP0(52, ProductionPlan.k52),
-                new DemandP0(53, ProductionPlan.k53),
-                new DemandP0(57, ProductionPlan.k57),
-                new DemandP0(58, ProductionPlan.k58),
-                new DemandP0(59, ProductionPlan.k59)
-        };
+        static List<DemandP0> purchasePartsInP0 = StorageService.Instance.GetPurchaseDemandP0();
 
         public static List<DemandP0> GetPurchasePartsInP0()
         {
