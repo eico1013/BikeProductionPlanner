@@ -11,6 +11,7 @@ namespace BikeProductionPlanner.Logic.Database
         // Input
         private List<WarehouseStock> articleList;
         private List<WarehouseStock> purchasePartsList;
+        private List<DemandP0> purchasePartsInP0;
         private List<WaitingListWorkstation> waitingListWorkstationList;
         private List<OrderInWork> ordersInWorkList;
         private List<WaitingListStock> waitingListStocks;
@@ -33,6 +34,7 @@ namespace BikeProductionPlanner.Logic.Database
         {
             articleList = XmlInputParser.Instance.WarehouseStocks;
             purchasePartsList = new List<WarehouseStock>();
+            purchasePartsInP0 = new List<DemandP0>();
             waitingListWorkstationList = XmlInputParser.Instance.WaitingListWorkstations;
             ordersInWorkList = XmlInputParser.Instance.OrdersInWork;
             waitingListStocks = XmlInputParser.Instance.WaitingListStocks;
@@ -76,6 +78,7 @@ namespace BikeProductionPlanner.Logic.Database
             purchasePartsList.Add(GetWarehouseArticleById(57));
             purchasePartsList.Add(GetWarehouseArticleById(58));
             purchasePartsList.Add(GetWarehouseArticleById(59));
+
         }
 
         public static StorageService Instance
@@ -131,6 +134,13 @@ namespace BikeProductionPlanner.Logic.Database
             articleList.Add(a);
         }
 
+        public void AddPurchaseDemandP0(int id, int demand)
+        {
+            DemandP0 demandP0 = new DemandP0(id, demand);
+            purchasePartsInP0.RemoveAll(x => x.idDemandP0 == demandP0.idDemandP0);
+            purchasePartsInP0.Add(demandP0);
+        }
+
         public WarehouseStock GetWarehouseArticleById(int Id)
         {
             return articleList.Find(x => x.Id == Id);
@@ -146,6 +156,11 @@ namespace BikeProductionPlanner.Logic.Database
             return purchasePartsList;
         }
 
+        public List<DemandP0> GetPurchaseDemandP0()
+        {
+            return purchasePartsInP0;
+        }
+
         public int GetAmountFromWareHouseStockId(int Id)
         {
             foreach (var item in articleList)
@@ -153,20 +168,6 @@ namespace BikeProductionPlanner.Logic.Database
                 if (item.Id == Id)
                 {
                     return item.Amount;
-                }
-            }
-
-            return 0;
-        }
-
-
-        public int GetStockValueFromWareHouseStockId(int Id)
-        {
-            foreach (var item in articleList)
-            {
-                if (item.Id == Id)
-                {
-                    return (int)item.StockValue;
                 }
             }
 

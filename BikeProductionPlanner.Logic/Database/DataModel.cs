@@ -138,6 +138,19 @@ namespace BikeProductionPlanner.Logic.Database
 
     }
 
+    // Bedarfsklasse für P0
+    public class DemandP0
+    {
+        public int idDemandP0;
+        public int demandInP0Only;
+
+        public DemandP0(int idDemandP0, int demandInP0Only)
+        {
+            this.idDemandP0 = idDemandP0;
+            this.demandInP0Only = demandInP0Only;
+        }
+    }
+
     public class FutureInwardStockMovment
     {
         public int Id { get; set; }

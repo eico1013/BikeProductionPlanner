@@ -326,6 +326,36 @@ namespace BikeProductionPlanner.Logic.Logic
             k58 = 36 * e5 + 36 * e8;
             k59 = 2 * e18 + 2 * e19 + 2 * e20;
 
+            StorageService.Instance.AddPurchaseDemandP0(21, k21);
+            StorageService.Instance.AddPurchaseDemandP0(22, k22);
+            StorageService.Instance.AddPurchaseDemandP0(23, k23);
+            StorageService.Instance.AddPurchaseDemandP0(24, k24);
+            StorageService.Instance.AddPurchaseDemandP0(25, k25);
+            StorageService.Instance.AddPurchaseDemandP0(27, k27);
+            StorageService.Instance.AddPurchaseDemandP0(28, k28);
+            StorageService.Instance.AddPurchaseDemandP0(32, k32);
+            StorageService.Instance.AddPurchaseDemandP0(33, k33);
+            StorageService.Instance.AddPurchaseDemandP0(34, k34);
+            StorageService.Instance.AddPurchaseDemandP0(35, k35);
+            StorageService.Instance.AddPurchaseDemandP0(36, k36);
+            StorageService.Instance.AddPurchaseDemandP0(37, k37);
+            StorageService.Instance.AddPurchaseDemandP0(38, k38);
+            StorageService.Instance.AddPurchaseDemandP0(39, k39);
+            StorageService.Instance.AddPurchaseDemandP0(40, k40);
+            StorageService.Instance.AddPurchaseDemandP0(41, k41);
+            StorageService.Instance.AddPurchaseDemandP0(42, k42);
+            StorageService.Instance.AddPurchaseDemandP0(43, k43);
+            StorageService.Instance.AddPurchaseDemandP0(44, k44);
+            StorageService.Instance.AddPurchaseDemandP0(45, k45);
+            StorageService.Instance.AddPurchaseDemandP0(46, k46);
+            StorageService.Instance.AddPurchaseDemandP0(47, k47);
+            StorageService.Instance.AddPurchaseDemandP0(48, k48);
+            StorageService.Instance.AddPurchaseDemandP0(52, k52);
+            StorageService.Instance.AddPurchaseDemandP0(53, k53);
+            StorageService.Instance.AddPurchaseDemandP0(57, k57);
+            StorageService.Instance.AddPurchaseDemandP0(58, k58);
+            StorageService.Instance.AddPurchaseDemandP0(59, k59);
+
             #endregion
 
         }
