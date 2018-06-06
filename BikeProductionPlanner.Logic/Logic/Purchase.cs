@@ -184,7 +184,6 @@ namespace BikeProductionPlanner.Logic.Logic
 
 
         // Hole Listen aus StorageService
-        static List<WarehouseStock> purchasePartsFromXML = StorageService.Instance.GetPurchaseParts();
         static List<purchasePart> purchasePartsFromPurchase = GetPurchasePartsFromPurchase();
         static List<DemandP0> purchasePartsInP0 = StorageService.Instance.GetPurchaseDemandP0();
 
@@ -199,21 +198,6 @@ namespace BikeProductionPlanner.Logic.Logic
             return GetPurchasePartsInP0().Find(x => x.idDemandP0 == id);
         }
 
-        // Hole Prognosen aus StorageService
-        //Periode 1
-        public static int salesOfBike1InP1 = StorageService.Instance.prognose1P1;
-        public static int salesOfBike2InP1 = StorageService.Instance.prognose1P2;
-        public static int salesOfBike3InP1 = StorageService.Instance.prognose1P3;
-        //Periode 2
-        public static int salesOfBike1InP2 = StorageService.Instance.prognose2P1;
-        public static int salesOfBike2InP2 = StorageService.Instance.prognose2P2;
-        public static int salesOfBike3InP2 = StorageService.Instance.prognose2P3;
-        //Periode 3
-        public static int salesOfBike1InP3 = StorageService.Instance.prognose3P1;
-        public static int salesOfBike2InP3 = StorageService.Instance.prognose3P2;
-        public static int salesOfBike3InP3 = StorageService.Instance.prognose3P3;
-
-
         // Bedarf für jedes Kaufteil berechnen und zurückgeben       
         public static List<Demand> GetDemandOfParts()
         {
@@ -223,17 +207,17 @@ namespace BikeProductionPlanner.Logic.Logic
             {
                 int calculatedDemandP0 = GetGetPurchasePartsInP0ByID(pb.id).demandInP0Only;
 
-                int calculatedDemandP1 = pb.useInBike1 * salesOfBike1InP1 +
-                                            pb.useInBike2 * salesOfBike2InP1 +
-                                            pb.useInBike3 * salesOfBike3InP1;
+                int calculatedDemandP1 = pb.useInBike1 * StorageService.Instance.prognose1P1 +
+                                            pb.useInBike2 * StorageService.Instance.prognose1P2 +
+                                            pb.useInBike3 * StorageService.Instance.prognose1P3;
 
-                int calculatedDemandP2 = pb.useInBike1 * salesOfBike1InP2 +
-                                            pb.useInBike2 * salesOfBike2InP2 +
-                                            pb.useInBike3 * salesOfBike3InP2;
+                int calculatedDemandP2 = pb.useInBike1 * StorageService.Instance.prognose2P1 +
+                                            pb.useInBike2 * StorageService.Instance.prognose2P2 +
+                                            pb.useInBike3 * StorageService.Instance.prognose2P3;
 
-                int calculatedDemandP3 = pb.useInBike1 * salesOfBike1InP3 +
-                                            pb.useInBike2 * salesOfBike2InP3 +
-                                            pb.useInBike3 * salesOfBike3InP3;
+                int calculatedDemandP3 = pb.useInBike1 * StorageService.Instance.prognose3P1 +
+                                            pb.useInBike2 * StorageService.Instance.prognose3P2 +
+                                            pb.useInBike3 * StorageService.Instance.prognose3P3;
 
                 demandOfParts.Add(new Demand(pb.id, calculatedDemandP0, calculatedDemandP1,
                                                     calculatedDemandP2, calculatedDemandP3));
@@ -275,7 +259,38 @@ namespace BikeProductionPlanner.Logic.Logic
             // Hole eingehende Bestellungen aus StorageService
             List<FutureInwardStockMovment> futureInwardStockMovments = StorageService.Instance.GetFutureInwardStockMovment();
 
-            foreach (WarehouseStock wh in purchasePartsFromXML)
+            // Erzeuge Kaufteilliste
+            StorageService.Instance.AddPurchaseParts(21);
+            StorageService.Instance.AddPurchaseParts(22);
+            StorageService.Instance.AddPurchaseParts(23);
+            StorageService.Instance.AddPurchaseParts(24);
+            StorageService.Instance.AddPurchaseParts(25);
+            StorageService.Instance.AddPurchaseParts(27);
+            StorageService.Instance.AddPurchaseParts(28);
+            StorageService.Instance.AddPurchaseParts(32);
+            StorageService.Instance.AddPurchaseParts(33);
+            StorageService.Instance.AddPurchaseParts(34);
+            StorageService.Instance.AddPurchaseParts(35);
+            StorageService.Instance.AddPurchaseParts(36);
+            StorageService.Instance.AddPurchaseParts(37);
+            StorageService.Instance.AddPurchaseParts(38);
+            StorageService.Instance.AddPurchaseParts(39);
+            StorageService.Instance.AddPurchaseParts(40);
+            StorageService.Instance.AddPurchaseParts(41);
+            StorageService.Instance.AddPurchaseParts(42);
+            StorageService.Instance.AddPurchaseParts(43);
+            StorageService.Instance.AddPurchaseParts(44);
+            StorageService.Instance.AddPurchaseParts(45);
+            StorageService.Instance.AddPurchaseParts(46);
+            StorageService.Instance.AddPurchaseParts(47);
+            StorageService.Instance.AddPurchaseParts(48);
+            StorageService.Instance.AddPurchaseParts(52);
+            StorageService.Instance.AddPurchaseParts(53);
+            StorageService.Instance.AddPurchaseParts(57);
+            StorageService.Instance.AddPurchaseParts(58);
+            StorageService.Instance.AddPurchaseParts(59);
+
+            foreach (WarehouseStock wh in StorageService.Instance.GetPurchaseParts())
             {
                 // Alle Werte auf 0 setzen, nach jedem Schleifendurchlauf
                 startAmountP0 = 0.0;

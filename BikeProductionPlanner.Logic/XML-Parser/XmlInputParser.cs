@@ -32,7 +32,7 @@ namespace BikeProductionPlanner.Logic
             WaitingListWorkstations = new List<WaitingListWorkstation>();
             WaitingListStocks = new List<WaitingListStock>();
             OrdersInWork = new List<OrderInWork>();
-            PeriodFromXML = 0;
+            PeriodFromXML = -1;
         }
 
         public static XmlInputParser Instance
