@@ -49,35 +49,35 @@ namespace BikeProductionPlanner.Logic.Database
             sellWishList = new List<SellWish>();
             selldirectList = new List<SellDirect>();
 
-            purchasePartsList.Add(GetWarehouseArticleById(21));
-            purchasePartsList.Add(GetWarehouseArticleById(22));
-            purchasePartsList.Add(GetWarehouseArticleById(23));
-            purchasePartsList.Add(GetWarehouseArticleById(24));
-            purchasePartsList.Add(GetWarehouseArticleById(25));
-            purchasePartsList.Add(GetWarehouseArticleById(27));
-            purchasePartsList.Add(GetWarehouseArticleById(28));
-            purchasePartsList.Add(GetWarehouseArticleById(32));
-            purchasePartsList.Add(GetWarehouseArticleById(33));
-            purchasePartsList.Add(GetWarehouseArticleById(34));
-            purchasePartsList.Add(GetWarehouseArticleById(35));
-            purchasePartsList.Add(GetWarehouseArticleById(36));
-            purchasePartsList.Add(GetWarehouseArticleById(37));
-            purchasePartsList.Add(GetWarehouseArticleById(38));
-            purchasePartsList.Add(GetWarehouseArticleById(39));
-            purchasePartsList.Add(GetWarehouseArticleById(40));
-            purchasePartsList.Add(GetWarehouseArticleById(41));
-            purchasePartsList.Add(GetWarehouseArticleById(42));
-            purchasePartsList.Add(GetWarehouseArticleById(43));
-            purchasePartsList.Add(GetWarehouseArticleById(44));
-            purchasePartsList.Add(GetWarehouseArticleById(45));
-            purchasePartsList.Add(GetWarehouseArticleById(46));
-            purchasePartsList.Add(GetWarehouseArticleById(47));
-            purchasePartsList.Add(GetWarehouseArticleById(48));
-            purchasePartsList.Add(GetWarehouseArticleById(52));
-            purchasePartsList.Add(GetWarehouseArticleById(53));
-            purchasePartsList.Add(GetWarehouseArticleById(57));
-            purchasePartsList.Add(GetWarehouseArticleById(58));
-            purchasePartsList.Add(GetWarehouseArticleById(59));
+            //purchasePartsList.Add(GetWarehouseArticleById(21));
+            //purchasePartsList.Add(GetWarehouseArticleById(22));
+            //purchasePartsList.Add(GetWarehouseArticleById(23));
+            //purchasePartsList.Add(GetWarehouseArticleById(24));
+            //purchasePartsList.Add(GetWarehouseArticleById(25));
+            //purchasePartsList.Add(GetWarehouseArticleById(27));
+            //purchasePartsList.Add(GetWarehouseArticleById(28));
+            //purchasePartsList.Add(GetWarehouseArticleById(32));
+            //purchasePartsList.Add(GetWarehouseArticleById(33));
+            //purchasePartsList.Add(GetWarehouseArticleById(34));
+            //purchasePartsList.Add(GetWarehouseArticleById(35));
+            //purchasePartsList.Add(GetWarehouseArticleById(36));
+            //purchasePartsList.Add(GetWarehouseArticleById(37));
+            //purchasePartsList.Add(GetWarehouseArticleById(38));
+            //purchasePartsList.Add(GetWarehouseArticleById(39));
+            //purchasePartsList.Add(GetWarehouseArticleById(40));
+            //purchasePartsList.Add(GetWarehouseArticleById(41));
+            //purchasePartsList.Add(GetWarehouseArticleById(42));
+            //purchasePartsList.Add(GetWarehouseArticleById(43));
+            //purchasePartsList.Add(GetWarehouseArticleById(44));
+            //purchasePartsList.Add(GetWarehouseArticleById(45));
+            //purchasePartsList.Add(GetWarehouseArticleById(46));
+            //purchasePartsList.Add(GetWarehouseArticleById(47));
+            //purchasePartsList.Add(GetWarehouseArticleById(48));
+            //purchasePartsList.Add(GetWarehouseArticleById(52));
+            //purchasePartsList.Add(GetWarehouseArticleById(53));
+            //purchasePartsList.Add(GetWarehouseArticleById(57));
+            //purchasePartsList.Add(GetWarehouseArticleById(58));
+            //purchasePartsList.Add(GetWarehouseArticleById(59));
 
         }
 
@@ -96,6 +96,10 @@ namespace BikeProductionPlanner.Logic.Database
 
         public int GetPeriodFromXml()
         {
+            if (periodFromXml == -1)
+            {
+                periodFromXml = XmlInputParser.Instance.PeriodFromXML;
+            }
             return periodFromXml;
         }
 
@@ -139,6 +143,12 @@ namespace BikeProductionPlanner.Logic.Database
             DemandP0 demandP0 = new DemandP0(id, demand);
             purchasePartsInP0.RemoveAll(x => x.idDemandP0 == demandP0.idDemandP0);
             purchasePartsInP0.Add(demandP0);
+        }
+
+        public void AddPurchaseParts(int id)
+        {
+            purchasePartsList.RemoveAll(x => x.Id == id);
+            purchasePartsList.Add(GetWarehouseArticleById(id));
         }
 
         public WarehouseStock GetWarehouseArticleById(int Id)

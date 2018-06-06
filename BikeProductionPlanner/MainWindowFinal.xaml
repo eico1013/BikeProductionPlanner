@@ -13,7 +13,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         xmlns:views="clr-namespace:BikeProductionPlanner.Views"
         xmlns:properties="clr-namespace:BikeProductionPlanner.Properties"
-        mc:Ignorable="d" Height="700" Width="1080" 
+        mc:Ignorable="d" Height="700" Width="1080" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" Title="BikeProductionPlanner" WindowStyle="None">
     <Window.Resources>
         <ResourceDictionary>

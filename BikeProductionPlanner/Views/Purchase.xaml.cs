@@ -1,9 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Windows.Threading;
 using BikeProductionPlanner.Logic.Database;
+using BikeProductionPlanner.Logic.Database.Model;
 using static BikeProductionPlanner.Logic.Logic.Purchase;
 
 namespace BikeProductionPlanner.Views
@@ -18,384 +30,366 @@ namespace BikeProductionPlanner.Views
             InitializeComponent();
         }
 
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+
+            this.purchaseGrid.ItemsSource = new ObservableCollection<PurchaseElement>();
+
+            purchaseGrid.Loaded += purchaseGrid_Loaded;
+        }
+
+        // Methode die die ToolTip Methode ruft, sobald der DataGrid geladen wurde
+        private void purchaseGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() => SetPurchasePartsToolTips()));
+        }
+
+        // Methode die die ToolTips für jedes Kaufteil setzt
+        private void SetPurchasePartsToolTips()
+        {
+
+            List<purchasePartTooltip> purchasePartsTooltip = new List<purchasePartTooltip>();
+            purchasePartsTooltip = Logic.Logic.Purchase.GetPurchasePartsTooltip();
+
+            foreach (PurchaseElement item in purchaseGrid.Items)
+            {
+                DataGridRow dataGridRow = (DataGridRow)purchaseGrid.ItemContainerGenerator.ContainerFromItem(item);
+                TextBlock tb = purchaseGrid.Columns[0].GetCellContent(dataGridRow) as TextBlock;
+
+                int kaufteilID = Convert.ToInt32(item.Kaufteil);
+                purchasePartTooltip purchasePartTooltip = purchasePartsTooltip.Find(x => x.idPPTooltip == kaufteilID);
+
+                tb.ToolTip = "Teilverwendung \r\n \r\n" + "Kaufteil " + purchasePartTooltip.idPPTooltip + " " +
+                                                purchasePartTooltip.name + ": \r\n \r\n" + purchasePartTooltip.rawString;
+
+                ToolTipService.SetShowDuration(tb, 60000);
+            }
+
+        }
+
+        // Befülle DataGrid mit Werten
         public void UpdatePurchaseFields()
         {
             StorageService.Instance.ClearOrderItemList();
             BikeProductionPlanner.Logic.Logic.Purchase.calculateCoverage();
 
-            // Hole Bestellliste aus StorageService
+            var fields = (ObservableCollection<PurchaseElement>)purchaseGrid.ItemsSource;
+            fields.Clear();
+
+            // Setze aktuelle Periode
+            int currentPeriod = StorageService.Instance.GetPeriodFromXml() + 1;
+
+            // Hole Bestellliste aus Storage Service
             List<OrderList> orderList = new List<OrderList>();
             orderList = StorageService.Instance.GetAllOrders();
-            // String inhaltOrderList = Convert.ToString(orderList.Count());
-            // MessageBox.Show(inhaltOrderList);
 
-            // Iteriere Bestellliste durch
-            foreach (OrderList orderListItem in orderList)
+            // Hole Kaufteilliste aus StorageService
+            List<WarehouseStock> purchasePartsList = new List<WarehouseStock>();
+            purchasePartsList = StorageService.Instance.GetPurchaseParts();
+
+            int deliveryTimeInclDepartureTime = 0;
+            int deliveryTimePriority = 0;
+
+            // Hole eingehende Bestellungen aus StorageService
+            List<FutureInwardStockMovment> futureInwardStockMovments = StorageService.Instance.GetFutureInwardStockMovment();
+
+            // Hole Bedarfsliste aus Purchase Klasse
+            List<Demand> demandOfPartsList = new List<Demand>();
+            demandOfPartsList = GetDemandOfParts();
+
+            foreach (WarehouseStock purchasePart in purchasePartsList)
             {
-                // Kaufteil ID als String
-                String id = Convert.ToString(orderListItem.Article);
-                // Kaufteil Menge als String
-                String orderAmount = Convert.ToString(orderListItem.Quantity);
-                String orderType = Convert.ToString(orderListItem.Type);
-                String tbOrderAmountName = "purchasePartOrderAmountK" + id;
-                String tbOrderTypeName = "purchasePartOrderTypeK" + id;
 
-                // Finde entsprechende Textboxen anhand ihres eindeutigen Namens
-                TextBox tbOrderAmount = (TextBox)this.FindName(tbOrderAmountName);
-                TextBox tbOrderType = (TextBox)this.FindName(tbOrderTypeName);
+                OrderList orderListItem = orderList.Find(x => x.Article == purchasePart.Id);
 
-                // Bestellmenge befüllen
-                tbOrderAmount.Text = orderAmount;
-                // Bestellart befüllen
-                tbOrderType.Text = orderType;
+                String id = Convert.ToString(purchasePart.Id);
+                String orderAmount = "0";
+                String orderType = "Keine";
+                String startAmount = Convert.ToString(purchasePart.Amount);
+                String[] purchaseEndAmounts = new String[20];
+
+                if (!(orderListItem == null))
+                {
+                    orderAmount = Convert.ToString(orderListItem.Quantity);
+
+                    if (orderListItem.Modus == 4)
+                    {
+                        orderType = "Eil";
+                    }
+                    else
+                    {
+                        orderType = "Normal";
+                    }
+                }
+
+                deliveryTimeInclDepartureTime = 0;
+                deliveryTimePriority = 0;
+
+                List<FutureInwardStockMovment> incomingOrders;
+                // Extrahiere alle Bestellungen des Artikels
+                incomingOrders = futureInwardStockMovments.FindAll(item => item.Article.Equals(purchasePart.Id));
+
+                // Setze Lieferzeit mit Abweichung und Eillieferzeit für den Artikel
+                deliveryTimeInclDepartureTime = GetPurchasePartFromPurchaseByID(purchasePart.Id).deliveryTime + GetPurchasePartFromPurchaseByID(purchasePart.Id).departureTime;
+                deliveryTimePriority = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(GetPurchasePartFromPurchaseByID(purchasePart.Id).deliveryTime) / 2.0));
+
+                // Bedarfsberechnungen
+                Demand demandOfPart = demandOfPartsList.Find(x => x.idDemand == purchasePart.Id);
+                int demandP0PerDay = 0;
+                demandP0PerDay = demandOfPart.demandInP0 / 5;
+                int demandP1PerDay = 0;
+                demandP1PerDay = demandOfPart.demandInP1 / 5;
+                int demandP2PerDay = 0;
+                demandP2PerDay = demandOfPart.demandInP2 / 5;
+                int demandP3PerDay = 0;
+                demandP3PerDay = demandOfPart.demandInP3 / 5;
+
+                // Befülle Startmengen mit Lieferzugängen aus der Liste
+                foreach (FutureInwardStockMovment incomingPart in incomingOrders)
+                {
+                    int incomingOrderDate = 0;
+                    int incomingOrderDay = 0;
+                    double incomingOrderAmount = 0.0;
+
+                    // Berechne wann der Artikel eintrifft
+                    if (incomingPart.Mode.Equals(5))
+                    {
+                        incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimeInclDepartureTime;
+                    }
+
+                    else
+                    {
+                        incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimePriority;
+                    }
+
+                    incomingOrderDay = incomingOrderDate - currentPeriod * 5;
+                    incomingOrderAmount = Convert.ToDouble(incomingPart.Amount);
+                    purchaseEndAmounts[incomingOrderDay] = Convert.ToString(incomingOrderAmount);
+
+                }
+
+                String amountInLoopAsString = "";
+                int amountInLoop = 0;
+                int demandInLoop = 0;
+                // Initiale Mengenberechnung
+                amountInLoop = purchasePart.Amount;
+
+                for (int i = 0; i < 20; ++i)
+                {
+                    if (i >= 0 && i < 5)
+                    {
+                        demandInLoop = demandP0PerDay;
+                    }
+
+                    if (i >= 5 && i < 10)
+                    {
+                        demandInLoop = demandP1PerDay;
+                    }
+
+                    if (i >= 10 && i < 15)
+                    {
+                        demandInLoop = demandP2PerDay;
+                    }
+
+                    if (i >= 15 && i < 20)
+                    {
+                        demandInLoop = demandP3PerDay;
+                    }
+
+                    // Mengenberechnung
+                    amountInLoop = amountInLoop - demandInLoop;
+                    int tbOldAmount = Convert.ToInt32(purchaseEndAmounts[i]);
+                    amountInLoop = amountInLoop + tbOldAmount;
+                    amountInLoopAsString = Convert.ToString(amountInLoop);
+                    purchaseEndAmounts[i] = amountInLoopAsString;
+
+                }
+
+
+                fields.Add(new PurchaseElement(id, orderAmount, orderType, startAmount, purchaseEndAmounts[0],
+                                                purchaseEndAmounts[1], purchaseEndAmounts[2], purchaseEndAmounts[3],
+                                                purchaseEndAmounts[4], purchaseEndAmounts[5], purchaseEndAmounts[6],
+                                                purchaseEndAmounts[7], purchaseEndAmounts[8], purchaseEndAmounts[9],
+                                                purchaseEndAmounts[10], purchaseEndAmounts[11], purchaseEndAmounts[12],
+                                                purchaseEndAmounts[13], purchaseEndAmounts[14], purchaseEndAmounts[15],
+                                                purchaseEndAmounts[16], purchaseEndAmounts[17], purchaseEndAmounts[18],
+                                                purchaseEndAmounts[19]));
+
             }
 
-            List <purchasePartTooltip> purchasePartsTooltip = new List<purchasePartTooltip>();
-            purchasePartsTooltip = Logic.Logic.Purchase.GetPurchasePartsTooltip();
-
-            // Iteriere Kaufteilliste durch
-            foreach (purchasePartTooltip purchasePartTooltip in purchasePartsTooltip)
-            {
-                String id = Convert.ToString(purchasePartTooltip.idPPTooltip);
-                String tbPurchasePartName = "purchasePartK" + id;
-                TextBox tbPurchasePart = (TextBox)this.FindName(tbPurchasePartName);
-                tbPurchasePart.ToolTip = "Teilverwendung \r\n \r\n" + "Kaufteil " + id + " " + 
-                                            purchasePartTooltip.name + ": \r\n \r\n" + purchasePartTooltip.rawString;
-                
-            }
 
         }
 
-        // Zeige/Schließe Detail-Ansicht
         private void btnShowDetails_Click(object sender, RoutedEventArgs e)
         {
+
             if (btnShowDetails.Content.Equals("Details einblenden"))
             {
                 btnShowDetails.Content = "Details ausblenden";
-                gridDetail.Visibility = Visibility.Visible;
 
-                // Funktionalität
+                //Create a new column to add to the DataGrid
+                DataGridTextColumn textcol = new DataGridTextColumn();
+                //Create a Binding object to define the path to the DataGrid.ItemsSource property
+                //The column inherits its DataContext from the DataGrid, so you don't set the source
+                Binding b = new Binding("Anfangsbestand");
+                //Set the properties on the new column
+                textcol.Binding = b;
+                textcol.Header = "Anfangsbestand";
+                textcol.IsReadOnly = true;
+                //Add the column to the DataGrid
+                purchaseGrid.Columns.Add(textcol);
 
-                // Periodenüberschriften mit tatsächlichen Perioden befüllen
-                // Finde entsprechender TextBlock anhand seines eindeutigen Namens
-                TextBlock tblcaptionPeriod0 = (TextBlock)this.FindName("captionPeriod0");
-                TextBlock tblcaptionPeriod1 = (TextBlock)this.FindName("captionPeriod1");
-                TextBlock tblcaptionPeriod2 = (TextBlock)this.FindName("captionPeriod2");
-                TextBlock tblcaptionPeriod3 = (TextBlock)this.FindName("captionPeriod3");
+                String EndbestandName = "";
 
-                int currentPeriod = 0;
-                currentPeriod = StorageService.Instance.GetPeriodFromXml() + 1;
-                int period1 = currentPeriod + 1;
-                int period2 = period1 + 1;
-                int period3 = period2 + 1;
+                for (int i = 0; i < 4; ++i)
+                {
+                    for (int j = 1; j < 6; ++j)
+                    {
+                        EndbestandName = "EndbestandP" + i + "D" + j;
+                        textcol = new DataGridTextColumn();
+                        b = new Binding(EndbestandName);
+                        textcol.Binding = b;
+                        textcol.Header = EndbestandName;
+                        textcol.IsReadOnly = true;
+                        purchaseGrid.Columns.Add(textcol);
 
-                String currentPeriodAsString = Convert.ToString(currentPeriod);
-                String period1AsString = Convert.ToString(period1);
-                String period2AsString = Convert.ToString(period2);
-                String period3AsString = Convert.ToString(period3);
-
-                String captionPeriod0 = "Endbestände Periode " + currentPeriodAsString;
-                String captionPeriod1 = "Endbestände Periode " + period1AsString;
-                String captionPeriod2 = "Endbestände Periode " + period2AsString;
-                String captionPeriod3 = "Endbestände Periode " + period3AsString;
-
-                tblcaptionPeriod0.Text = captionPeriod0;
-                tblcaptionPeriod1.Text = captionPeriod1;
-                tblcaptionPeriod2.Text = captionPeriod2;
-                tblcaptionPeriod3.Text = captionPeriod3;
+                    }
+                }
 
                 int deliveryTimeInclDepartureTime = 0;
                 int deliveryTimePriority = 0;
+                int kaufteilID = 0;
 
                 // Hole eingehende Bestellungen aus StorageService
                 List<FutureInwardStockMovment> futureInwardStockMovments = StorageService.Instance.GetFutureInwardStockMovment();
-                // Hole Kaufteilliste aus StorageService
-                List<WarehouseStock> purchasePartsList = new List<WarehouseStock>();
-                purchasePartsList = StorageService.Instance.GetPurchaseParts();
-                // Hole Bedarfsliste aus Purchase Klasse
-                List<Demand> demandOfPartsList = new List<Demand>();
-                demandOfPartsList = GetDemandOfParts();
 
-                // Iteriere Kaufteilliste durch
-                foreach (WarehouseStock purchasePart in purchasePartsList)
+                // Setze aktuelle Periode
+                int currentPeriod = 0;
+                currentPeriod = StorageService.Instance.GetPeriodFromXml() + 1;
+
+                purchaseGrid.UpdateLayout();
+                for (int i = 4; i < 24; ++i)
                 {
-                    deliveryTimeInclDepartureTime = 0;
-                    deliveryTimePriority = 0;
-                    // Kaufteil ID als String
-                    String id = Convert.ToString(purchasePart.Id);
-                    List<FutureInwardStockMovment> incomingOrders;
-                    // Extrahiere alle Bestellungen des Artikels
-                    incomingOrders = futureInwardStockMovments.FindAll(item => item.Article.Equals(purchasePart.Id));
-
-                    // Setze Lieferzeit mit Abweichung und Eillieferzeit für den Artikel
-                    deliveryTimeInclDepartureTime = GetPurchasePartFromPurchaseByID(purchasePart.Id).deliveryTime + GetPurchasePartFromPurchaseByID(purchasePart.Id).departureTime;
-                    deliveryTimePriority = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(GetPurchasePartFromPurchaseByID(purchasePart.Id).deliveryTime) / 2.0));
-
-                    // Bedarfsberechnungen
-                    Demand demandOfPart = demandOfPartsList.Find(x => x.idDemand == purchasePart.Id);
-                    int demandP0PerDay = 0;
-                    demandP0PerDay = demandOfPart.demandInP0 / 5;
-                    int demandP1PerDay = 0;
-                    demandP1PerDay = demandOfPart.demandInP1 / 5;
-                    int demandP2PerDay = 0;
-                    demandP2PerDay = demandOfPart.demandInP2 / 5;
-                    int demandP3PerDay = 0;
-                    demandP3PerDay = demandOfPart.demandInP3 / 5;
-
-                    // Befülle Startmengen mit Lieferzugängen aus der Liste
-                    foreach (FutureInwardStockMovment incomingPart in incomingOrders)
+                    foreach (PurchaseElement item in purchaseGrid.Items)
                     {
-                        int incomingOrderDate = 0;
-                        int incomingOrderDay = 0;
-                        double incomingOrderAmount = 0.0;
+                        deliveryTimeInclDepartureTime = 0;
+                        deliveryTimePriority = 0;
+                        kaufteilID = 0;
+                        kaufteilID = Convert.ToInt32(item.Kaufteil);
 
-                        // Berechne wann der Artikel eintrifft
-                        if (incomingPart.Mode.Equals(5))
+                        List<FutureInwardStockMovment> incomingOrders;
+                        // Extrahiere alle Bestellungen des Artikels
+                        incomingOrders = futureInwardStockMovments.FindAll(x => x.Article.Equals(kaufteilID));
+
+                        DataGridRow dataGridRow = (DataGridRow)purchaseGrid.ItemContainerGenerator.ContainerFromItem(item);
+                        TextBlock tb = purchaseGrid.Columns[i].GetCellContent(dataGridRow) as TextBlock;
+
+                        DataGridCell dataGridCell = (DataGridCell)tb.Parent;
+
+                        int tbAmount = Convert.ToInt32(tb.Text);
+
+                        // Bestände Hintergrundfarben setzen
+                        if (tbAmount < 0)
                         {
-                            incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimeInclDepartureTime;
+                            dataGridCell.Background = Brushes.Tomato;
                         }
-
+                        else if (tbAmount > 0)
+                        {
+                            dataGridCell.Background = Brushes.LightGreen;
+                        }
                         else
                         {
-                            incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimePriority;
+                            dataGridCell.Background = Brushes.WhiteSmoke;
                         }
 
-                        incomingOrderDay = incomingOrderDate - currentPeriod * 5;
-                        incomingOrderAmount = Convert.ToDouble(incomingPart.Amount);
-                        TextBox tbCurrentStockPD;
-                        String tbCurrentStockPDName = "";
+                        // Bestelleingänge Hintergrundfarben setzen
+                        // Setze Lieferzeit mit Abweichung und Eillieferzeit für den Artikel
+                        deliveryTimeInclDepartureTime = GetPurchasePartFromPurchaseByID(kaufteilID).deliveryTime + GetPurchasePartFromPurchaseByID(kaufteilID).departureTime;
+                        deliveryTimePriority = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(GetPurchasePartFromPurchaseByID(kaufteilID).deliveryTime) / 2.0));
 
-                        if (incomingOrderDay >= 0 && incomingOrderDay < 5)
+                        if (deliveryTimeInclDepartureTime + 4 == i)
                         {
-                            incomingOrderDay = incomingOrderDay + 1;
-                            tbCurrentStockPDName = "currentStockP0D" + incomingOrderDay + "K" + id;
+                            dataGridCell.Background = Brushes.LightBlue;
                         }
 
-                        if (incomingOrderDay >= 5 && incomingOrderDay < 10)
+                        if (deliveryTimePriority + 4 == i)
                         {
-                            incomingOrderDay = incomingOrderDay + 1 - 5;
-                            tbCurrentStockPDName = "currentStockP1D" + incomingOrderDay + "K" + id;
+                            dataGridCell.Background = Brushes.MistyRose;
                         }
 
-                        if (incomingOrderDay >= 10 && incomingOrderDay < 15)
+                        // Eingehende Lieferungen dick schreiben
+                        foreach (FutureInwardStockMovment incomingPart in incomingOrders)
                         {
-                            incomingOrderDay = incomingOrderDay + 1 - 10;
-                            tbCurrentStockPDName = "currentStockP2D" + incomingOrderDay + "K" + id;
-                        }
+                            int incomingOrderDate = 0;
+                            int incomingOrderDay = 0;
+                            double incomingOrderAmount = 0.0;
 
-                        if (incomingOrderDay >= 15 && incomingOrderDay < 20)
-                        {
-                            incomingOrderDay = incomingOrderDay + 1 - 15;
-                            tbCurrentStockPDName = "currentStockP3D" + incomingOrderDay + "K" + id;
-                        }
-
-                        tbCurrentStockPD = (TextBox)this.FindName(tbCurrentStockPDName);
-                        tbCurrentStockPD.Text = Convert.ToString(incomingOrderAmount);
-                        tbCurrentStockPD.FontWeight = FontWeights.Bold;
-                        tbCurrentStockPD.ToolTip = "Eingehende Lieferung: " + Convert.ToString(incomingOrderAmount);
-                    }
-
-                    String amountInLoopAsString = "";
-                    String tbCurrentStockInLoopName = "";
-                    int amountInLoop = 0;
-                    int demandInLoop = 0;
-                    TextBox tbCurrentStockInLoop;
-                    // Initiale Mengenberechnung
-                    amountInLoop = purchasePart.Amount;
-
-                    for (int i = 0; i < 4; ++i)
-                    {
-                        if (i == 0)
-                        {
-                            demandInLoop = demandP0PerDay;
-                        }
-
-                        if (i == 1)
-                        {
-                            demandInLoop = demandP1PerDay;
-                        }
-
-                        if (i == 2)
-                        {
-                            demandInLoop = demandP2PerDay;
-                        }
-
-                        if (i == 3)
-                        {
-                            demandInLoop = demandP3PerDay;
-                        }
-
-                        for (int j = 1; j < 6; ++j)
-                        {
-                            // Mengenberechnung
-                            amountInLoop = amountInLoop - demandInLoop;
-
-                            tbCurrentStockInLoopName = "currentStockP" + i + "D" + j + "K" + id;
-                            tbCurrentStockInLoop = (TextBox)this.FindName(tbCurrentStockInLoopName);
-                            int tbOldAmount = Convert.ToInt32(tbCurrentStockInLoop.Text);
-                            amountInLoop = amountInLoop + tbOldAmount;
-                            amountInLoopAsString = Convert.ToString(amountInLoop);
-                            tbCurrentStockInLoop.Text = amountInLoopAsString;
-
-                            // Hintergrundfarben setzen
-                            if (amountInLoop < 0)
+                            // Berechne wann der Artikel eintrifft
+                            if (incomingPart.Mode.Equals(5))
                             {
-                                tbCurrentStockInLoop.Background = Brushes.Tomato;
+                                incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimeInclDepartureTime;
                             }
-                            else if (amountInLoop > 0)
-                            {
-                                tbCurrentStockInLoop.Background = Brushes.LightGreen;
-                            }
+
                             else
                             {
-                                tbCurrentStockInLoop.Background = Brushes.WhiteSmoke;
+                                incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimePriority;
                             }
 
+                            incomingOrderDay = incomingOrderDate - currentPeriod * 5;
+                            incomingOrderAmount = Convert.ToDouble(incomingPart.Amount);
+
+                            if (incomingOrderDay + 4 == i)
+                            {
+                                tb.FontWeight = FontWeights.Bold;
+                                tb.ToolTip = "Eingehende Lieferung: " + Convert.ToString(incomingOrderAmount);
+                            }
                         }
+
                     }
-
-                    // Farbliche Hervorhebung der Eillieferung
-                    TextBox tbCurrentStockPrioDelivery;
-                    String tbCurrentStockPrioDeliveryName = "";
-
-                    if (deliveryTimePriority >= 0 && deliveryTimePriority < 5)
-                    {
-                        deliveryTimePriority = deliveryTimePriority + 1;
-                        tbCurrentStockPrioDeliveryName = "currentStockP0D" + deliveryTimePriority + "K" + id;
-                    }
-
-                    if (deliveryTimePriority >= 5 && deliveryTimePriority < 10)
-                    {
-                        deliveryTimePriority = deliveryTimePriority + 1 - 5;
-                        tbCurrentStockPrioDeliveryName = "currentStockP1D" + deliveryTimePriority + "K" + id;
-                    }
-
-                    if (deliveryTimePriority >= 10 && deliveryTimePriority < 15)
-                    {
-                        deliveryTimePriority = deliveryTimePriority + 1 - 10;
-                        tbCurrentStockPrioDeliveryName = "currentStockP2D" + deliveryTimePriority + "K" + id;
-                    }
-
-                    if (deliveryTimePriority >= 15 && deliveryTimePriority < 20)
-                    {
-                        deliveryTimePriority = deliveryTimePriority + 1 - 15;
-                        tbCurrentStockPrioDeliveryName = "currentStockP3D" + deliveryTimePriority + "K" + id;
-                    }
-
-                    tbCurrentStockPrioDelivery = (TextBox)this.FindName(tbCurrentStockPrioDeliveryName);
-                    tbCurrentStockPrioDelivery.Background = Brushes.MistyRose;
-
-                    // Farbliche Hervorhebung der Normallieferung
-                    TextBox tbCurrentStockDelivery;
-                    String tbCurrentStockDeliveryName = "";
-
-                    if (deliveryTimeInclDepartureTime >= 0 && deliveryTimeInclDepartureTime < 5)
-                    {
-                        deliveryTimeInclDepartureTime = deliveryTimeInclDepartureTime + 1;
-                        tbCurrentStockDeliveryName = "currentStockP0D" + deliveryTimeInclDepartureTime + "K" + id;
-                    }
-
-                    if (deliveryTimeInclDepartureTime >= 5 && deliveryTimeInclDepartureTime < 10)
-                    {
-                        deliveryTimeInclDepartureTime = deliveryTimeInclDepartureTime + 1 - 5;
-                        tbCurrentStockDeliveryName = "currentStockP1D" + deliveryTimeInclDepartureTime + "K" + id;
-                    }
-
-                    if (deliveryTimeInclDepartureTime >= 10 && deliveryTimeInclDepartureTime < 15)
-                    {
-                        deliveryTimeInclDepartureTime = deliveryTimeInclDepartureTime + 1 - 10;
-                        tbCurrentStockDeliveryName = "currentStockP2D" + deliveryTimeInclDepartureTime + "K" + id;
-                    }
-
-                    if (deliveryTimeInclDepartureTime >= 15 && deliveryTimeInclDepartureTime < 20)
-                    {
-                        deliveryTimeInclDepartureTime = deliveryTimeInclDepartureTime + 1 - 15;
-                        tbCurrentStockDeliveryName = "currentStockP3D" + deliveryTimeInclDepartureTime + "K" + id;
-                    }
-
-                    tbCurrentStockDelivery = (TextBox)this.FindName(tbCurrentStockDeliveryName);
-                    tbCurrentStockDelivery.Background = Brushes.LightBlue;
-
-
-                    // Kaufteil Menge als String
-                    String amount = Convert.ToString(purchasePart.Amount);
-
-                    // Textbox Name
-                    String tbCurrentStockName = "currentStockK" + id;
-
-                    // Finde entsprechende Textbox anhand ihres eindeutigen Namens
-                    TextBox tbCurrentStock = (TextBox)this.FindName(tbCurrentStockName);
-
-                    // Bestände befüllen
-                    tbCurrentStock.Text = amount;
-
                 }
+
             }
 
             else
             {
                 btnShowDetails.Content = "Details einblenden";
-                gridDetail.Visibility = Visibility.Hidden;
 
-                // Hole Kaufteilliste aus StorageService
-                List<WarehouseStock> purchasePartsList = new List<WarehouseStock>();
-                purchasePartsList = StorageService.Instance.GetPurchaseParts();
-
-                // Iteriere Kaufteilliste durch
-                foreach (WarehouseStock purchasePart in purchasePartsList)
+                for (int i = 1; i < 22; ++i)
                 {
-
-                    // Kaufteil ID als String
-                    String id = Convert.ToString(purchasePart.Id);
-                    String tbCurrentStockInLoopName = "";
-                    TextBox tbCurrentStockInLoop;
-
-                    for (int i = 0; i < 4; ++i)
-                    {
-
-                        for (int j = 1; j < 6; ++j)
-                        {
-                            tbCurrentStockInLoopName = "currentStockP" + i + "D" + j + "K" + id;
-                            tbCurrentStockInLoop = (TextBox)this.FindName(tbCurrentStockInLoopName);
-
-                            tbCurrentStockInLoop.Text = Convert.ToString(0);
-                            tbCurrentStockInLoop.Background = Brushes.Transparent;
-                        }
-                    }
-
+                    purchaseGrid.Columns.RemoveAt(3);
                 }
-
+                
             }
+
+        }
+
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            if (StorageService.Instance.GetPeriodFromXml() > -1)
+            {
+                UpdatePurchaseFields();
+            }
+            
         }
 
         private void btnNextPage_Click(object sender, RoutedEventArgs e)
         {
-            // Hole Kaufteilliste aus StorageService
-            List<WarehouseStock> purchasePartsList = StorageService.Instance.GetPurchaseParts();
-
             // Hole Bestellliste aus StorageService
             List<OrderList> orderList = new List<OrderList>();
             orderList = StorageService.Instance.GetAllOrders();
 
             // Iteriere Kaufteilliste durch
-            foreach (WarehouseStock purchasePart in purchasePartsList)
+            foreach (PurchaseElement item in purchaseGrid.Items)
             {
-                // Kaufteil ID als String
-                String id = Convert.ToString(purchasePart.Id);
-                String tbOrderAmountName = "purchasePartOrderAmountK" + id;
-                String tbOrderTypeName = "purchasePartOrderTypeK" + id;
+                int kaufteilID = Convert.ToInt32(item.Kaufteil);
+                int convertedOrderAmount = Convert.ToInt32(item.Bestellmenge);
+                String orderType = item.Bestellart;
 
-                // Finde entsprechende Textboxen anhand ihres eindeutigen Namens
-                TextBox tbOrderAmount = (TextBox)this.FindName(tbOrderAmountName);
-                TextBox tbOrderType = (TextBox)this.FindName(tbOrderTypeName);
-
-                // Konvertiere Text aus Textboxen in Integer
-                int convertedOrderAmount = Convert.ToInt32(tbOrderAmount.Text);
-
-                if (convertedOrderAmount > 0 && (tbOrderType.Text == "Eil" || tbOrderType.Text == "Normal"))
+                if (convertedOrderAmount > 0 && (orderType == "Eil" || orderType == "Normal"))
                 {
                     int convertedOrderType = 0;
-                    if (tbOrderType.Text == "Eil")
+                    if (orderType == "Eil")
                     {
                         convertedOrderType = 4;
                     }
@@ -409,12 +403,12 @@ namespace BikeProductionPlanner.Views
                     // Falls ja, dann suche nach dem Kaufteil und vergleiche die Werte für
                     // die Bestellmenge und die Bestellart. Unterscheidet sich mind. einer, 
                     // dann passe die Bestellliste mit den neuen Werten an.
-                    if (orderList.Exists(x => x.Article == purchasePart.Id))
+                    if (orderList.Exists(x => x.Article == kaufteilID))
                     {
-                        OrderList item = orderList.Find(x => x.Article == purchasePart.Id);
-                        if (!(item.Quantity.Equals(convertedOrderAmount)) || !(item.Modus.Equals(convertedOrderType)))
+                        OrderList orderListItem = orderList.Find(x => x.Article == kaufteilID);
+                        if (!(orderListItem.Quantity.Equals(convertedOrderAmount)) || !(orderListItem.Modus.Equals(convertedOrderType)))
                         {
-                            int index = orderList.IndexOf(item);
+                            int index = orderList.IndexOf(orderListItem);
                             orderList[index].Quantity = convertedOrderAmount;
                             orderList[index].Modus = convertedOrderType;
                         }
@@ -423,19 +417,19 @@ namespace BikeProductionPlanner.Views
                     // Falls nein, dann füge das neue Kaufteil der Bestellliste hinzu
                     else
                     {
-                        OrderList orderListItem = new OrderList(convertedOrderAmount, purchasePart.Id, convertedOrderType);
-                        StorageService.Instance.AddOrderItem(orderListItem);
+                        OrderList newOrderListItem = new OrderList(convertedOrderAmount, kaufteilID, convertedOrderType);
+                        StorageService.Instance.AddOrderItem(newOrderListItem);
                     }
 
                 }
 
                 // Kaufteil von Bestellliste entfernen, wenn keine Bestellung gewünscht wird
-                if (convertedOrderAmount == 0 || tbOrderType.Text == "Keine")
+                if (convertedOrderAmount == 0 || orderType == "Keine")
                 {
-                    if (orderList.Exists(x => x.Article == purchasePart.Id))
+                    if (orderList.Exists(x => x.Article == kaufteilID))
                     {
-                        OrderList item = orderList.Find(x => x.Article == purchasePart.Id);
-                        StorageService.Instance.RemoveOrderItem(item);
+                        OrderList orderListItem = orderList.Find(x => x.Article == kaufteilID);
+                        StorageService.Instance.RemoveOrderItem(orderListItem);
                     }
                 }
 
@@ -443,8 +437,8 @@ namespace BikeProductionPlanner.Views
 
             // Wechsle auf nächste Seite
             MainWindowFinal.Instance.NavigateTo(Logic.UI.MenuItems.MenuItemsEnum.CustomizePage);
-            ListView lvMenu = (ListView)MainWindowFinal.Instance.FindName("ListViewMenu");
-            lvMenu.SelectedIndex = 7;
+            MainWindowFinal.Instance.ListViewMenu.SelectedIndex = 7;
+
         }
 
     }
