@@ -71,7 +71,7 @@ namespace BikeProductionPlanner.Views
 
                 orderAmount.ToolTip = ("Kaufteil " + orderAmountTooltip.id + " - " + purchasePartTooltip.name + ": \r\n \r\n" +
                                         "Diskontmenge: " + orderAmountTooltip.discountAmount + "\r\n" +
-                                        "Preis: " + orderAmountTooltip.price);
+                                        "Preis: " + orderAmountTooltip.price + " €");
 
                 ToolTipService.SetShowDuration(purchasePart, 60000);
                 ToolTipService.SetShowDuration(orderAmount, 60000);
