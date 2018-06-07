@@ -18,7 +18,6 @@
             <ColumnDefinition Width="75"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
         <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="titlePurchase" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Einkauf" VerticalAlignment="Center" FontWeight="Bold" FontSize="20"/>
         <Button x:Name="btnShowDetails" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="Details einblenden" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Click="btnShowDetails_Click" />
         <Button x:Name="btnReset" Grid.Row="1" Grid.Column="2" Content="Zurücksetzen" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Click="btnReset_Click" />
@@ -30,7 +29,5 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Row="3" Grid.Column="1" x:Name="btnNextPage" Content="Weiter" VerticalAlignment="Top" Click="btnNextPage_Click" Width="150" HorizontalAlignment="Left"/>
-
     </Grid>
-
 </UserControl>
