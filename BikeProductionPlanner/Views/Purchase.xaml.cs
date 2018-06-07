@@ -48,22 +48,33 @@ namespace BikeProductionPlanner.Views
         // Methode die die ToolTips für jedes Kaufteil setzt
         private void SetPurchasePartsToolTips()
         {
-
+            // ToolTip für Teileverwendung
             List<purchasePartTooltip> purchasePartsTooltip = new List<purchasePartTooltip>();
-            purchasePartsTooltip = Logic.Logic.Purchase.GetPurchasePartsTooltip();
+            purchasePartsTooltip = GetPurchasePartsTooltip();
+
+            // ToolTip für Diskontmenge und Preis
+            List<purchasePart> purchaseParts = new List<purchasePart>();
+            purchaseParts = GetPurchasePartsFromPurchase();
 
             foreach (PurchaseElement item in purchaseGrid.Items)
             {
                 DataGridRow dataGridRow = (DataGridRow)purchaseGrid.ItemContainerGenerator.ContainerFromItem(item);
-                TextBlock tb = purchaseGrid.Columns[0].GetCellContent(dataGridRow) as TextBlock;
+                TextBlock purchasePart = purchaseGrid.Columns[0].GetCellContent(dataGridRow) as TextBlock;
+                TextBlock orderAmount = purchaseGrid.Columns[1].GetCellContent(dataGridRow) as TextBlock;
 
                 int kaufteilID = Convert.ToInt32(item.Kaufteil);
                 purchasePartTooltip purchasePartTooltip = purchasePartsTooltip.Find(x => x.idPPTooltip == kaufteilID);
+                purchasePart orderAmountTooltip = purchaseParts.Find(y => y.id == kaufteilID);
 
-                tb.ToolTip = "Teilverwendung \r\n \r\n" + "Kaufteil " + purchasePartTooltip.idPPTooltip + " " +
+                purchasePart.ToolTip = "Teileverwendung für \r\n" + "Kaufteil " + purchasePartTooltip.idPPTooltip + " - " +
                                                 purchasePartTooltip.name + ": \r\n \r\n" + purchasePartTooltip.rawString;
 
-                ToolTipService.SetShowDuration(tb, 60000);
+                orderAmount.ToolTip = ("Kaufteil " + orderAmountTooltip.id + " - " + purchasePartTooltip.name + ": \r\n \r\n" +
+                                        "Diskontmenge: " + orderAmountTooltip.discountAmount + "\r\n" +
+                                        "Preis: " + orderAmountTooltip.price);
+
+                ToolTipService.SetShowDuration(purchasePart, 60000);
+                ToolTipService.SetShowDuration(orderAmount, 60000);
             }
 
         }
