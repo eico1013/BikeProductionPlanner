@@ -11,85 +11,141 @@
 
         <TextBlock Text="Vertrieb" Margin="20, 10" FontSize="26" FontWeight="Bold"/>
 
-        <TextBlock Text="Absatzplanung" Margin="20, 10" FontSize="20" FontWeight="Bold"/>
-
-        <Grid MaxWidth="1000" HorizontalAlignment="Stretch" Margin="20, 20">
-
-            <Grid.Resources>
-                <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                </Style>
-                <Style TargetType="{x:Type TextBox}">
-                    <Setter Property="FontSize" Value="18" />
-                    <Setter Property="Margin" Value="0,0,5,0"/>
-                </Style>
-            </Grid.Resources>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="35" />
-                <RowDefinition Height="35" />
-                <RowDefinition Height="35" />
-                <RowDefinition Height="35" />
-                <RowDefinition Height="35" />
-                <RowDefinition Height="10" />
-                <RowDefinition Height="35" />
-            </Grid.RowDefinitions>
-
-            <TextBlock Text="Periode" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" />
-            <TextBlock Text="Kinderrad P1" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" />
-            <TextBlock Text="Damenrad P2" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" />
-            <TextBlock Text="Herrenrad P3" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" />
-            <TextBlock Text="Summe" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" />
-
-            <TextBlock Text="Verbindliche Aufträge" TextWrapping="Wrap" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" />
-            <TextBlock Text="Prognosen" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" />
-
-            <TextBlock x:Name="periodVar0" Text="8" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" />
-            <TextBlock x:Name="periodVar1" Text="9" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" />
-            <TextBlock x:Name="periodVar2" Text="10" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center" />
-            <TextBlock x:Name="periodVar3" Text="11" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Center" />
-
-            <TextBox x:Name="period0product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" />
-            <TextBox x:Name="period0product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" />
-            <TextBox x:Name="period0product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" />
-            <TextBox x:Name="period0sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" />
-
-            <TextBox x:Name="period1product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" />
-            <TextBox x:Name="period1product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" />
-            <TextBox x:Name="period1product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" />
-            <TextBox x:Name="period1sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" />
-
-            <TextBox x:Name="period2product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Center" />
-            <TextBox x:Name="period2product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Center" />
-            <TextBox x:Name="period2product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Center" />
-            <TextBox x:Name="period2sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="4" Grid.Row="6" HorizontalAlignment="Center" />
-
-            <TextBox x:Name="period3product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Center" />
-            <TextBox x:Name="period3product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="3" HorizontalAlignment="Center" />
-            <TextBox x:Name="period3product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="4" HorizontalAlignment="Center" />
-            <TextBox x:Name="period3sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="5" Grid.Row="6" HorizontalAlignment="Center" />
-
-            <Button Grid.Column="4" Margin="109,80,0,-95" Width="170" Height="50" Grid.Row="6" 
-            HorizontalAlignment="Left"
-           Content="Direktvertrieb" Click="Button1_Click" Grid.ColumnSpan="2"  />
-
-            <Button Grid.Column="0" Margin="0,80,0,-94" Width="170" Height="50" Grid.Row="6"
-            HorizontalAlignment="Left"
-            Content="Speichern" Click="Button2_Click" Grid.ColumnSpan="2"  />
-            <Button Name="Fortfahren_Button" Grid.Column="1" Margin="33,80,0,-95" Width="170" Height="50" Grid.Row="6"
-                HorizontalAlignment="Left"
-                Content="Fortfahren" Grid.ColumnSpan="3" Click="Button_Click" Visibility="Hidden"  />
-        </Grid>
-
         <ContentControl Name="ContentControl" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"></ContentControl>
+        <TabControl Height="384" Width="775" Margin="12,0">
+            <TabItem Header="Absatzplanung" Background="LightSlateGray">
+                <materialDesign:Card
+                    
+                    Padding="8" Margin="10,17,12,18" VerticalAlignment="Stretch" RenderTransformOrigin="0.501,0.306">
+                    <Grid MaxWidth="1000" HorizontalAlignment="Stretch" Margin="20, 20">
+
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="FontSize" Value="18" />
+                                <Setter Property="Margin" Value="0,0,5,0"/>
+                            </Style>
+                        </Grid.Resources>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="35" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Periode" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" />
+                        <TextBlock Text="Kinderrad P1" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" />
+                        <TextBlock Text="Damenrad P2" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" />
+                        <TextBlock Text="Herrenrad P3" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" />
+                        <TextBlock Text="Summe" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" />
+
+                        <TextBlock Text="Verbindliche Aufträge" TextWrapping="Wrap" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" />
+                        <TextBlock Text="Prognosen" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" />
+
+                        <TextBlock x:Name="periodVar0" Text="8" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="periodVar1" Text="9" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="periodVar2" Text="10" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="periodVar3" Text="11" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Center" />
+
+                        <TextBox x:Name="period0product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period0product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period0product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period0sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" />
+
+                        <TextBox x:Name="period1product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period1product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period1product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period1sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" />
+
+                        <TextBox x:Name="period2product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period2product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period2product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period2sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="4" Grid.Row="6" HorizontalAlignment="Center" />
+
+                        <TextBox x:Name="period3product1" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period3product2" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="3" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period3product3" Text="100" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" Grid.Column="5" Grid.Row="4" HorizontalAlignment="Center" />
+                        <TextBox x:Name="period3sum" Text="300" PreviewTextInput="NumberIntValidationTextBox" TextChanged="UpdateSummeFromForcast" IsEnabled="False" Grid.Column="5" Grid.Row="6" HorizontalAlignment="Center" />
+
+
+
+                    </Grid>
+                </materialDesign:Card>
+            </TabItem>
+
+            <TabItem Header="Direktvertrieb" Background="LightSlateGray">
+                <materialDesign:Card
+                    
+                    Padding="8" Margin="10,17,12,18" VerticalAlignment="Stretch" RenderTransformOrigin="0.501,0.306">
+                    <Grid MaxWidth="1000" HorizontalAlignment="Stretch" Margin="20, 20">
+
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="FontSize" Value="18" />
+                                <Setter Property="Margin" Value="0,0,5,0"/>
+                            </Style>
+                        </Grid.Resources>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0*" />
+                            <ColumnDefinition Width="178*"/>
+                            <ColumnDefinition Width="177*" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="178*" />
+                            <ColumnDefinition Width="177*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="35" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Kinderrad P1" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,9" />
+                        <TextBlock Text="Damenrad P2" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,10,0,9" />
+                        <TextBlock Text="Herrenrad P3" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,10,0,9" />
+                        <TextBlock Text="Summe" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10,0,9" />
+
+                        <TextBlock Text="Anzahl" Grid.Column="2" Grid.Row="0" Margin="0,10,0,9" />
+                        <TextBlock Text="Verkaufspreis" Grid.Column="4" Grid.Row="0" Margin="0,10,0,9" />
+                        <TextBlock Text="Vertragsstrafe" Grid.Column="5" Grid.Row="0" Margin="0,10,0,9" />
+
+                        <TextBox x:Name="directProduct1" Text="0" PreviewTextInput="NumberIntValidationTextBox" TextChanged="Forecast1_TextChanged" Grid.Column="2" Grid.Row="1" />
+                        <TextBox x:Name="directProduct2" Text="0" PreviewTextInput="NumberIntValidationTextBox" TextChanged="Forecast1_TextChanged" Grid.Column="2" Grid.Row="2" />
+                        <TextBox x:Name="directProduct3" Text="0" PreviewTextInput="NumberIntValidationTextBox" TextChanged="Forecast1_TextChanged" Grid.Column="2" Grid.Row="3" />
+                        <TextBox x:Name="directSum" Text="0" PreviewTextInput="NumberIntValidationTextBox" TextChanged="Forecast1_TextChanged" IsEnabled="False" Grid.Column="2" Grid.Row="5" />
+
+                        <TextBox x:Name="retailPriceProduct1" Text="0" PreviewTextInput="NumberIntValidationTextBox" Grid.Column="4" Grid.Row="1" />
+                        <TextBox x:Name="retailPriceProduct2" Text="0" PreviewTextInput="NumberIntValidationTextBox" Grid.Column="4" Grid.Row="2" />
+                        <TextBox x:Name="retailPriceProduct3" Text="0" PreviewTextInput="NumberIntValidationTextBox" Grid.Column="4" Grid.Row="3" />
+
+                        <TextBox x:Name="contractPenaltyProduct1" Text="0" PreviewTextInput="NumberIntValidationTextBox" Grid.Column="5" Grid.Row="1" />
+                        <TextBox x:Name="contractPenaltyProduct2" Text="0" PreviewTextInput="NumberIntValidationTextBox" Grid.Column="5" Grid.Row="2" />
+                        <TextBox x:Name="contractPenaltyProduct3" Text="0" PreviewTextInput="NumberIntValidationTextBox" Grid.Column="5" Grid.Row="3" />
+                    </Grid>
+                </materialDesign:Card>
+            </TabItem>
+        </TabControl>
     </StackPanel>
 </UserControl>
