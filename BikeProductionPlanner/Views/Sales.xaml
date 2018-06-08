@@ -13,11 +13,11 @@
             </InlineUIContainer></TextBlock>
 
         <ContentControl Name="ContentControl" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"></ContentControl>
-        <TabControl Height="384" Width="775" Margin="12,0">
+        <TabControl Height="339" Width="775" Margin="12,0">
             <TabItem Header="Absatzplanung" Background="LightSlateGray">
                 <materialDesign:Card
                     
-                    Padding="8" Margin="10,17,12,23" VerticalAlignment="Stretch" RenderTransformOrigin="0.501,0.306">
+                    Padding="8" Margin="10,17,12,16" VerticalAlignment="Stretch" RenderTransformOrigin="0.501,0.306">
                     <Grid MaxWidth="1000" HorizontalAlignment="Stretch" Margin="20, 0">
 
                         <Grid.Resources>
@@ -148,6 +148,6 @@
                 </materialDesign:Card>
             </TabItem>
         </TabControl>
-        <Button Content="Speichern" Click="Button2_Click" Margin="39,-30,545,0"/>
+        <Button Content="Speichern und Fortfahren" Click="Button2_Click" Margin="36,10,570,0"/>
     </StackPanel>
 </UserControl>
