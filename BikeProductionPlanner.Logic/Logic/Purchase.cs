@@ -545,10 +545,43 @@ namespace BikeProductionPlanner.Logic.Logic
                         OrderList orderListItem = new OrderList(convertedOrderAmount, wh.Id, orderType);
                         StorageService.Instance.AddOrderItem(orderListItem);
 
-                        //if ((coverageSum - deliveryTimePriority) < 0)
-                        //{
-                        //    // Hinweis: Auch Eilbestellung kommt nicht rechtzeitig!
-                        //}
+                        if ((coverageSum - deliveryTimePriority) < 0)
+                        {
+                            // Hinweis: Auch Eilbestellung kommt nicht rechtzeitig!
+
+                            foreach (FutureInwardStockMovment incomingPart in incomingOrders)
+                            {
+                                int incomingOrderDate = 0;
+                                int incomingOrderDay = 0;
+
+                                // Berechne wann der Artikel eintrifft
+                                if (incomingPart.Mode.Equals(5))
+                                {
+                                    incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimeInclDepartureTime;
+                                }
+
+                                else
+                                {
+                                    incomingOrderDate = incomingPart.OrderPeriod * 5 + deliveryTimePriority;
+                                }
+
+                                incomingOrderDay = incomingOrderDate - currentPeriod * 5;
+
+                                if (incomingOrderDay > daysOfPeriodGone)
+                                {
+                                    // Hole Bestellliste aus StorageService
+                                    List<OrderList> orderList = new List<OrderList>();
+                                    orderList = StorageService.Instance.GetAllOrders();
+
+                                    OrderList oLI = orderList.Find(x => x.Article == incomingPart.Article);
+                                    int index = orderList.IndexOf(oLI);
+                                    orderList[index].Quantity = orderList[index].Quantity - incomingPart.Amount;
+
+                                }
+
+                            }
+
+                        }
                     }
                 }
 
