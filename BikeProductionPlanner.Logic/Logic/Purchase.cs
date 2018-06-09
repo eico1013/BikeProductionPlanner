@@ -419,7 +419,7 @@ namespace BikeProductionPlanner.Logic.Logic
                         }
                         coverageSum = 10 + coverageInP2;
                         coverageSumAsDouble = 10 + test2;
-                        checkForDelay = 10;
+                        checkForDelay = 10 + coverageInP2;
                         // Periode 3
                         if (coverageInP2 > 5)
                         {
@@ -431,7 +431,7 @@ namespace BikeProductionPlanner.Logic.Logic
 
                             coverageSum = 15 + coverageInP3;
                             coverageSumAsDouble = 15 + test3;
-                            checkForDelay = 15;
+                            checkForDelay = 15 + coverageInP3;
                         }
                     }
                 }
