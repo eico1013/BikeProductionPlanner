@@ -188,7 +188,7 @@ namespace BikeProductionPlanner.Views
             {
                 try
                 {
-                    StorageService.Instance.vertriebswunschP1 = Convert.ToInt32(period0product1.Text);
+                    // StorageService.Instance.vertriebswunschP1 = Convert.ToInt32(period0product1.Text);
 
                     periode0produkt1 = Convert.ToInt32(period0product1.Text);
                     periode0produkt2 = Convert.ToInt32(period0product2.Text);
